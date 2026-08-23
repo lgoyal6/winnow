@@ -1,4 +1,4 @@
-# LCLM + TurboQuant — timing & memory benchmark
+# LCLM + TurboQuant - timing & memory benchmark
 
 - LCLM checkpoint: `latent-context/0.6b-4b-LCLM-16x` (encoder Qwen3-Embedding-0.6B → adapter → decoder Qwen3-4B-Instruct-2507; 36 layers, 8 KV heads, head_dim=128)
 - GPU: **A100-80GB**, bf16 weights | decode: greedy (`do_sample=False`)
@@ -8,16 +8,16 @@
 
 The LCLM encoder compresses the input doc into a small number of latent soft
 tokens (the decoder's effective prompt). With the 16x checkpoint, ~16 input
-tokens → 1 latent, so a 16k-token doc becomes ~1000 latent tokens — that's the
+tokens → 1 latent, so a 16k-token doc becomes ~1000 latent tokens - that's the
 decoder sequence length that drives KV-cache size.
 
 > **Honest trade-off.** TurboQuant here is **pure-PyTorch dequant with no custom
 > CUDA kernel**: every decode step de-quantizes the whole cache, so wall-clock
-> decode is **slower** than fp16. The payoff is **memory** — KV-cache bytes drop
+> decode is **slower** than fp16. The payoff is **memory** - KV-cache bytes drop
 > ~3.8–4.9×. This matches the paper, which needs custom kernels to also win on
 > speed. We report both, plainly: **TQ = slower tok/s, smaller KV, lower peak GPU.**
 
-## Headline — per context length (decode = 512 tokens)
+## Headline - per context length (decode = 512 tokens)
 
 KV bytes are the actual decoder KV-cache size at end of generation (MB). Peak GPU
 is `torch.cuda.max_memory_allocated`. Decode tok/s excludes the prefill/TTFT.
@@ -57,7 +57,7 @@ is `torch.cuda.max_memory_allocated`. Decode tok/s excludes the prefill/TTFT.
 (`peak GPU` is dominated by the ~8 GB of bf16 model weights + activations; the KV
 delta is a small slice of the total here because the decoder sequence is only
 ~100–1000 latent tokens. The KV-bytes column is where the compression shows
-cleanly — and it's the figure that matters when you scale latents/batch up.)
+cleanly - and it's the figure that matters when you scale latents/batch up.)
 
 ## What the numbers say
 
@@ -74,7 +74,7 @@ cleanly — and it's the figure that matters when you scale latents/batch up.)
   is dominated by encoder prefill + decoder prefill; the per-step dequant cost
   only accrues during the autoregressive decode loop, so it shows up in tok/s,
   not TTFT.
-- **Peak GPU** is ~40–250 MB higher under TQ at these sizes — the dequant path
+- **Peak GPU** is ~40–250 MB higher under TQ at these sizes - the dequant path
   materializes a transient fp32 copy of K/V each step, which at ≤1k latent tokens
   outweighs the packed-cache savings *in resident peak*. The memory win is in the
   **stored cache bytes** (the column that scales with batch × latents × decode),

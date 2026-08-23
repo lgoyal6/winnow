@@ -7,12 +7,12 @@
 
 | arm (rate \| dedup) | retention | passages kept | distractors leaked | mean F1 | EM | correct | single-mention |
 |---|---|---|---|---|---|---|---|
-| 0.75|L2 | 0.729 | (single doc) | — | 1.0 | 7/7 | 7/7 | 3/3 |
-| 0.75|L2+MMR | 0.725 | (single doc) | — | 1.0 | 7/7 | 7/7 | 3/3 |
-| 0.5|L2 | 0.515 | (single doc) | — | 1.0 | 7/7 | 7/7 | 3/3 |
-| 0.5|L2+MMR | 0.508 | (single doc) | — | 1.0 | 7/7 | 7/7 | 3/3 |
+| 0.75|L2 | 0.729 | (single doc) | - | 1.0 | 7/7 | 7/7 | 3/3 |
+| 0.75|L2+MMR | 0.725 | (single doc) | - | 1.0 | 7/7 | 7/7 | 3/3 |
+| 0.5|L2 | 0.515 | (single doc) | - | 1.0 | 7/7 | 7/7 | 3/3 |
+| 0.5|L2+MMR | 0.508 | (single doc) | - | 1.0 | 7/7 | 7/7 | 3/3 |
 
-<details><summary>ramble — 0.75|L2 per-question</summary>
+<details><summary>ramble - 0.75|L2 per-question</summary>
 
 | Q | gold | single? | answer | F1 | fault |
 |---|---|---|---|---|---|
@@ -29,7 +29,7 @@ faults: none | MMR dropped sentences: 0
 </details>
 
 
-<details><summary>ramble — 0.75|L2+MMR per-question</summary>
+<details><summary>ramble - 0.75|L2+MMR per-question</summary>
 
 | Q | gold | single? | answer | F1 | fault |
 |---|---|---|---|---|---|
@@ -46,7 +46,7 @@ faults: none | MMR dropped sentences: 1
 </details>
 
 
-<details><summary>ramble — 0.5|L2 per-question</summary>
+<details><summary>ramble - 0.5|L2 per-question</summary>
 
 | Q | gold | single? | answer | F1 | fault |
 |---|---|---|---|---|---|
@@ -63,7 +63,7 @@ faults: none | MMR dropped sentences: 0
 </details>
 
 
-<details><summary>ramble — 0.5|L2+MMR per-question</summary>
+<details><summary>ramble - 0.5|L2+MMR per-question</summary>
 
 | Q | gold | single? | answer | F1 | fault |
 |---|---|---|---|---|---|
@@ -88,7 +88,7 @@ faults: none | MMR dropped sentences: 1
 | 0.5|L2 | 0.419 | 6/8 | 7 | 0.745 | 6/11 | 9/11 | 9/11 |
 | 0.5|L2+MMR | 0.419 | 6/8 | 7 | 0.745 | 6/11 | 9/11 | 9/11 |
 
-<details><summary>multidoc — 0.75|L2 per-question</summary>
+<details><summary>multidoc - 0.75|L2 per-question</summary>
 
 | Q | gold | single? | answer | F1 | fault |
 |---|---|---|---|---|---|
@@ -109,7 +109,7 @@ faults: {'INFO_LOST_IN_COMPRESSION': 2} | MMR dropped sentences: 0
 </details>
 
 
-<details><summary>multidoc — 0.75|L2+MMR per-question</summary>
+<details><summary>multidoc - 0.75|L2+MMR per-question</summary>
 
 | Q | gold | single? | answer | F1 | fault |
 |---|---|---|---|---|---|
@@ -130,7 +130,7 @@ faults: {'INFO_LOST_IN_COMPRESSION': 2} | MMR dropped sentences: 0
 </details>
 
 
-<details><summary>multidoc — 0.5|L2 per-question</summary>
+<details><summary>multidoc - 0.5|L2 per-question</summary>
 
 | Q | gold | single? | answer | F1 | fault |
 |---|---|---|---|---|---|
@@ -151,7 +151,7 @@ faults: {'INFO_LOST_IN_COMPRESSION': 2} | MMR dropped sentences: 0
 </details>
 
 
-<details><summary>multidoc — 0.5|L2+MMR per-question</summary>
+<details><summary>multidoc - 0.5|L2+MMR per-question</summary>
 
 | Q | gold | single? | answer | F1 | fault |
 |---|---|---|---|---|---|

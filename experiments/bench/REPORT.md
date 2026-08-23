@@ -1,4 +1,4 @@
-# Winnow compression bench — results
+# Winnow compression bench - results
 
 - dataset: `LongBench` | tasks: ['multifieldqa_en', 'hotpotqa'] | examples: 20 | max_context_words: 2500
 - correct = token-F1 >= 0.5; scoring = SQuAD-normalized F1/EM (deterministic)
