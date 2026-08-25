@@ -1,24 +1,32 @@
 # turboquant_kv
 
-A packed TurboQuant KV cache, a scored benchmark for it, and a fused Triton
-dequantization kernel.
+Winnow's TurboQuant path reports 3.77-4.93x KV-cache compression. Measured in
+bytes the process actually holds, it saves **nothing**: at 16k context the
+quantized cache is 867.8 MB against fp16's 866.1 MB. The reported figure comes
+from `mem_bits()`, which counts the bits the scheme needs, while the code keeps
+the uint8 indices and a full-precision dequantized copy at the same time and
+grows the latter with `torch.cat`.
 
-Three things came out of this that change how the existing TurboQuant path
-should be read:
+turboquant_kv makes the ratio real, then asks the question the ratio was hiding:
+at what bit width does the model still work? The answer is **8-bit**, which is
+1.97x, not 3.8-4.9x.
 
-1. **The published compression ratio is a logical bit count, not bytes.** The
-   existing implementation holds *more* resident memory than fp16 while
-   reporting 3.77x compression. Packing the indices and dropping the redundant
-   full-precision cache makes the ratio real.
-2. **Only 8-bit survives a scored benchmark.** 4-bit reconstructs KV to 9.7%
-   relative L2 error, exactly the theoretical Lloyd-Max bound, and the model is
-   unusable. On LongBench-E, 8-bit costs **0.60 points** while 6-bit costs
-   **25.02** and 4-bit costs 35.57. Real compression at the only safe setting is
-   **1.97x**, not the 3.8-4.9x the project reports.
-3. **The dequantization was compute-bound, not memory-bound.** A fused kernel
-   built to save memory traffic lost to PyTorch by 12x. The bottleneck was the
-   precision of the inverse-rotation GEMM; moving it to TF32 tensor cores made
-   the same kernel 6.5-34x faster.
+> **Thesis.** A compression ratio is a claim about resident bytes and an
+> accuracy claim is a claim about a score. This project had a logical bit count
+> validated by a single planted passphrase, and both halves failed the moment
+> they were measured properly. Nothing here is a coding error: the quantizer hits
+> its theoretical Lloyd-Max distortion to three decimals. The operating point
+> was wrong, and a smoke test could not see it.
+
+The fused kernel is the same story from the other direction. Built to save
+memory traffic it was **12x slower than PyTorch**, because the operation is
+compute-bound in fp32 and I had optimized the wrong ceiling. Moving the rotation
+to TF32 tensor cores makes the identical kernel 6.6x to 34.5x faster.
+
+A correction is recorded in place rather than edited away: an earlier conclusion
+that 6-bit was usable came from a greedy-token-match proxy on a repeated-sentence
+prompt, and the scored benchmark overturned it by 25 points. That is the same
+class of error as the needle test it was meant to replace.
 
 Measured on an RTX A6000 (sm_86, 48 GB), `Qwen/Qwen2.5-7B-Instruct` in bf16,
 torch 2.13.0+cu129, triton 3.7.1, transformers 5.15.1, seed 0.
