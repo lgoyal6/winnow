@@ -1,0 +1,50 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "rows": [
+    {
+      "bits": 3,
+      "bytes_per_vector": 50,
+      "compression_vs_fp16": 5.12,
+      "rel_l2_real": 0.18509522080421448,
+      "rel_l2_gaussian": 0.18380960822105408,
+      "greedy_token_match_vs_fp16": 0.16666666666666666,
+      "text": " the the the0 the the the000 the the the the the0s the"
+    },
+    {
+      "bits": 4,
+      "bytes_per_vector": 66,
+      "compression_vs_fp16": 3.878787878787879,
+      "rel_l2_real": 0.09643342345952988,
+      "rel_l2_gaussian": 0.09626737982034683,
+      "greedy_token_match_vs_fp16": 0.16666666666666666,
+      "text": " the the the the the the the the the the the the the the the the the the"
+    },
+    {
+      "bits": 5,
+      "bytes_per_vector": 82,
+      "compression_vs_fp16": 3.1219512195121952,
+      "rel_l2_real": 0.049710068851709366,
+      "rel_l2_gaussian": 0.04964372143149376,
+      "greedy_token_match_vs_fp16": 0.1111111111111111,
+      "text": " the third third inspection cycle the coolant pressure pressure held steady while the secondary loop the secondary loop"
+    },
+    {
+      "bits": 6,
+      "bytes_per_vector": 98,
+      "compression_vs_fp16": 2.6122448979591835,
+      "rel_l2_real": 0.02616482973098755,
+      "rel_l2_gaussian": 0.026249954476952553,
+      "greedy_token_match_vs_fp16": 1.0,
+      "text": " the third inspection cycle the coolant pressure held steady while the secondary loop was vented. The"
+    },
+    {
+      "bits": 8,
+      "bytes_per_vector": 130,
+      "compression_vs_fp16": 1.9692307692307693,
+      "rel_l2_real": 0.006978438701480627,
+      "rel_l2_gaussian": 0.006993969436734915,
+      "greedy_token_match_vs_fp16": 1.0,
+      "text": " the third inspection cycle the coolant pressure held steady while the secondary loop was vented. The"
+    }
+  ]
+}
