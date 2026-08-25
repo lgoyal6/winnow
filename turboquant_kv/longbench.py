@@ -12,9 +12,14 @@ per context length, and the retrieval-style tasks are the ones a lossy KV cache
 should actually break first.
 
 Prompt templates and `max_gen` are the official ones from the LongBench repo
-(`config/dataset2prompt.json`, `config/dataset2maxlen.json`); scoring follows
-`metrics.py`. Changing either would make these numbers incomparable to published
-LongBench results, so they are copied verbatim rather than paraphrased.
+(`config/dataset2prompt.json`, `config/dataset2maxlen.json`); `normalize_answer`,
+`qa_f1_score` and `retrieval_score` follow `metrics.py`. Changing either would
+make these numbers incomparable to published LongBench results, so they are
+copied verbatim rather than paraphrased.
+
+Derived from LongBench (https://github.com/THUDM/LongBench), MIT License,
+Copyright (c) 2023 THUDM. The prompt strings and metric implementations in this
+file are theirs; the task selection, data loading and truncation helper are not.
 """
 from __future__ import annotations
 
