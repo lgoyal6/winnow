@@ -14,14 +14,14 @@ question-aware COARSE document selection inside a single `compress_prompt` call
             context, rate, target_token, use_context_level_filter,
             target_context, context_level_rate, context_level_target_token, ...)
 
-It forwards ONLY those args — `question`, `instruction`, `rank_method`, and
+It forwards ONLY those args - `question`, `instruction`, `rank_method`, and
 `reorder_context` are silently dropped. And `compress_prompt_llmlingua2(...)` has
 NO `question`/`rank_method`/`reorder_context` parameters at all. So with
 `use_llmlingua2=True`:
 
   * the only document-level knob (`use_context_level_filter` + `target_context`/
     `context_level_rate`/`context_level_target_token`) ranks documents by the
-    encoder's own predicted compression score — it is QUESTION-BLIND;
+    encoder's own predicted compression score - it is QUESTION-BLIND;
   * `rank_method` (including `bge_reranker`) only takes effect on the causal
     LongLLMLingua path (`use_llmlingua2=False`), which loads a causal backbone we
     are explicitly avoiding.
@@ -54,6 +54,8 @@ heavy models load once (e.g. on a warm GPU) and these functions stay cheap.
 
 import re
 from typing import List, Optional
+
+from model_guard import guarded_from_pretrained
 
 # Token-level structural tokens LLMLingua-2 should never drop.
 FORCE_TOKENS = ["\n", ".", "!", "?", ","]
@@ -106,8 +108,9 @@ class SmallEmbedder:
         self._torch = torch
         self.device = device
         self.max_length = max_length
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        model = AutoModel.from_pretrained(model_name)
+        # Pinned revision + safetensors + no remote code; see model_guard.
+        self.tokenizer = guarded_from_pretrained(AutoTokenizer, model_name)
+        model = guarded_from_pretrained(AutoModel, model_name)
         if use_fp16 and device.startswith("cuda"):
             model = model.half()
         self.model = model.eval().to(device)
@@ -210,8 +213,8 @@ class CrossEncoderReranker:
         self._torch = torch
         self.device = device
         self.max_length = max_length
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        model = AutoModelForSequenceClassification.from_pretrained(model_name)
+        self.tokenizer = guarded_from_pretrained(AutoTokenizer, model_name)
+        model = guarded_from_pretrained(AutoModelForSequenceClassification, model_name)
         if use_fp16 and device.startswith("cuda"):
             model = model.half()
         self.model = model.eval().to(device)
@@ -384,7 +387,7 @@ def two_stage_compress(
 
     return {
         "compressed_prompt": final_prompt,
-        # the compressed CONTEXT only (no instruction/question) — what a reader
+        # the compressed CONTEXT only (no instruction/question) - what a reader
         # should be given alongside its own downstream questions:
         "compressed_context": compressed_context,
         # context-only numbers straight from LLMLingua-2 (the token stage):

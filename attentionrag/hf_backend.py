@@ -18,7 +18,11 @@ to match the paper exactly).
 from __future__ import annotations
 
 import os
+import sys
 from typing import List, Optional, Tuple
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from model_guard import guarded_from_pretrained  # noqa: E402
 
 from .core import (
     FocusResultData,
@@ -52,10 +56,10 @@ class HFBackend:
         self.use_openai_hint = use_openai_hint
         self.openai_model = openai_model
 
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        self.tokenizer = guarded_from_pretrained(AutoTokenizer, model_name)
         # eager attention is REQUIRED to get attention weights back from forward.
-        self.model = AutoModelForCausalLM.from_pretrained(
-            model_name,
+        self.model = guarded_from_pretrained(
+            AutoModelForCausalLM, model_name,
             torch_dtype=getattr(torch, dtype),
             attn_implementation="eager",
             device_map=device,
@@ -249,7 +253,7 @@ class HFBackend:
         # chunk to fall back on, and a "none" anchor carries no attention signal
         # to rank sentences). In that single-chunk case keep the chunk wholesale
         # instead of dropping it, so the downstream merge still has spans to work
-        # with. Multi-chunk inputs keep the normal per-chunk "none" drop — that
+        # with. Multi-chunk inputs keep the normal per-chunk "none" drop - that
         # coarse relevance gate is the point of AttentionRAG on long contexts.
         single_chunk = len(ids) <= chunk_size
         for i in range(0, len(ids), chunk_size):

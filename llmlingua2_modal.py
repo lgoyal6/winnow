@@ -17,12 +17,12 @@ import modal
 # Token-level extractive compressor (encoder). Multilingual XLM-RoBERTa.
 MODEL_NAME = "microsoft/llmlingua-2-xlm-roberta-large-meetingbank"
 # Coarse-stage, question-aware reranker (cross-encoder, NOT a causal LM).
-# bge-reranker-v2-m3: current lightweight multilingual BGE reranker — pairs well
+# bge-reranker-v2-m3: current lightweight multilingual BGE reranker - pairs well
 # with the multilingual compressor above. See two_stage_compressor.py for why.
 RERANKER_NAME = "BAAI/bge-reranker-v2-m3"
 
 # Persistent HF cache. Weights are downloaded into this volume once and read
-# from it on every subsequent run — never re-downloaded, even across image
+# from it on every subsequent run - never re-downloaded, even across image
 # rebuilds. create_if_missing=True means the first run provisions it automatically.
 CACHE_DIR = "/cache"
 hf_cache_vol = modal.Volume.from_name("llmlingua2-hf-cache", create_if_missing=True)
@@ -38,8 +38,8 @@ image = (
     # Point Hugging Face at the mounted volume so snapshot_download and the models
     # both read/write the standard HF cache layout there.
     .env({"HF_HOME": CACHE_DIR, "HF_HUB_ENABLE_HF_TRANSFER": "1"})
-    # Ship our local two-stage logic into the image.
-    .add_local_python_source("two_stage_compressor")
+    # Ship our local two-stage logic and the artifact guard into the image.
+    .add_local_python_source("two_stage_compressor", "model_guard")
 )
 
 app = modal.App("llmlingua2-xlm", image=image)
@@ -50,7 +50,7 @@ app = modal.App("llmlingua2-xlm", image=image)
     volumes={CACHE_DIR: hf_cache_vol},
     # Keep a warmed container alive 30 min after the last request so it stays hot
     # through a demo (between questions) without re-warming. Auto-scales to zero
-    # afterward — no lingering cost.
+    # afterward - no lingering cost.
     scaledown_window=1800,
     # Memory snapshots: capture the fully-loaded model (incl. GPU memory) so that
     # future cold starts RESTORE that state instead of re-loading the model.
@@ -60,17 +60,21 @@ app = modal.App("llmlingua2-xlm", image=image)
 class Compressor:
     @modal.enter(snap=True)
     def load(self):
-        # Runs only when CREATING the snapshot — i.e. the very first cold start,
+        # Runs only when CREATING the snapshot - i.e. the very first cold start,
         # or after a code/image change invalidates the existing snapshot. The
         # loaded model and its GPU memory are captured here; every later cold
         # start restores this state directly and skips all of this work.
         #
         # Populate-once-then-read: downloads only if the volume is empty,
         # otherwise this resolves straight from the cached volume.
-        from huggingface_hub import snapshot_download
+        from model_guard import (assert_no_pickled_weights,
+                                 llmlingua_model_config,
+                                 pinned_snapshot_download)
 
-        snapshot_download(MODEL_NAME)
-        snapshot_download(RERANKER_NAME)
+        # Pinned revisions: without one this resolves `main`, so the same model
+        # name can mean different bytes on a volume that is never re-downloaded.
+        for name in (MODEL_NAME, RERANKER_NAME):
+            assert_no_pickled_weights(pinned_snapshot_download(name))
         hf_cache_vol.commit()  # persist any newly downloaded files to the volume
 
         from llmlingua import PromptCompressor
@@ -79,6 +83,9 @@ class Compressor:
             model_name=MODEL_NAME,
             use_llmlingua2=True,
             device_map="cuda",
+            # llmlingua 0.2.2 defaults trust_remote_code to True and forwards it
+            # into AutoConfig/AutoTokenizer/AutoModel. See model_guard.
+            model_config=llmlingua_model_config(MODEL_NAME),
         )
 
         # Coarse-stage reranker (raw transformers cross-encoder; see module docs

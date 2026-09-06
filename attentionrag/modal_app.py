@@ -48,8 +48,8 @@ image = (
         "openai",
     )
     .env({"HF_HOME": CACHE_DIR, "HF_HUB_ENABLE_HF_TRANSFER": "1"})
-    # Ship the AttentionRAG package into the image.
-    .add_local_python_source("attentionrag")
+    # Ship the AttentionRAG package and the artifact guard into the image.
+    .add_local_python_source("attentionrag", "model_guard")
 )
 
 app = modal.App("attentionrag", image=image)
@@ -65,10 +65,11 @@ app = modal.App("attentionrag", image=image)
 class AttentionRAGService:
     @modal.enter()
     def load(self):
-        from huggingface_hub import snapshot_download
+        from model_guard import assert_no_pickled_weights, pinned_snapshot_download
 
-        # Populate-once-then-read: only downloads if the volume lacks the model.
-        snapshot_download(MODEL_NAME)
+        # Populate-once-then-read: only downloads if the volume lacks the model,
+        # and always at the pinned revision rather than whatever `main` is now.
+        assert_no_pickled_weights(pinned_snapshot_download(MODEL_NAME))
         hf_cache_vol.commit()
 
         from attentionrag.core import AttentionRAG
