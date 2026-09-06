@@ -208,6 +208,44 @@ Open http://localhost:3000.
 
 ---
 
+## Using the compression core as a library
+
+The CPU half of the pipeline ships as a distribution, `winnow-core`, so you can
+use the selection and merge logic without Modal, without a GPU, and without
+touching the demo app. It has **no runtime dependencies** - `attentionrag.core`,
+`token_merge` and `model_guard` are stdlib only.
+
+```bash
+# from repo root
+python3 -m venv .buildvenv && .buildvenv/bin/pip install -q build
+.buildvenv/bin/python -m build                 # -> dist/winnow_core-0.1.0-py3-none-any.whl
+
+# install it anywhere else
+python3 -m venv /tmp/consumer
+/tmp/consumer/bin/pip install dist/winnow_core-0.1.0-py3-none-any.whl
+/tmp/consumer/bin/python -m attentionrag.test_core     # 10/10 core tests passed.
+```
+
+```python
+from attentionrag.core import split_sentence_spans
+from token_merge import merge_compress
+
+spans = split_sentence_spans(text)                     # sentence char-spans
+out = merge_compress(text, llmlingua_labels, kept_spans, mode="intersection")
+out["compressed_prompt"]                               # the merged compression
+```
+
+Tested on CPython 3.11, 3.12 and 3.14; `requires-python = ">=3.11"`. The
+model-touching half needs the extra: `pip install "winnow-core[hf]"` pulls
+torch, transformers, safetensors and huggingface-hub at pinned versions; the
+full set pip actually resolved for that extra is recorded in
+`requirements-hf.lock`. Not
+packaged: `turboquant_kv/`, the Modal apps, `server.py` and `web/` - those are
+the GPU and service halves and would put a hard torch dependency on a
+distribution whose point is that it installs anywhere.
+
+---
+
 ## Using the demo
 
 1. Click **Start** in the top right. The browser asks for mic permission.

@@ -6,7 +6,7 @@
 venv/
 .python-version
 
-# Secrets — never commit
+# Secrets - never commit
 .env
 .env.local
 .env.*.local
@@ -19,6 +19,12 @@ venv/
 # eval/experiment artifacts (regenerated; not source)
 experiments/eval_results.json
 experiments/eval_outputs*.json
+
+# Build artifacts (winnow-core wheel / sdist)
+dist/
+build/
+*.egg-info/
+.buildvenv/
 
 # Misc
 .DS_Store
