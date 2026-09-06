@@ -1,0 +1,48 @@
+# Lockfile for `pip install "winnow-core[hf]"` - the model-touching half.
+#
+# Produced by `pip freeze` in a CLEAN python 3.11 venv after installing the
+# built wheel with the [hf] extra, on 2026-09-05. Not hand-written: every line
+# below is a package pip actually resolved and installed.
+#
+# The CORE install (`pip install winnow-core`, no extra) needs NOTHING from this
+# file - it is stdlib-only, and its freeze is one line: winnow-core itself.
+#
+# Reproduce:
+#   python3.11 -m venv .venv && . .venv/bin/activate
+#   pip install "dist/winnow_core-0.1.0-py3-none-any.whl[hf]"
+#   pip freeze
+accelerate==1.14.0
+annotated-doc==0.0.5
+anyio==4.15.1
+certifi==2026.7.22
+click==8.5.0
+filelock==3.32.5
+fsspec==2026.7.0
+h11==0.16.0
+hf-xet==1.6.0
+httpcore==1.0.9
+httpx==0.28.1
+huggingface_hub==1.30.0
+idna==3.19
+Jinja2==3.1.6
+markdown-it-py==4.2.0
+MarkupSafe==3.0.3
+mdurl==0.1.2
+mpmath==1.3.0
+networkx==3.6.1
+numpy==2.4.6
+packaging==26.3
+psutil==7.2.2
+Pygments==2.21.0
+PyYAML==6.0.3
+regex==2026.9.3
+rich==15.0.0
+safetensors==0.8.0
+shellingham==1.5.4
+sympy==1.14.0
+tokenizers==0.23.2
+torch==2.14.0
+tqdm==4.70.0
+transformers==5.16.1
+typer==0.27.2
+typing_extensions==4.16.0

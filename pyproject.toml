@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "winnow-core"
+version = "0.1.0"
+description = "Winnow's CPU-side compression core: AttentionRAG selection, the two-compressor token merge, and the model-artifact guard."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Winnow" }]
+keywords = ["prompt-compression", "rag", "kv-cache", "llm"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# The core is deliberately STDLIB ONLY. `attentionrag.core` is the paper's
+# selection logic behind a Backend protocol, `token_merge` is pure string/span
+# arithmetic, and `model_guard`'s validation path uses pickletools/hashlib/
+# zipfile. That is what makes this half installable and testable without a GPU.
+#
+# Deliberately NOT packaged: `turboquant_kv/` (torch + triton + an NVIDIA GPU),
+# the Modal apps, `server.py` and `web/`. They are the GPU and service halves;
+# shipping them would put a hard torch dependency on a distribution whose whole
+# point is that it installs anywhere.
+dependencies = []
+
+[project.optional-dependencies]
+# Only needed for `attentionrag.hf_backend` (the model-touching half) and for
+# `model_guard.safe_load_state_dict` reading real tensors. Pinned, not floated:
+# the guard's whole point is that "the same model name" must not mean different
+# bytes tomorrow, and the same argument applies to the loader.
+# numpy is pinned below the newest release on purpose. Every Modal image in this
+# repo builds on Python 3.11 (`modal.Image.debian_slim(python_version="3.11")`,
+# 9 call sites), and numpy 2.5.x cannot be installed there: it ships no cp311
+# wheel AND declares `Requires-Python >=3.12`, so pip on 3.11 will not consider
+# it at all and there is no sdist fallback. 2.4.6 is the last release that
+# supports 3.11, and is exactly what an unpinned `pip install numpy` resolves to
+# on a 3.11 interpreter, so this pin records the resolution rather than fighting
+# it. Re-check when the Modal images move off 3.11.
+# safetensors does not declare numpy but needs it to convert torch tensors.
+hf = [
+    "torch==2.14.0",
+    "transformers==5.16.1",
+    "safetensors==0.8.0",
+    "huggingface-hub==1.30.0",
+    "accelerate==1.14.0",
+    "numpy==2.4.6",
+]
+
+[project.urls]
+Homepage = "https://github.com/lgoyal6/winnow"
+
+[tool.setuptools]
+py-modules = ["model_guard", "token_merge"]
+
+[tool.setuptools.packages.find]
+include = ["attentionrag*"]
+exclude = ["attentionrag.test_*"]
