@@ -90,6 +90,51 @@ def test_realistic_sentence_intersection():
     assert "weather" in out_u["compressed_prompt"] and "Daniel" in out_u["compressed_prompt"]
 
 
+def _naive_attnrag_mask(word_spans, kept_spans):
+    """Reference implementation: the per-span linear scan attnrag_mask used to
+    do. Kept here so the bisect version has something to be equivalent TO."""
+    def overlaps(s, e, spans):
+        for ks, ke in spans:
+            if s < ke and e > ks:          # half-open interval overlap
+                return True
+            if s == e and ks <= s < ke:    # zero-width word inside a span
+                return True
+        return False
+
+    return [overlaps(s, e, kept_spans) for _w, _l, s, e in word_spans]
+
+
+def test_attnrag_mask_matches_the_naive_scan_under_fuzz():
+    """The bisect lookup must agree with the linear scan on every case that can
+    reach it: unsorted spans, overlapping spans, touching spans, zero-width kept
+    spans, and zero-width (unlocated) word spans."""
+    import random
+
+    rng = random.Random(1234)
+    for trial in range(400):
+        n_words = rng.randint(0, 40)
+        word_spans = []
+        for _ in range(n_words):
+            a = rng.randint(0, 60)
+            b = a if rng.random() < 0.25 else a + rng.randint(1, 6)  # zero-width words
+            word_spans.append(("w", 1, a, b))
+        kept = []
+        for _ in range(rng.randint(0, 12)):
+            a = rng.randint(0, 60)
+            b = a if rng.random() < 0.15 else a + rng.randint(0, 9)  # zero-width spans
+            kept.append((a, b))
+        assert attnrag_mask(word_spans, kept) == _naive_attnrag_mask(word_spans, kept), \
+            (trial, word_spans, kept)
+
+
+def test_attnrag_mask_matches_the_naive_scan_on_touching_and_nested_spans():
+    word_spans = [("a", 1, 0, 3), ("b", 1, 5, 5), ("c", 1, 4, 9), ("d", 1, 10, 10),
+                  ("e", 1, 9, 12), ("f", 1, 20, 25)]
+    for kept in ([(0, 5), (5, 10)], [(5, 10), (0, 5)], [(0, 10), (2, 4)],
+                 [(10, 10)], [(5, 5), (7, 12)], []):
+        assert attnrag_mask(word_spans, kept) == _naive_attnrag_mask(word_spans, kept), kept
+
+
 def _run_all():
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for t in tests:
