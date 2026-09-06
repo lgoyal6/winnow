@@ -21,7 +21,7 @@ import sys
 import modal
 
 # This eval lives in experiments/ but imports two_stage_compressor.py from the
-# repo root — put the root on the path so it resolves from either location.
+# repo root - put the root on the path so it resolves from either location.
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 MODEL_NAME = "microsoft/llmlingua-2-xlm-roberta-large-meetingbank"
@@ -42,7 +42,7 @@ image = (
         "hf_transfer", "numpy", "accelerate", "sentencepiece", "protobuf",
     )
     .env({"HF_HOME": CACHE_DIR, "HF_HUB_ENABLE_HF_TRANSFER": "1"})
-    .add_local_python_source("two_stage_compressor")
+    .add_local_python_source("two_stage_compressor", "model_guard")
 )
 
 app = modal.App("winnow-eval", image=image)
@@ -64,19 +64,23 @@ def chunk_by_sentences(text: str, k: int = 3):
 class Compressor:
     @modal.enter()
     def load(self):
-        from huggingface_hub import snapshot_download
+        from model_guard import (assert_no_pickled_weights,
+                                 llmlingua_model_config,
+                                 pinned_snapshot_download)
 
         for name in (MODEL_NAME, RERANKER_NAME, EMBEDDER_NAME):
-            snapshot_download(name)
+            assert_no_pickled_weights(pinned_snapshot_download(name))
         hf_cache_vol.commit()
 
         from llmlingua import PromptCompressor
         from two_stage_compressor import CrossEncoderReranker, SmallEmbedder
 
-        # Encoder token classifier (LLMLingua-2). No causal/SLM backbone — the
+        # Encoder token classifier (LLMLingua-2). No causal/SLM backbone - the
         # LongLLMLingua path was cancelled (wrong regime for short single docs).
         self.compressor = PromptCompressor(
             model_name=MODEL_NAME, use_llmlingua2=True, device_map="cuda",
+            # llmlingua 0.2.2 defaults trust_remote_code to True. See model_guard.
+            model_config=llmlingua_model_config(MODEL_NAME),
         )
         self.reranker = CrossEncoderReranker(RERANKER_NAME, device="cuda", use_fp16=True)
         self.embedder = SmallEmbedder(EMBEDDER_NAME, device="cuda", use_fp16=True)

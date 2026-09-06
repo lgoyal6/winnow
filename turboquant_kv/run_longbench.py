@@ -28,8 +28,10 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, DynamicCache
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from cache import TQPackedCache            # noqa: E402
 from longbench import TASKS, load_task, score, truncate_middle  # noqa: E402
+from model_guard import guarded_from_pretrained  # noqa: E402
 
 MODEL = "Qwen/Qwen2.5-7B-Instruct"
 
@@ -112,13 +114,13 @@ def main():
     ap.add_argument("--out", default="results/phaseB_longbench.json")
     a = ap.parse_args()
 
-    tok = AutoTokenizer.from_pretrained(MODEL)
+    tok = guarded_from_pretrained(AutoTokenizer, MODEL)
     eos_ids = {tok.eos_token_id}
     if tok.convert_tokens_to_ids("<|im_end|>") is not None:
         eos_ids.add(tok.convert_tokens_to_ids("<|im_end|>"))
-    model = AutoModelForCausalLM.from_pretrained(
-        MODEL, dtype=torch.bfloat16, attn_implementation="sdpa",
-        device_map="cuda").eval()
+    model = guarded_from_pretrained(
+        AutoModelForCausalLM, MODEL, dtype=torch.bfloat16,
+        attn_implementation="sdpa", device_map="cuda").eval()
     cfg = model.config
 
     # --- assemble a fixed, bucket-balanced sample set, shared by every arm ---

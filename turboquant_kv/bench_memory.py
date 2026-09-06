@@ -31,11 +31,13 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, DynamicCache
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
     "turboquant-poc"))
 
 from cache import TQPackedCache                      # noqa: E402
+from model_guard import guarded_from_pretrained      # noqa: E402
 from turboquant_poc import TQCache                   # noqa: E402  (existing impl)
 
 MODEL = "Qwen/Qwen2.5-7B-Instruct"
@@ -195,10 +197,10 @@ def main():
     ap.add_argument("--out", default="results/phaseA_memory.json")
     a = ap.parse_args()
 
-    tok = AutoTokenizer.from_pretrained(MODEL)
-    model = AutoModelForCausalLM.from_pretrained(
-        MODEL, dtype=torch.bfloat16, attn_implementation="sdpa",
-        device_map="cuda").eval()
+    tok = guarded_from_pretrained(AutoTokenizer, MODEL)
+    model = guarded_from_pretrained(
+        AutoModelForCausalLM, MODEL, dtype=torch.bfloat16,
+        attn_implementation="sdpa", device_map="cuda").eval()
     cfg = model.config
     print(f"{MODEL}: {cfg.num_hidden_layers} layers, "
           f"{cfg.num_key_value_heads} KV heads, head_dim "

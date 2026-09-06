@@ -25,17 +25,19 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, DynamicCache
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from cache import TurboQuantMSE   # noqa: E402
+from model_guard import guarded_from_pretrained   # noqa: E402
 
 MODEL = "Qwen/Qwen2.5-7B-Instruct"
 
 
 @torch.no_grad()
 def main():
-    tok = AutoTokenizer.from_pretrained(MODEL)
-    model = AutoModelForCausalLM.from_pretrained(
-        MODEL, dtype=torch.bfloat16, attn_implementation="sdpa",
-        device_map="cuda").eval()
+    tok = guarded_from_pretrained(AutoTokenizer, MODEL)
+    model = guarded_from_pretrained(
+        AutoModelForCausalLM, MODEL, dtype=torch.bfloat16,
+        attn_implementation="sdpa", device_map="cuda").eval()
     cfg = model.config
     hd = getattr(cfg, "head_dim", None) or cfg.hidden_size // cfg.num_attention_heads
 
