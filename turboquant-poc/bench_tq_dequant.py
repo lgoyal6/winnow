@@ -32,6 +32,11 @@ Three modes:
                                      a drop-in comparison for this harness.
                      Requires CUDA.
 
+On a host that cannot run a mode, this prints what is missing and exits 2. It
+never falls back to an estimated, extrapolated or simulated number, and it never
+imports torch before it has said so - the same contract, and the same shape of
+refusal, as `turboquant_kv/bench_cuda_kernel.py`.
+
 Usage:
     python turboquant-poc/bench_tq_dequant.py --check-math-only
     python turboquant-poc/bench_tq_dequant.py --check --bench
@@ -44,12 +49,8 @@ import os
 import sys
 import time
 
-import torch
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from turboquant_poc import TurboQuantMSE  # noqa: E402
-
-CSRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "csrc", "tq_dequant.cu")
+HERE = os.path.dirname(os.path.abspath(__file__))
+CSRC = os.path.join(HERE, "csrc", "tq_dequant.cu")
 
 # (rows, head_dim) at decode: rows = batch * num_kv_heads * seq_len.
 # Qwen2.5-14B: 8 KV heads, head_dim 128, 48 layers.
@@ -60,7 +61,69 @@ SHAPES = [
 ]
 
 
-def _reference_fused(tq: TurboQuantMSE, idx: torch.Tensor, norms: torch.Tensor):
+# --------------------------------------------------------------------------- #
+# Prerequisites: refuse with a message, do not crash and do not guess           #
+# --------------------------------------------------------------------------- #
+def _turboquant_mse():
+    """Import the POC quantizer on demand.
+
+    `turboquant_poc` pulls in torch, numpy, scipy and transformers, so importing
+    it - or torch - at module scope would turn "this host cannot run the kernel"
+    into a bare ModuleNotFoundError before argparse ever ran, which is the one
+    thing the refusals below exist to prevent.
+    """
+    sys.path.insert(0, HERE)
+    from turboquant_poc import TurboQuantMSE
+
+    return TurboQuantMSE
+
+
+def _require_torch() -> None:
+    """--check-math-only needs no GPU, but it is torch algebra, so it does need
+    torch. Say so and exit 2 rather than surfacing an import traceback."""
+    try:
+        import torch  # noqa: F401
+    except ImportError:
+        print("BLOCKED: --check-math-only cannot run here.")
+        print("  - torch is not installed")
+        print("\nPrerequisite: a CPU torch build is enough for this mode; no GPU\n"
+              "and no nvcc are needed. turboquant_poc.py also imports numpy,\n"
+              "scipy and transformers.\n"
+              "\nNo estimated, extrapolated or simulated result is printed.")
+        sys.exit(2)
+
+
+def _require_cuda() -> None:
+    """--check / --bench build and time csrc/tq_dequant.cu, which needs a CUDA
+    device and nvcc. Both are checked, so a host with neither still gets the
+    message rather than a traceback."""
+    missing = []
+    try:
+        import torch
+    except ImportError:
+        missing.append("torch is not installed")
+    else:
+        if not torch.cuda.is_available():
+            missing.append("torch.cuda.is_available() is False")
+    from shutil import which
+    if which("nvcc") is None:
+        missing.append("nvcc is not on PATH")
+    if not missing:
+        return
+    print("BLOCKED: csrc/tq_dequant.cu cannot be built or timed here.")
+    for m in missing:
+        print(f"  - {m}")
+    print("\nPrerequisite: an NVIDIA GPU with a matching CUDA toolkit (nvcc) on\n"
+          "PATH and a CUDA-enabled torch build.\n"
+          "Run --check-math-only for the part that works on CPU.\n"
+          "\nNo estimated, extrapolated or simulated timing is printed. This\n"
+          "kernel has never been run on any host, so unlike turboquant_kv there\n"
+          "is not even a measured number elsewhere to misquote; nothing may be\n"
+          "said about its speed until --check --bench has actually run.")
+    sys.exit(2)
+
+
+def _reference_fused(tq, idx, norms):
     """What the kernel computes, expressed in torch: fold the norm into the
     gather, then a single GEMM. Used to check the algebra without a GPU."""
     y_scaled = tq.centroids[idx.long()] * norms.reshape(-1, 1)
@@ -68,6 +131,9 @@ def _reference_fused(tq: TurboQuantMSE, idx: torch.Tensor, norms: torch.Tensor):
 
 
 def check_math_only(bit_width: int = 4, head_dim: int = 128, rows: int = 4096) -> int:
+    import torch
+
+    TurboQuantMSE = _turboquant_mse()
     torch.manual_seed(0)
     tq = TurboQuantMSE(bit_width=bit_width, head_dim=head_dim, device="cpu")
     x = torch.randn(rows, head_dim)
@@ -96,6 +162,9 @@ def _load_extension():
 
 
 def check(ext, bit_width: int, head_dim: int, rows: int) -> None:
+    import torch
+
+    TurboQuantMSE = _turboquant_mse()
     tq = TurboQuantMSE(bit_width=bit_width, head_dim=head_dim, device="cuda")
     x = torch.randn(rows, head_dim, device="cuda")
     idx, norms = tq.quantize(x)
@@ -110,6 +179,8 @@ def check(ext, bit_width: int, head_dim: int, rows: int) -> None:
 
 
 def _time(fn, iters: int = 50, warmup: int = 10) -> float:
+    import torch
+
     for _ in range(warmup):
         fn()
     torch.cuda.synchronize()
@@ -121,6 +192,9 @@ def _time(fn, iters: int = 50, warmup: int = 10) -> float:
 
 
 def bench(ext, bit_width: int) -> None:
+    import torch
+
+    TurboQuantMSE = _turboquant_mse()
     print(f"\n{'rows':>9} {'dim':>5} {'torch-eager ms':>15} {'fused-cuda ms':>14} "
           f"{'speedup':>8} {'triton ms':>10}")
     for rows, dim in SHAPES:
@@ -151,17 +225,13 @@ def main() -> int:
     args = ap.parse_args()
 
     if args.check_math_only:
+        _require_torch()  # exits 2 on a host with no torch
         return check_math_only(bit_width=args.bit_width)
 
     if not (args.check or args.bench):
         ap.error("pick --check-math-only, --check, and/or --bench")
 
-    if not torch.cuda.is_available():
-        print("BLOCKED: no CUDA device. csrc/tq_dequant.cu cannot be built or timed "
-              "here.\nPrerequisite: an NVIDIA GPU with a matching CUDA toolkit "
-              "(nvcc) on PATH.\nRun --check-math-only for the part that does work on "
-              "CPU.")
-        return 2
+    _require_cuda()  # exits 2 on a host with no CUDA device or no nvcc
 
     ext = _load_extension()
     if args.check:
