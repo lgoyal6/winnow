@@ -1,0 +1,7 @@
+.venv/
+audio/
+data/
+hf/
+models/
+utt/
+out/audio_manifest.json

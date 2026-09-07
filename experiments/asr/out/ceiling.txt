@@ -1,0 +1,55 @@
+EVAL cells at rate 0.33, flat surface form: 205 (205 with L0 < 1)
+
+model = ALL POOLED
+  cond       n      L0      Lc        A   A/A_max    excess
+  clean     37   0.141   0.212    2.181     0.212     0.089
+  snr10     42   0.155   0.257    2.128     0.257     0.123
+  snr5      42   0.281   0.406    1.684     0.406     0.198
+  snr0      42   0.473   0.653    1.413     0.653     0.397
+  snr-5     42   0.655   0.884    1.360     0.884     0.715
+
+model = tiny
+  cond       n      L0      Lc        A   A/A_max    excess
+  clean     13   0.107   0.187    2.295     0.187     0.092
+  snr10     14   0.223   0.358    1.859     0.358     0.171
+  snr5      14   0.333   0.506    1.636     0.506     0.262
+  snr0      14   0.526   0.740    1.445     0.740     0.503
+  snr-5     14   0.655   0.911    1.414     0.911     0.742
+
+model = base
+  cond       n      L0      Lc        A   A/A_max    excess
+  clean     11   0.095   0.167    2.182     0.167     0.083
+  snr10     14   0.102   0.201    2.300     0.201     0.113
+  snr5      14   0.291   0.407    1.587     0.407     0.169
+  snr0      14   0.451   0.632    1.436     0.632     0.353
+  snr-5     14   0.658   0.865    1.327     0.865     0.653
+
+model = small
+  cond       n      L0      Lc        A   A/A_max    excess
+  clean     13   0.213   0.273    2.066     0.273     0.091
+  snr10     14   0.141   0.213    2.226     0.213     0.084
+  snr5      14   0.217   0.304    1.829     0.304     0.165
+  snr0      14   0.442   0.586    1.359     0.586     0.333
+  snr-5     14   0.653   0.875    1.340     0.875     0.749
+
+Spearman rho against WER, over 205 cells:
+  A       vs WER   rho = -0.666
+  A_max   vs WER   rho = -0.975
+  excess  vs WER   rho = +0.884
+
+A and its own arithmetic ceiling move together as WER rises. The
+ceiling-free measure moves the OTHER way, and more strongly.
+
+==========================================================================
+CONTROL: excess must be flat across L0 where A is not
+==========================================================================
+      L0 | transparent (Lc=L0)    | half (Lc=L0+(1-L0)/2)
+         |          A     excess |          A     excess
+    0.05 |      1.000      0.000 |     10.500      0.500
+    0.10 |      1.000      0.000 |      5.500      0.500
+    0.25 |      1.000      0.000 |      2.500      0.500
+    0.50 |      1.000      0.000 |      1.500      0.500
+    0.75 |      1.000      0.000 |      1.167      0.500
+    0.90 |      1.000      0.000 |      1.056      0.500
+
+  [CONTROL OK] excess is exactly 0 and exactly 0.5 at every L0, while A for the SAME two compressors swings 20x across the range.

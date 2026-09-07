@@ -1,0 +1,39 @@
+device=mps
+
+Prefixes of a real reference passage, rate 0.33:
+    in  out    kept  first words of output
+     1    0    0.00
+     2    0    0.00
+     3    0    0.00
+     4    1    0.25  CONFUSED
+     5    1    0.20  BEGAN
+     6    1    0.17  COMPLAINT
+     7    1    0.14  COMPLAINT
+     8    2    0.25  COMPLAINT WIZARD
+     9    2    0.22  COMPLAINT WIZARD
+    10    2    0.20  COMPLAINT WIZARD
+    11    2    0.18  COMPLAINT WIZARD
+    12    3    0.25  COMPLAINT WIZARD VANISHED
+    13    3    0.23  COMPLAINT WIZARD VANISHED
+    14    3    0.21  COMPLAINT WIZARD VANISHED
+    15    3    0.20  COMPLAINT WIZARD VANISHED
+    16    4    0.25  COMPLAINT WIZARD VANISHED CURTAIN
+    17    4    0.24  COMPLAINT WIZARD VANISHED CURTAIN
+    18    4    0.22  COMPLAINT WIZARD VANISHED CURTAIN
+    19    4    0.21  COMPLAINT WIZARD VANISHED CURTAIN
+    20    4    0.20  COMPLAINT WIZARD VANISHED CURTAIN
+    25    6    0.24  BEGAN CONFUSED COMPLAINT WIZARD VANISHED CURTAIN
+    30    7    0.23  COMPLAINT WIZARD VANISHED CURTAIN MUMMERIES GOLDEN FORTU
+    40    9    0.23  COMPLAINT WIZARD VANISHED MUMMERIES GOLDEN FORTUNE HAPPY
+    60   15    0.25  CONFUSED COMPLAINT WIZARD VANISHED CURTAIN MUMMERIES GOL
+   100   26    0.26  BEGAN CONFUSED COMPLAINT WIZARD VANISHED CURTAIN MUMMERI
+
+First input length that survives at all: 4 words
+
+Real whisper segments in the eval set: 1161
+  median length 14 words, 10th pct 5 words, min 1
+  segments shorter than 4 words: 61 (5.3%) - these would be erased entirely
+
+NOTE: LibriSpeech is read audiobook prose with long sentences. Spontaneous
+conversation has many more short utterances, so this percentage is a
+LOWER bound on how often a live session would hit the erasure.

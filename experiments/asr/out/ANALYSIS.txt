@@ -1,0 +1,154 @@
+### analyze.py ###
+EVAL split: 14 passages, 3 models, 5 conditions, 630 scored cells
+rare vocabulary: 960 word types (freq <= 2 in eval references)
+
+WER and amplification by model x condition (rate 0.33 + 0.5 + 0.2 pooled)
+     model      cond               wer                L0                Lc                 A      n
+  -------------------------------------------------------------------------------------------------
+      base     clean     0.083+-0.079     0.078+-0.078     0.146+-0.092     2.443+-1.637     42
+      base     snr-5     0.843+-0.107     0.658+-0.101     0.859+-0.095     1.316+-0.110     42
+      base      snr0     0.591+-0.135     0.451+-0.141     0.634+-0.157     1.439+-0.198     42
+      base     snr10     0.121+-0.094     0.102+-0.083     0.200+-0.103     2.318+-0.830     42
+      base      snr5     0.333+-0.155     0.291+-0.156     0.413+-0.164     1.625+-0.620     42
+     small     clean     0.204+-0.219     0.199+-0.218     0.263+-0.226     2.094+-1.407     42
+     small     snr-5     0.823+-0.203     0.653+-0.138     0.860+-0.174     1.322+-0.101     42
+     small      snr0     0.518+-0.232     0.442+-0.183     0.585+-0.223     1.352+-0.189     42
+     small     snr10     0.150+-0.142     0.141+-0.141     0.217+-0.146     2.241+-1.149     42
+     small      snr5     0.240+-0.247     0.217+-0.225     0.307+-0.241     1.911+-1.014     42
+      tiny     clean     0.110+-0.100     0.100+-0.099     0.178+-0.105     2.487+-1.365     42
+      tiny     snr-5     0.902+-0.063     0.655+-0.099     0.902+-0.060     1.401+-0.185     42
+      tiny      snr0     0.678+-0.141     0.526+-0.151     0.731+-0.155     1.428+-0.204     42
+      tiny     snr10     0.258+-0.116     0.223+-0.118     0.354+-0.100     1.825+-0.559     42
+      tiny      snr5     0.430+-0.135     0.333+-0.140     0.494+-0.132     1.603+-0.396     42
+
+RATE 0.33 only - headline grid
+     model      cond               wer                L0                Lc                 A            A_rare      n
+  -------------------------------------------------------------------------------------------------------------------
+      base     clean     0.083+-0.081     0.078+-0.080     0.147+-0.101     2.182+-0.709     1.598+-0.575     14
+      base     snr-5     0.843+-0.110     0.658+-0.104     0.865+-0.096     1.327+-0.122     1.027+-0.039     14
+      base      snr0     0.591+-0.138     0.451+-0.145     0.632+-0.153     1.436+-0.187     1.079+-0.088     14
+      base     snr10     0.121+-0.097     0.102+-0.085     0.201+-0.101     2.300+-0.651     1.451+-0.439     14
+      base      snr5     0.333+-0.159     0.291+-0.160     0.407+-0.160     1.587+-0.436     1.178+-0.213     14
+     small     clean     0.204+-0.224     0.199+-0.223     0.258+-0.230     2.066+-1.068     1.489+-0.564     14
+     small     snr-5     0.823+-0.209     0.653+-0.142     0.875+-0.192     1.340+-0.106     1.037+-0.038     14
+     small      snr0     0.518+-0.238     0.442+-0.188     0.586+-0.226     1.359+-0.161     1.124+-0.129     14
+     small     snr10     0.150+-0.145     0.141+-0.144     0.213+-0.140     2.226+-0.981     1.553+-0.595     14
+     small      snr5     0.240+-0.253     0.217+-0.231     0.304+-0.250     1.829+-0.805     1.378+-0.457     14
+      tiny     clean     0.110+-0.103     0.100+-0.102     0.177+-0.117     2.295+-0.869     1.483+-0.468     14
+      tiny     snr-5     0.902+-0.064     0.655+-0.101     0.911+-0.055     1.414+-0.172     1.043+-0.036     14
+      tiny      snr0     0.678+-0.145     0.526+-0.155     0.740+-0.153     1.445+-0.186     1.107+-0.080     14
+      tiny     snr10     0.258+-0.119     0.223+-0.121     0.358+-0.091     1.859+-0.538     1.284+-0.294     14
+      tiny      snr5     0.430+-0.138     0.333+-0.144     0.506+-0.133     1.636+-0.366     1.199+-0.210     14
+
+ABLATION: compression rate
+      rate               wer                L0                Lc                 A            A_rare      n
+  ---------------------------------------------------------------------------------------------------------
+       0.2     0.419+-0.318     0.338+-0.250     0.502+-0.298     2.052+-1.298     1.428+-0.694    210
+      0.33     0.419+-0.318     0.338+-0.250     0.479+-0.305     1.743+-0.667     1.268+-0.391    210
+       0.5     0.419+-0.318     0.338+-0.250     0.448+-0.300     1.523+-0.435     1.104+-0.179    210
+
+wrote out/scored.json (630 rows)
+
+### analyze_ablations.py ###
+
+==============================================================================
+LENGTH COLLAPSE: the nominal compression rate is not the retention rate
+==============================================================================
+   model    cond |        ASR keeps compressor keeps  END-TO-END kept
+    base   clean |    0.955+-0.084     0.276+-0.009     0.264+-0.023
+    base   snr10 |    0.966+-0.082     0.278+-0.008     0.269+-0.024
+    base    snr5 |    0.810+-0.198     0.276+-0.010     0.224+-0.056
+    base    snr0 |    0.852+-0.211     0.271+-0.008     0.231+-0.059
+    base   snr-5 |    0.817+-0.194     0.276+-0.005     0.225+-0.054
+   small   clean |    0.824+-0.234     0.273+-0.011     0.226+-0.067
+   small   snr10 |    0.896+-0.157     0.275+-0.010     0.247+-0.047
+   small    snr5 |    0.877+-0.175     0.274+-0.008     0.241+-0.051
+   small    snr0 |    0.817+-0.167     0.272+-0.007     0.222+-0.047
+   small   snr-5 |    0.848+-0.116     0.274+-0.006     0.232+-0.033
+    tiny   clean |    0.942+-0.107     0.277+-0.010     0.261+-0.031
+    tiny   snr10 |    0.878+-0.141     0.277+-0.010     0.244+-0.042
+    tiny    snr5 |    0.864+-0.202     0.276+-0.009     0.240+-0.060
+    tiny    snr0 |    0.802+-0.240     0.275+-0.010     0.222+-0.071
+    tiny   snr-5 |    0.877+-0.245     0.274+-0.008     0.241+-0.070
+
+  'compressor keeps' is measured against the transcript it was handed;
+  'END-TO-END kept' is measured against the words actually spoken.
+
+==============================================================================
+ABLATION A: does giving the compressor PUNCTUATION change what survives?
+  Both arms are scored against the SAME flat reference compression, so the
+  only difference is the surface form the COMPRESSOR was shown.
+==============================================================================
+   model    cond |          Lc flat           Lc raw |           A flat            A raw
+    base   clean |    0.147+-0.101     0.247+-0.079  |    2.182+-0.709     4.310+-2.420
+    base   snr-5 |    0.865+-0.096     0.875+-0.092  |    1.327+-0.122     1.342+-0.115
+    base    snr0 |    0.632+-0.153     0.666+-0.142  |    1.436+-0.187     1.527+-0.230
+    base   snr10 |    0.201+-0.101     0.288+-0.075  |    2.300+-0.651     3.968+-2.633
+    base    snr5 |    0.407+-0.160     0.450+-0.134  |    1.587+-0.436     1.956+-1.111
+   small   clean |    0.258+-0.230     0.340+-0.202  |    2.066+-1.068     3.765+-2.981
+   small   snr-5 |    0.875+-0.192     0.881+-0.171  |    1.340+-0.106     1.358+-0.117
+   small    snr0 |    0.586+-0.226     0.624+-0.210  |    1.359+-0.161     1.493+-0.303
+   small   snr10 |    0.213+-0.140     0.300+-0.129  |    2.226+-0.981     3.941+-2.253
+   small    snr5 |    0.304+-0.250     0.368+-0.224  |    1.829+-0.805     2.703+-1.665
+    tiny   clean |    0.177+-0.117     0.286+-0.093  |    2.295+-0.869     4.303+-2.274
+    tiny   snr-5 |    0.911+-0.055     0.912+-0.066  |    1.414+-0.172     1.414+-0.174
+    tiny    snr0 |    0.740+-0.153     0.748+-0.144  |    1.445+-0.186     1.470+-0.223
+    tiny   snr10 |    0.358+-0.091     0.419+-0.082  |    1.859+-0.538     2.240+-0.773
+    tiny    snr5 |    0.506+-0.133     0.529+-0.120  |    1.636+-0.366     1.755+-0.476
+
+==============================================================================
+ABLATION B: BATCH compression vs Winnow's real PER-UTTERANCE streaming
+  Each arm compresses reference and hypothesis at the same granularity.
+==============================================================================
+     cond |         Lc batch        Lc stream |          A batch         A stream
+    clean |    0.102+-0.034     0.271+-0.062  |    2.029+-1.231     5.221+-3.689
+    snr10 |    0.186+-0.071     0.319+-0.083  |    2.580+-1.905     4.432+-2.853
+     snr5 |    0.287+-0.111     0.379+-0.103  |    1.264+-0.676     1.706+-1.113
+     snr0 |    0.538+-0.143     0.554+-0.143  |    1.232+-0.284     1.265+-0.248
+    snr-5 |    0.854+-0.117     0.845+-0.115  |    1.309+-0.153     1.294+-0.143
+
+  On a PERFECT transcript (no ASR at all), batch vs stream compression of
+  the SAME reference agreed exactly on 0/14 passages.
+  word-recall of batch output inside stream output:    0.753+-0.039
+  kept words: batch   57.429+-4.735  stream   54.714+-4.393
+
+==============================================================================
+ABLATION C: which ERROR TYPE drives amplification, and does the CAUSE of
+  the WER matter (noise-induced vs small-model-induced)?
+==============================================================================
+  Matched-WER buckets. 'noise' = base.en on degraded audio;
+  'capacity' = a smaller model on CLEAN audio.
+      WER band    source |   n  mean WER                A               Lc
+     0.00-0.05     noise |   3     0.044    3.294+-0.450     0.122+-0.047
+     0.00-0.05  capacity |  20     0.032    2.986+-0.645     0.087+-0.026
+     0.05-0.15     noise |   9     0.095    2.164+-0.290     0.168+-0.034
+     0.05-0.15  capacity |  10     0.089    2.032+-0.513     0.149+-0.061
+     0.15-0.30     noise |   8     0.212    1.815+-0.383     0.295+-0.049
+     0.15-0.30  capacity |   6     0.227    1.433+-0.286     0.313+-0.044
+     0.30-0.60     noise |  16     0.481    1.387+-0.186     0.537+-0.094
+     0.30-0.60  capacity |   5     0.388    1.175+-0.073     0.445+-0.032
+     0.60-2.00     noise |  20     0.803    1.352+-0.159     0.832+-0.110
+     0.60-2.00  capacity |   1     0.738    1.115+-0.000     0.811+-0.000
+
+  Pearson r of amplification A against the error mix (n=205):
+    A vs substitution share     r = +0.459
+    A vs deletion share         r = -0.511
+    A vs insertion share        r = +0.347
+    A vs WER itself             r = -0.635
+
+==============================================================================
+FAILURE MODES: the cells where compression does the most damage
+==============================================================================
+  worst 6 of 205 scored cells by amplification A:
+    A= 4.42   tiny/ clean 1320-122612-0000     WER=0.03  L0=0.03 -> Lc=0.15
+    A= 4.24  small/ clean 1188-133604-0000     WER=0.03  L0=0.02 -> Lc=0.09
+    A= 4.22  small/ snr10 3729-6852-0000       WER=0.03  L0=0.03 -> Lc=0.13
+    A= 4.01  small/  snr5 121-127105-0000      WER=0.04  L0=0.04 -> Lc=0.14
+    A= 3.69   base/ snr10 3729-6852-0000       WER=0.05  L0=0.04 -> Lc=0.16
+    A= 3.57  small/ snr10 5683-32865-0000      WER=0.04  L0=0.04 -> Lc=0.13
+
+  worst cell in full: tiny|1320-122612-0000|clean
+    REF (first 150 chars)  : SINCE THE PERIOD OF OUR TALE THE ACTIVE SPIRIT OF THE COUNTRY HAS SURROUNDED IT WITH A BELT OF RICH AND THRIVING SETTLEMENTS THOUGH NONE BUT THE HUNTE
+    HYP (first 150 chars)  : Since the period of our tale, the active spirit of the country has surrounded it with a belt of rich and thriving settlements, though none but the hun
+    C(REF) (first 150)     : SPIRIT COUNTRY SURROUNDED RICH THRIVING SETTLEMENTS HUNTER SAVAGE WILD RECESSES DEWS SUN DISPERSED MISTS LIGHT FOREST TRAVELERS JOURNEY PROGRESS HAWKE
+    C(HYP) (first 150)     : TALE SPIRIT COUNTRY SURROUNDED RICH THRIVING SETTLEMENTS HUNTER SAVAGE WILD RECESSES DUES SUFFERED EXHALE SUN DISPERSED MISTS LIGHT FOREST TRAVELERS J
