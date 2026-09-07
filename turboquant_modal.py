@@ -37,7 +37,7 @@ image = (
     )
     .env({"HF_HOME": CACHE_DIR})
     # Ship the artifact guard into the image (pins, safetensors, no remote code).
-    .add_local_python_source("model_guard")
+    .add_local_python_source("model_artifacts", "model_guard")
 )
 
 app = modal.App("turboquant-qwen14b", image=image)
