@@ -1,0 +1,6507 @@
+{
+ "61-70968-0000|clean": {
+  "passage_id": "61-70968-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 68.5,
+  "wall_s": 1.366,
+  "n_segments": 18,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 3.96,
+    "text": "He began a confused complaint against the wizard, who had vanished behind the curtain"
+   },
+   {
+    "t0": 3.96,
+    "t1": 5.0,
+    "text": "on the left."
+   },
+   {
+    "t0": 5.0,
+    "t1": 11.84,
+    "text": "\"Give not so earnest a mind to these memories, child, a golden fortune and a happy life.\""
+   },
+   {
+    "t0": 11.84,
+    "t1": 16.52,
+    "text": "He was like unto my father, in a way, and yet was not my father."
+   },
+   {
+    "t0": 16.52,
+    "t1": 20.3,
+    "text": "Also there was a stripling page who turned into a maid."
+   },
+   {
+    "t0": 20.3,
+    "t1": 25.2,
+    "text": "This was so sweet a lady, sir, and in some manner I do think she died."
+   },
+   {
+    "t0": 25.2,
+    "t1": 28.24,
+    "text": "But then the picture was gone as quickly as it came."
+   },
+   {
+    "t0": 28.24,
+    "t1": 31.6,
+    "text": "\"Sister Nell, do you hear these marvels?"
+   },
+   {
+    "t0": 31.6,
+    "t1": 35.56,
+    "text": "Take your place and let us see what the crystal can show to you.\""
+   },
+   {
+    "t0": 35.56,
+    "t1": 39.8,
+    "text": "Like his not-young master, though I am an old man."
+   },
+   {
+    "t0": 39.8,
+    "t1": 43.8,
+    "text": "Fourth with all ran to the opening of the tent to see what might be a miss, but Master"
+   },
+   {
+    "t0": 43.8,
+    "t1": 48.08,
+    "text": "Will, who peeped out first, needed no more than one glance."
+   },
+   {
+    "t0": 48.08,
+    "t1": 52.08,
+    "text": "He gave way to the others very readily and retreated unperceived by the squire and Mistress"
+   },
+   {
+    "t0": 52.08,
+    "t1": 54.56,
+    "text": "Fitzsuth to the rear of the tent."
+   },
+   {
+    "t0": 54.56,
+    "t1": 59.72,
+    "text": "Is of a knotting ham, a knotting ham, before them fled the stroller and his three sons,"
+   },
+   {
+    "t0": 59.72,
+    "t1": 61.6,
+    "text": "capless and terrified."
+   },
+   {
+    "t0": 61.6,
+    "t1": 66.12,
+    "text": "What is the tumult and rioting?\" cried out the squire, authoritatively, and he blew twice"
+   },
+   {
+    "t0": 66.12,
+    "t1": 68.12,
+    "text": "on the silver whistle which hung at his belt."
+   }
+  ]
+ },
+ "61-70968-0000|snr10": {
+  "passage_id": "61-70968-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 68.5,
+  "wall_s": 1.334,
+  "n_segments": 17,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.94,
+    "text": "He began a confused complaint against the wizard who had vanished behind the curtain on the left."
+   },
+   {
+    "t0": 4.94,
+    "t1": 11.54,
+    "text": "Give not so earnest a mind to these memories, child, a golden fortune, and a happy life?"
+   },
+   {
+    "t0": 11.54,
+    "t1": 16.08,
+    "text": "He was like unto my father in a way, and yet was not my father."
+   },
+   {
+    "t0": 16.08,
+    "t1": 20.02,
+    "text": "Also, there was a stripling page who turned it to a maid."
+   },
+   {
+    "t0": 20.02,
+    "t1": 24.96,
+    "text": "This was so sweet a lady, sir, and in some manner I do think she died."
+   },
+   {
+    "t0": 24.96,
+    "t1": 28.02,
+    "text": "But then the picture was gone as quickly as it came."
+   },
+   {
+    "t0": 28.02,
+    "t1": 31.28,
+    "text": "Sister Nell, do you hear these marvels?"
+   },
+   {
+    "t0": 31.28,
+    "t1": 35.16,
+    "text": "Take your place and let us see what the crystal can show to you."
+   },
+   {
+    "t0": 35.16,
+    "t1": 39.46,
+    "text": "Like his not-young master, though I am an old man."
+   },
+   {
+    "t0": 39.46,
+    "t1": 43.2,
+    "text": "Fourth with all rant the opening of the tent to see what might be a miss."
+   },
+   {
+    "t0": 43.2,
+    "t1": 47.94,
+    "text": "But Master Will, who peeped out first, needed no more than one glance."
+   },
+   {
+    "t0": 47.94,
+    "t1": 51.56,
+    "text": "He gave way to the others very readily and treated and perceived by the squire"
+   },
+   {
+    "t0": 51.56,
+    "t1": 54.22,
+    "text": "and Mistress Fitzsuth to the rear of the tent."
+   },
+   {
+    "t0": 54.22,
+    "t1": 59.34,
+    "text": "A prize of a knotting ham, a knotting ham, before them fled the stroller and his three sons,"
+   },
+   {
+    "t0": 59.34,
+    "t1": 61.58,
+    "text": "countless and terrified."
+   },
+   {
+    "t0": 61.58,
+    "t1": 66.1,
+    "text": "What is the tumult and rioting cried out the squire authoritatively and he blew twice"
+   },
+   {
+    "t0": 66.1,
+    "t1": 68.38,
+    "text": "on the silver whistle which hung at his belt?"
+   }
+  ]
+ },
+ "61-70968-0000|snr5": {
+  "passage_id": "61-70968-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 68.5,
+  "wall_s": 1.359,
+  "n_segments": 15,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.86,
+    "text": "He began a confused complaint against the wizard who had vanished behind the curtain on the left."
+   },
+   {
+    "t0": 4.86,
+    "t1": 11.3,
+    "text": "He had not so earnest a mind to be his mum or his child, a golden fortune and a happy life."
+   },
+   {
+    "t0": 11.3,
+    "t1": 16.0,
+    "text": "He was like unto my father in a way, and yet was not my father."
+   },
+   {
+    "t0": 16.0,
+    "t1": 20.0,
+    "text": "Also, there was a stripling page who turned it to a maid."
+   },
+   {
+    "t0": 20.0,
+    "t1": 25.0,
+    "text": "This was so sweet a lady, sir, and in some manner I do think she died."
+   },
+   {
+    "t0": 25.0,
+    "t1": 28.0,
+    "text": "But then the picture was gone as quickly as it came."
+   },
+   {
+    "t0": 28.0,
+    "t1": 31.0,
+    "text": "Sister Nell, do you hear these marvels?"
+   },
+   {
+    "t0": 31.0,
+    "t1": 35.0,
+    "text": "Take your place and let us see what the crystal can show to you."
+   },
+   {
+    "t0": 35.0,
+    "t1": 39.0,
+    "text": "Like his not young master, though I am an old man."
+   },
+   {
+    "t0": 39.0,
+    "t1": 43.0,
+    "text": "Fourth with all ran to the opening of the tent to see what might be a miss."
+   },
+   {
+    "t0": 43.0,
+    "t1": 47.0,
+    "text": "But master Will, who peeped at first, needed no more than one glance."
+   },
+   {
+    "t0": 47.0,
+    "t1": 54.0,
+    "text": "He gave way to the others very readily and treated and perceived by the squire and mistress fit tooth to the rear of the tent."
+   },
+   {
+    "t0": 54.0,
+    "t1": 59.0,
+    "text": "A prize of a knotting ham, a knotting ham, before them fled the stroller and his three sons."
+   },
+   {
+    "t0": 59.0,
+    "t1": 61.0,
+    "text": "Tapples and terrifying."
+   },
+   {
+    "t0": 61.0,
+    "t1": 68.0,
+    "text": "What is the tumult and rioting, cried out the squire authoritatively and he blew twice on the silver whistle which hung on his belt."
+   }
+  ]
+ },
+ "61-70968-0000|snr0": {
+  "passage_id": "61-70968-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 68.5,
+  "wall_s": 1.487,
+  "n_segments": 16,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.84,
+    "text": "He began a confused complaint against the wizard, who vanished behind the curtain on the left."
+   },
+   {
+    "t0": 4.84,
+    "t1": 11.4,
+    "text": "He had not so earnest a mind to his mum or his child, a golden fortune and a happy life."
+   },
+   {
+    "t0": 11.4,
+    "t1": 16.12,
+    "text": "He was like unto my father in a way, and yet was not my father."
+   },
+   {
+    "t0": 16.12,
+    "t1": 20.08,
+    "text": "But so there was a stripling page, who turned it to a maid."
+   },
+   {
+    "t0": 20.08,
+    "t1": 25.8,
+    "text": "This was so sweet a lady soon, and in some manner I do think she died, but then the picture"
+   },
+   {
+    "t0": 25.8,
+    "t1": 27.68,
+    "text": "was gone as quickly as it came."
+   },
+   {
+    "t0": 27.68,
+    "t1": 31.04,
+    "text": "\"Sister Nell, do you hear these marvels?"
+   },
+   {
+    "t0": 31.04,
+    "t1": 37.32,
+    "text": "Take your place and let us see what the crystal can show to you, like is not a young master."
+   },
+   {
+    "t0": 37.32,
+    "t1": 42.92,
+    "text": "Though I am an old man, forthwith all rant the old to fade away like a morny buteness,"
+   },
+   {
+    "t0": 42.92,
+    "t1": 47.0,
+    "text": "from her mortal master will, who peeped down by the river, needed no more than one glance."
+   },
+   {
+    "t0": 47.0,
+    "t1": 51.08,
+    "text": "Her soft voices, he gave way to the others, very rusted and sheltered in the conversation"
+   },
+   {
+    "t0": 51.08,
+    "t1": 53.8,
+    "text": "by the squire and mistress fed forth to the rear of the tent."
+   },
+   {
+    "t0": 53.8,
+    "t1": 58.72,
+    "text": "Oh, light, of this arse, I am not a ham, why fade before the lootest of straw, and his"
+   },
+   {
+    "t0": 58.72,
+    "t1": 62.8,
+    "text": "three sons, why fade these her children, of this what is the tumult and rioting?\""
+   },
+   {
+    "t0": 62.8,
+    "t1": 66.36,
+    "text": "He thought there would be still the squire, authoritatively, carrots, and blue twice on"
+   },
+   {
+    "t0": 66.36,
+    "t1": 68.52,
+    "text": "the siltae whistle, and hum his meltoned pieces."
+   }
+  ]
+ },
+ "61-70968-0000|snr-5": {
+  "passage_id": "61-70968-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 68.5,
+  "wall_s": 1.742,
+  "n_segments": 22,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.6,
+    "text": "Here she would stay, comforted and sued, among the lovely plants and rich exotics, rejoicing"
+   },
+   {
+    "t0": 5.6,
+    "t1": 10.4,
+    "text": "the heart of old turn and garden, who sent Pauli's first rapturous fortune and a happy"
+   },
+   {
+    "t0": 10.4,
+    "t1": 12.88,
+    "text": "life, and had taken him into his good graces, fall on him."
+   },
+   {
+    "t0": 12.88,
+    "t1": 15.12,
+    "text": "\"He was likened to my father in a way, and he was not my father.\""
+   },
+   {
+    "t0": 15.12,
+    "t1": 16.12,
+    "text": "\"And he was not my father.\""
+   },
+   {
+    "t0": 16.12,
+    "t1": 20.08,
+    "text": "\"But so there was a circling mange who turned it to a man, the boys, upon her time, were"
+   },
+   {
+    "t0": 20.08,
+    "t1": 25.2,
+    "text": "fully satisfied, and was seized to fly on the wings of the land for the flowers."
+   },
+   {
+    "t0": 25.2,
+    "t1": 27.48,
+    "text": "But then the picture was gone as quickly as it came.\""
+   },
+   {
+    "t0": 27.48,
+    "t1": 29.8,
+    "text": "\"You must be kinder than ever."
+   },
+   {
+    "t0": 29.8,
+    "t1": 32.38,
+    "text": "Think what it would be for one of you to be away from Pauli.\""
+   },
+   {
+    "t0": 32.38,
+    "t1": 33.38,
+    "text": "\"He's been a new friend.\""
+   },
+   {
+    "t0": 33.38,
+    "t1": 34.38,
+    "text": "\"He's been a new friend.\""
+   },
+   {
+    "t0": 34.38,
+    "t1": 37.08,
+    "text": "\"Somehow, of all the days when the home feeling was the strongest.\""
+   },
+   {
+    "t0": 37.08,
+    "t1": 38.08,
+    "text": "\"Though I am an old man.\""
+   },
+   {
+    "t0": 38.08,
+    "t1": 40.6,
+    "text": "\"This day it seemed as if she could bear it no longer.\""
+   },
+   {
+    "t0": 40.6,
+    "t1": 45.02,
+    "text": "\"To fade away like morning beauties from her mortal master will, who peeped down by"
+   },
+   {
+    "t0": 45.02,
+    "t1": 46.02,
+    "text": "the river.\""
+   },
+   {
+    "t0": 46.02,
+    "t1": 47.02,
+    "text": "\"He did no more than one gland.\""
+   },
+   {
+    "t0": 47.02,
+    "t1": 48.02,
+    "text": "\"Her soft voices heard.\""
+   },
+   {
+    "t0": 48.02,
+    "t1": 49.02,
+    "text": "\"He gave way to the others.\""
+   },
+   {
+    "t0": 49.02,
+    "t1": 53.22,
+    "text": "\"And thus her gentle lamentation by the squire and microsaved youth to the rear of"
+   },
+   {
+    "t0": 53.22,
+    "t1": 68.52,
+    "text": "the tent.\""
+   }
+  ]
+ },
+ "121-127105-0000|clean": {
+  "passage_id": "121-127105-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 67.08,
+  "wall_s": 1.92,
+  "n_segments": 23,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 3.8,
+    "text": "It was this observation that drew from Douglas."
+   },
+   {
+    "t0": 3.8,
+    "t1": 8.44,
+    "text": "Not immediately but later in the evening, a reply that had the interesting consequence"
+   },
+   {
+    "t0": 8.44,
+    "t1": 10.36,
+    "text": "to which I call attention."
+   },
+   {
+    "t0": 10.36,
+    "t1": 15.2,
+    "text": "Someone else told a story not particularly effective, which I saw he was not following,"
+   },
+   {
+    "t0": 15.2,
+    "t1": 16.4,
+    "text": "cried one of the women."
+   },
+   {
+    "t0": 16.4,
+    "t1": 17.76,
+    "text": "He took no notice of her."
+   },
+   {
+    "t0": 17.76,
+    "t1": 22.76,
+    "text": "He looked at me, but as if, instead of me, he saw what he spoke of."
+   },
+   {
+    "t0": 22.76,
+    "t1": 28.52,
+    "text": "There was a unanimous groan at this, and much for approach, after which in his preoccupied"
+   },
+   {
+    "t0": 28.52,
+    "t1": 32.52,
+    "text": "way he explained, \"The story's written."
+   },
+   {
+    "t0": 32.52,
+    "t1": 35.76,
+    "text": "I could write to my man and enclose the key."
+   },
+   {
+    "t0": 35.76,
+    "t1": 38.28,
+    "text": "He could send down the packet as he finds it."
+   },
+   {
+    "t0": 38.28,
+    "t1": 43.16,
+    "text": "The others resented postponement, but it was just his scruples that charmed me."
+   },
+   {
+    "t0": 43.16,
+    "t1": 44.92,
+    "text": "To this his answer was prompt."
+   },
+   {
+    "t0": 44.92,
+    "t1": 46.72,
+    "text": "Oh, thank God, no."
+   },
+   {
+    "t0": 46.72,
+    "t1": 48.9,
+    "text": "And is the record yours?"
+   },
+   {
+    "t0": 48.9,
+    "t1": 50.4,
+    "text": "He hung fire again."
+   },
+   {
+    "t0": 50.4,
+    "t1": 51.56,
+    "text": "A woman's."
+   },
+   {
+    "t0": 51.56,
+    "t1": 53.84,
+    "text": "She has been dead these twenty years."
+   },
+   {
+    "t0": 53.84,
+    "t1": 56.76,
+    "text": "She sent me the pages and questioned before she died."
+   },
+   {
+    "t0": 56.76,
+    "t1": 60.32,
+    "text": "She was the most agreeable woman I've ever known in her position."
+   },
+   {
+    "t0": 60.32,
+    "t1": 62.16,
+    "text": "She would have been worthy of any whatever."
+   },
+   {
+    "t0": 62.16,
+    "t1": 65.52,
+    "text": "It wasn't simply that she said so, but that I knew she hadn't."
+   },
+   {
+    "t0": 65.52,
+    "t1": 66.92,
+    "text": "I was sure I could see.\""
+   }
+  ]
+ },
+ "121-127105-0000|snr10": {
+  "passage_id": "121-127105-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 67.08,
+  "wall_s": 1.381,
+  "n_segments": 21,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.78,
+    "text": "It was this observation that drew from Douglas, not immediately, but later in the evening,"
+   },
+   {
+    "t0": 5.78,
+    "t1": 10.36,
+    "text": "a reply that had the interesting consequence to which I call attention."
+   },
+   {
+    "t0": 10.36,
+    "t1": 15.16,
+    "text": "Someone else told a story not particularly effective, which I saw he was not following,"
+   },
+   {
+    "t0": 15.16,
+    "t1": 16.4,
+    "text": "cried one of the women."
+   },
+   {
+    "t0": 16.4,
+    "t1": 17.72,
+    "text": "He took no notice of her."
+   },
+   {
+    "t0": 17.72,
+    "t1": 22.76,
+    "text": "He looked at me, but as if, instead of me, he saw what he spoke of."
+   },
+   {
+    "t0": 22.76,
+    "t1": 28.52,
+    "text": "There was a unanimous groan at this, and much for approach, after which, in his preoccupied"
+   },
+   {
+    "t0": 28.52,
+    "t1": 32.5,
+    "text": "way, he explained, \"The story's written."
+   },
+   {
+    "t0": 32.5,
+    "t1": 35.76,
+    "text": "I could write to my man and enclose the key."
+   },
+   {
+    "t0": 35.76,
+    "t1": 38.28,
+    "text": "He could send down the packet as he finds it."
+   },
+   {
+    "t0": 38.28,
+    "t1": 43.12,
+    "text": "The others resented for Spoment, but it was just as good as the charm to me."
+   },
+   {
+    "t0": 43.12,
+    "t1": 44.92,
+    "text": "To this, his answer was prompt."
+   },
+   {
+    "t0": 44.92,
+    "t1": 46.72,
+    "text": "Oh, thank God, no."
+   },
+   {
+    "t0": 46.72,
+    "t1": 48.88,
+    "text": "And is the record yours?\""
+   },
+   {
+    "t0": 48.88,
+    "t1": 50.44,
+    "text": "He hung fire again."
+   },
+   {
+    "t0": 50.44,
+    "t1": 51.44,
+    "text": "A woman's."
+   },
+   {
+    "t0": 51.44,
+    "t1": 53.8,
+    "text": "She has been dead these twenty years."
+   },
+   {
+    "t0": 53.8,
+    "t1": 56.8,
+    "text": "She sent me the pages in question before she died."
+   },
+   {
+    "t0": 56.8,
+    "t1": 60.36,
+    "text": "She was the most agreeable woman I've ever known in her position."
+   },
+   {
+    "t0": 60.36,
+    "t1": 62.2,
+    "text": "She would have been worthy of any, whatever."
+   },
+   {
+    "t0": 62.2,
+    "t1": 67.0,
+    "text": "It wasn't simply that she said so, but that I knew she hadn't, I was sure I could see."
+   }
+  ]
+ },
+ "121-127105-0000|snr5": {
+  "passage_id": "121-127105-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 67.08,
+  "wall_s": 1.455,
+  "n_segments": 23,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.68,
+    "text": "It was this observation that drew from Douglas, not immediately, but later in the evening,"
+   },
+   {
+    "t0": 5.68,
+    "t1": 10.88,
+    "text": "a reply that had the interesting consequence to which I call attention, someone else told"
+   },
+   {
+    "t0": 10.88,
+    "t1": 15.76,
+    "text": "a story not particularly effective, which I saw he was not following, cried one of the"
+   },
+   {
+    "t0": 15.76,
+    "t1": 16.76,
+    "text": "women."
+   },
+   {
+    "t0": 16.76,
+    "t1": 17.76,
+    "text": "He took no notice of her."
+   },
+   {
+    "t0": 17.76,
+    "t1": 22.76,
+    "text": "He looked at me, but as if, instead of me, he saw what he spoke of."
+   },
+   {
+    "t0": 22.76,
+    "t1": 28.52,
+    "text": "There was a unanimous groan at this, and much for approach, after which, in his preoccupied"
+   },
+   {
+    "t0": 28.52,
+    "t1": 32.48,
+    "text": "way, he explained, \"The story is written."
+   },
+   {
+    "t0": 32.48,
+    "t1": 35.78,
+    "text": "I could write to my man and enclose the key."
+   },
+   {
+    "t0": 35.78,
+    "t1": 38.28,
+    "text": "He could send down the packet as he finds it."
+   },
+   {
+    "t0": 38.28,
+    "t1": 43.08,
+    "text": "The others resented for Sponit, but it was just as great a way of mourning beauty from"
+   },
+   {
+    "t0": 43.08,
+    "t1": 44.08,
+    "text": "Hawaii.\""
+   },
+   {
+    "t0": 44.08,
+    "t1": 45.08,
+    "text": "To this, his answer was prompt."
+   },
+   {
+    "t0": 45.08,
+    "t1": 46.08,
+    "text": "\"Down both of her.\""
+   },
+   {
+    "t0": 46.08,
+    "t1": 47.08,
+    "text": "\"God, Mel."
+   },
+   {
+    "t0": 47.08,
+    "t1": 48.88,
+    "text": "And is the record yours?\""
+   },
+   {
+    "t0": 48.88,
+    "t1": 49.88,
+    "text": "He hung fire again."
+   },
+   {
+    "t0": 49.88,
+    "t1": 50.88,
+    "text": "\"A woman."
+   },
+   {
+    "t0": 50.88,
+    "t1": 53.24,
+    "text": "She has been dead these twenty years."
+   },
+   {
+    "t0": 53.24,
+    "t1": 56.48,
+    "text": "She sent me the pages and questions before she died."
+   },
+   {
+    "t0": 56.48,
+    "t1": 60.36,
+    "text": "She was the most agreeable woman I've ever known in her position."
+   },
+   {
+    "t0": 60.36,
+    "t1": 62.36,
+    "text": "She would have been worthy of any whatever."
+   },
+   {
+    "t0": 62.36,
+    "t1": 67.04,
+    "text": "It wasn't simply that she said so, but that I knew she hadn't, I was sure I could see.\""
+   }
+  ]
+ },
+ "121-127105-0000|snr0": {
+  "passage_id": "121-127105-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 67.08,
+  "wall_s": 1.419,
+  "n_segments": 20,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.8,
+    "text": "It was this observation that you're from Douglas, not immediately, but later in the evening,"
+   },
+   {
+    "t0": 5.8,
+    "t1": 10.88,
+    "text": "a reply that had the interesting consequence to which I call attention, someone else told"
+   },
+   {
+    "t0": 10.88,
+    "t1": 15.88,
+    "text": "a story not particularly effective, which I saw he was not following, cried one of the"
+   },
+   {
+    "t0": 15.88,
+    "t1": 16.88,
+    "text": "women."
+   },
+   {
+    "t0": 16.88,
+    "t1": 22.04,
+    "text": "He took no notice of her, he looked at me, but as if, instead of me, he saw what he spoke"
+   },
+   {
+    "t0": 22.04,
+    "t1": 23.04,
+    "text": "of."
+   },
+   {
+    "t0": 23.04,
+    "t1": 28.52,
+    "text": "There was a unanimous groan at this, and much reproach, after which, in his preoccupied"
+   },
+   {
+    "t0": 28.52,
+    "t1": 35.32,
+    "text": "way, he explained, \"The story's written, I could write to my man and enclose the key."
+   },
+   {
+    "t0": 35.32,
+    "t1": 38.32,
+    "text": "He could send down the packet as he finds it."
+   },
+   {
+    "t0": 38.32,
+    "t1": 40.32,
+    "text": "The others resented us both.\""
+   },
+   {
+    "t0": 40.32,
+    "t1": 41.32,
+    "text": "\"But it was just as a child.\""
+   },
+   {
+    "t0": 41.32,
+    "t1": 43.32,
+    "text": "\"To fade away like morning beauty from her voice again.\""
+   },
+   {
+    "t0": 43.32,
+    "t1": 47.56,
+    "text": "\"To this, this answer was prompt down by the river,\" I held on, \"and is the record"
+   },
+   {
+    "t0": 47.56,
+    "t1": 48.56,
+    "text": "yours.\""
+   },
+   {
+    "t0": 48.56,
+    "t1": 49.56,
+    "text": "\"He hung fire again.\""
+   },
+   {
+    "t0": 49.56,
+    "t1": 51.56,
+    "text": "\"And thus her gentle lamentation falls.\""
+   },
+   {
+    "t0": 51.56,
+    "t1": 53.56,
+    "text": "\"She has been dead these twenty years."
+   },
+   {
+    "t0": 53.56,
+    "t1": 59.68,
+    "text": "Oh, wife, of this art screen, why fades the lotus of the one I've ever known, and how"
+   },
+   {
+    "t0": 59.68,
+    "t1": 62.04,
+    "text": "she would have been worthy of any whatever."
+   },
+   {
+    "t0": 62.04,
+    "t1": 67.08,
+    "text": "It was simply that she said so that I knew she hadn't been very sure I could see.\""
+   }
+  ]
+ },
+ "121-127105-0000|snr-5": {
+  "passage_id": "121-127105-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 67.08,
+  "wall_s": 1.24,
+  "n_segments": 14,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.0,
+    "text": "There was this observation that you were from Douglas, not immediately, but later in the"
+   },
+   {
+    "t0": 5.0,
+    "t1": 10.42,
+    "text": "evening, of a fly that had the interesting consequence to which all attention, someone"
+   },
+   {
+    "t0": 10.42,
+    "t1": 16.1,
+    "text": "else told us to were not particularly effective, which I saw he was not following by the women."
+   },
+   {
+    "t0": 16.1,
+    "t1": 21.82,
+    "text": "He took no notice of her, he looked at me, but as if, instead of me, he saw what he spoke"
+   },
+   {
+    "t0": 21.82,
+    "t1": 22.82,
+    "text": "of."
+   },
+   {
+    "t0": 22.82,
+    "t1": 28.5,
+    "text": "There was a unanimous groan at this, and much for perch, after which in his preoccupied"
+   },
+   {
+    "t0": 28.5,
+    "t1": 32.5,
+    "text": "way he explained, \"Think what it would be for one of you to be away from home.\""
+   },
+   {
+    "t0": 32.5,
+    "t1": 35.3,
+    "text": "I could write to my man and enclose the key."
+   },
+   {
+    "t0": 35.3,
+    "t1": 40.56,
+    "text": "He could send out the package to find it, the others resented us both."
+   },
+   {
+    "t0": 40.56,
+    "t1": 47.06,
+    "text": "To fade away like morning beauty from her voice of day, down by the river of Hadan, her"
+   },
+   {
+    "t0": 47.06,
+    "t1": 53.54,
+    "text": "soft voice is heard, and thus her gentle lamentation falls like morning dew."
+   },
+   {
+    "t0": 53.54,
+    "t1": 59.48,
+    "text": "Oh, life, of this art screen, why fades the lotus of the one?"
+   },
+   {
+    "t0": 59.48,
+    "t1": 62.68,
+    "text": "Why fade these children of this spring?"
+   },
+   {
+    "t0": 62.68,
+    "t1": 67.12,
+    "text": "He hoped there would be steward dinner, turnips and carrots and brews, potatoes."
+   }
+  ]
+ },
+ "672-122797-0000|clean": {
+  "passage_id": "672-122797-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 102.27,
+  "wall_s": 1.51,
+  "n_segments": 22,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.64,
+    "text": "Out in the woods stood a nice little fur tree."
+   },
+   {
+    "t0": 4.64,
+    "t1": 7.78,
+    "text": "The place he had was a very good one."
+   },
+   {
+    "t0": 7.78,
+    "t1": 10.36,
+    "text": "The sun shone on him."
+   },
+   {
+    "t0": 10.36,
+    "t1": 13.52,
+    "text": "As to fresh air there was enough of that."
+   },
+   {
+    "t0": 13.52,
+    "t1": 19.84,
+    "text": "And round him grew many large-sized comrades, pines as well as furs."
+   },
+   {
+    "t0": 19.84,
+    "t1": 24.96,
+    "text": "He did not think of the warm sun and of the fresh air."
+   },
+   {
+    "t0": 24.96,
+    "t1": 29.8,
+    "text": "He did not care for the little cottage children that ran about and prattled when they were"
+   },
+   {
+    "t0": 29.8,
+    "t1": 33.44,
+    "text": "in the woods looking for wild strawberries."
+   },
+   {
+    "t0": 33.44,
+    "t1": 38.16,
+    "text": "But this was what the tree could not bear to hear."
+   },
+   {
+    "t0": 38.16,
+    "t1": 43.84,
+    "text": "In winter, when the snow lay glittering on the ground, a hare would often come leaping"
+   },
+   {
+    "t0": 43.84,
+    "t1": 48.36,
+    "text": "along and jump right over the little tree."
+   },
+   {
+    "t0": 48.36,
+    "t1": 51.68,
+    "text": "Oh, that made him so angry."
+   },
+   {
+    "t0": 51.68,
+    "t1": 57.72,
+    "text": "To grow and grow, to get older and be tall!"
+   },
+   {
+    "t0": 57.72,
+    "t1": 59.68,
+    "text": "Not the tree."
+   },
+   {
+    "t0": 59.68,
+    "t1": 65.64,
+    "text": "That, after all, is the most delightful thing in the world."
+   },
+   {
+    "t0": 65.64,
+    "t1": 72.12,
+    "text": "In autumn, the woodcutters always came and felled some of the largest trees."
+   },
+   {
+    "t0": 72.12,
+    "t1": 74.72,
+    "text": "This happened every year."
+   },
+   {
+    "t0": 74.72,
+    "t1": 81.2,
+    "text": "And the unfair tree that had now grown to a very commonly-sized trembled at the site."
+   },
+   {
+    "t0": 81.2,
+    "t1": 87.2,
+    "text": "For the magnificent great trees fell to the earth with noise and cracking, the branches"
+   },
+   {
+    "t0": 87.2,
+    "t1": 92.64,
+    "text": "were lopped off, and the trees looked long and bare."
+   },
+   {
+    "t0": 92.64,
+    "t1": 96.48,
+    "text": "They were hardly to be recognized."
+   },
+   {
+    "t0": 96.48,
+    "t1": 101.72,
+    "text": "And then they were laid in carts, and the horses dragged them out of the wood."
+   }
+  ]
+ },
+ "672-122797-0000|snr10": {
+  "passage_id": "672-122797-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 102.27,
+  "wall_s": 1.514,
+  "n_segments": 31,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.0,
+    "text": "Out in the woods stood a nice little fur tree."
+   },
+   {
+    "t0": 4.0,
+    "t1": 7.0,
+    "text": "The place he had was a very good one."
+   },
+   {
+    "t0": 7.0,
+    "t1": 9.0,
+    "text": "The sun shone on him."
+   },
+   {
+    "t0": 9.0,
+    "t1": 13.0,
+    "text": "As to fresh air there was enough of that."
+   },
+   {
+    "t0": 13.0,
+    "t1": 16.0,
+    "text": "And round him grew many large-sized comrades,"
+   },
+   {
+    "t0": 16.0,
+    "t1": 19.0,
+    "text": "pines as well as furs."
+   },
+   {
+    "t0": 19.0,
+    "t1": 24.0,
+    "text": "He did not think of the warm sun and of the fresh air."
+   },
+   {
+    "t0": 24.0,
+    "t1": 27.0,
+    "text": "He did not care for the little cottage children"
+   },
+   {
+    "t0": 27.0,
+    "t1": 30.0,
+    "text": "that ran about and prattled when they were in the woods"
+   },
+   {
+    "t0": 30.0,
+    "t1": 33.0,
+    "text": "looking for wild strawberries."
+   },
+   {
+    "t0": 33.0,
+    "t1": 37.0,
+    "text": "But this was what the tree could not bear to hear."
+   },
+   {
+    "t0": 37.0,
+    "t1": 41.0,
+    "text": "In winter, when the snow lay glittering on the ground,"
+   },
+   {
+    "t0": 41.0,
+    "t1": 44.0,
+    "text": "a hair would often come leaping along"
+   },
+   {
+    "t0": 44.0,
+    "t1": 47.0,
+    "text": "and jump right over the little tree."
+   },
+   {
+    "t0": 47.0,
+    "t1": 50.0,
+    "text": "Oh, that made him so angry."
+   },
+   {
+    "t0": 50.0,
+    "t1": 53.0,
+    "text": "To grow and grow."
+   },
+   {
+    "t0": 53.0,
+    "t1": 57.0,
+    "text": "To get older and be tall."
+   },
+   {
+    "t0": 57.0,
+    "t1": 59.0,
+    "text": "Why fades the lotus of the tree?"
+   },
+   {
+    "t0": 59.0,
+    "t1": 64.0,
+    "text": "That, after all, is the most delightful thing in the world."
+   },
+   {
+    "t0": 64.0,
+    "t1": 69.0,
+    "text": "An autumn, the woodcutters always came and fell"
+   },
+   {
+    "t0": 69.0,
+    "t1": 72.0,
+    "text": "some of the largest trees."
+   },
+   {
+    "t0": 72.0,
+    "t1": 74.0,
+    "text": "This happened every year."
+   },
+   {
+    "t0": 74.0,
+    "t1": 76.0,
+    "text": "And the unfair tree that had now grown"
+   },
+   {
+    "t0": 76.0,
+    "t1": 80.0,
+    "text": "to a very commonly sized tremble at the site."
+   },
+   {
+    "t0": 80.0,
+    "t1": 84.0,
+    "text": "For the magnificent great trees fell to the earth"
+   },
+   {
+    "t0": 84.0,
+    "t1": 86.0,
+    "text": "with noise and cracking."
+   },
+   {
+    "t0": 86.0,
+    "t1": 88.0,
+    "text": "The branches were locked off,"
+   },
+   {
+    "t0": 88.0,
+    "t1": 91.0,
+    "text": "and the trees looked long and bare."
+   },
+   {
+    "t0": 91.0,
+    "t1": 94.0,
+    "text": "They were hardly recognized."
+   },
+   {
+    "t0": 94.0,
+    "t1": 98.0,
+    "text": "Then they were laid in carts,"
+   },
+   {
+    "t0": 98.0,
+    "t1": 101.0,
+    "text": "and the horses dragged them out of the wood."
+   }
+  ]
+ },
+ "672-122797-0000|snr5": {
+  "passage_id": "672-122797-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 102.27,
+  "wall_s": 1.944,
+  "n_segments": 21,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 7.8,
+    "text": "Out in the woods stood a nice, little furtry, the place he had was a very good one."
+   },
+   {
+    "t0": 7.8,
+    "t1": 14.76,
+    "text": "The sun shone on him as to fresh air there was enough of that and round him grew many"
+   },
+   {
+    "t0": 14.76,
+    "t1": 19.92,
+    "text": "large-sized comrades pines as well as furs."
+   },
+   {
+    "t0": 19.92,
+    "t1": 25.0,
+    "text": "He did not think of the warm sun and of the fresh air."
+   },
+   {
+    "t0": 25.0,
+    "t1": 29.84,
+    "text": "He did not care for the little cottage children that ran about and prattled when they were"
+   },
+   {
+    "t0": 29.84,
+    "t1": 36.44,
+    "text": "in the woods looking for wild strawberries, but this was what the tree could not bear"
+   },
+   {
+    "t0": 36.44,
+    "t1": 37.44,
+    "text": "to hear."
+   },
+   {
+    "t0": 37.44,
+    "t1": 43.88,
+    "text": "In winter, when the snow lay glittering on the ground, the hair would often come leaping"
+   },
+   {
+    "t0": 43.88,
+    "t1": 51.2,
+    "text": "along down by the river of Adana, her soft voices hurt, and thus her gentle lamentation"
+   },
+   {
+    "t0": 51.2,
+    "t1": 57.24,
+    "text": "falls to my governing dew and grow, to get all this artspring and be told why fades the"
+   },
+   {
+    "t0": 57.24,
+    "t1": 59.24,
+    "text": "lotus outer water."
+   },
+   {
+    "t0": 59.24,
+    "t1": 65.28,
+    "text": "That, after all, is the most delight he hoped there would be stew for dinner, turnips and"
+   },
+   {
+    "t0": 65.28,
+    "t1": 70.4,
+    "text": "carrots, an autumn bruised potato, who would cut as always came and fell down the largest"
+   },
+   {
+    "t0": 70.4,
+    "t1": 71.4,
+    "text": "tree."
+   },
+   {
+    "t0": 71.4,
+    "t1": 78.56,
+    "text": "This happened every year, and the unfurgery that had now growly to a very couple-sized"
+   },
+   {
+    "t0": 78.56,
+    "t1": 82.44,
+    "text": "tremble here and there, the squalid quarter of the mouthful for the magnificent great"
+   },
+   {
+    "t0": 82.44,
+    "t1": 88.52,
+    "text": "trees, birds, and earth with noise, he wore blue silk stockings, flutey pants with gold"
+   },
+   {
+    "t0": 88.52,
+    "t1": 93.44,
+    "text": "buckles, a blue rough waist, and a jacket of bright blue braided with gold."
+   },
+   {
+    "t0": 93.44,
+    "t1": 98.64,
+    "text": "His hat had a peaked crown and a flat brim, and around the brim with a row of tiny golden"
+   },
+   {
+    "t0": 98.64,
+    "t1": 99.64,
+    "text": "bells."
+   },
+   {
+    "t0": 99.64,
+    "t1": 102.28,
+    "text": "The horses dragged them out of the way."
+   }
+  ]
+ },
+ "672-122797-0000|snr0": {
+  "passage_id": "672-122797-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 102.27,
+  "wall_s": 1.599,
+  "n_segments": 16,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 8.14,
+    "text": "Out in the woods to the nice little furtry, the place he had was a very good one, the sun"
+   },
+   {
+    "t0": 8.14,
+    "t1": 15.98,
+    "text": "shone on him, as to fresh air there was enough of that, and round him grew many large-sized"
+   },
+   {
+    "t0": 15.98,
+    "t1": 23.06,
+    "text": "comrades and pines as well as furs, he did not think of the warm sun and of the fresh"
+   },
+   {
+    "t0": 23.06,
+    "t1": 29.5,
+    "text": "air, he did not care for the little cottage children that ran about and prattled when"
+   },
+   {
+    "t0": 29.5,
+    "t1": 36.42,
+    "text": "they were in the woods looking for wild strawberries, but this was what the tree could not bear"
+   },
+   {
+    "t0": 36.42,
+    "t1": 42.58,
+    "text": "to hear, in winter, when the snow lay glittery on the ground, to fade away like morning hair"
+   },
+   {
+    "t0": 42.58,
+    "t1": 49.42,
+    "text": "would often come leaving along, down by the river of Adana, her soft voice is heard, and"
+   },
+   {
+    "t0": 49.42,
+    "t1": 56.62,
+    "text": "thus her gentle lamentation falls like morning dew, and grow, oh, like, of this arse spring,"
+   },
+   {
+    "t0": 56.62,
+    "t1": 63.18,
+    "text": "why fades the lotus outer yanter, why fade these children of this spring, he hoped there"
+   },
+   {
+    "t0": 63.18,
+    "t1": 68.66,
+    "text": "would be stew for dinner, turnips and carrots and bruised potatoes, and that always became"
+   },
+   {
+    "t0": 68.66,
+    "t1": 74.66,
+    "text": "a lay-ldown, thick, peppered flower-fattened sauce, this happened every year, his belly"
+   },
+   {
+    "t0": 74.66,
+    "t1": 79.94,
+    "text": "and the unfurgery that had now grew to a very gummy slice would light up here and there,"
+   },
+   {
+    "t0": 79.94,
+    "t1": 86.2,
+    "text": "the squalid quarter of the brothel, hello, Bertie, and the good in your mind, he wore blue silk"
+   },
+   {
+    "t0": 86.2,
+    "t1": 91.6,
+    "text": "stockings, loony pants with gold buckles, a blue ruffled waist, and a jacket of bright"
+   },
+   {
+    "t0": 91.6,
+    "t1": 97.14,
+    "text": "blue braided with gold, his hat had a peaked crown and a flat brim, and around the brim"
+   },
+   {
+    "t0": 97.14,
+    "t1": 102.2,
+    "text": "with a row of tiny golden bells, the two golds when moved, instead of shoes,"
+   }
+  ]
+ },
+ "672-122797-0000|snr-5": {
+  "passage_id": "672-122797-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 102.27,
+  "wall_s": 1.688,
+  "n_segments": 18,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 8.08,
+    "text": "Out in the woods to the nice little furry, the place he had was a very good one, the sun"
+   },
+   {
+    "t0": 8.08,
+    "t1": 14.22,
+    "text": "showed on her rapturous entrance as to fresh air there was enough of that and round him"
+   },
+   {
+    "t0": 14.22,
+    "t1": 20.28,
+    "text": "grew many large sized comrades and titans as well as the boys upon her time, he did not"
+   },
+   {
+    "t0": 20.28,
+    "t1": 27.52,
+    "text": "think of the warm sun and the fresh air, he did not care for the little cottage children"
+   },
+   {
+    "t0": 27.52,
+    "t1": 32.42,
+    "text": "that ran about and prattled when they were in the woods looking for wild strawberries."
+   },
+   {
+    "t0": 32.42,
+    "t1": 38.96,
+    "text": "But this is what the tree could not bear, feeling was the strongest, this day it seemed"
+   },
+   {
+    "t0": 38.96,
+    "t1": 40.86,
+    "text": "as if she could bear at no point."
+   },
+   {
+    "t0": 40.86,
+    "t1": 46.98,
+    "text": "To fade away like morning beauty from her mortal day, down by the river of Adana, her"
+   },
+   {
+    "t0": 46.98,
+    "t1": 55.16,
+    "text": "soft voice is heard, and thus her gentle lamentation falls like morning dew, oh, like it, of this"
+   },
+   {
+    "t0": 55.16,
+    "t1": 62.7,
+    "text": "arse spring, why fades the lotus outer water, why fade these children of the spring?"
+   },
+   {
+    "t0": 62.7,
+    "t1": 67.94,
+    "text": "He hoped there would be stew for dinner, turnips and carrots and bruised potatoes and fasten"
+   },
+   {
+    "t0": 67.94,
+    "t1": 73.62,
+    "text": "what he has to be ladled out thick, peppered his flower-fattened sauce, stuffed it into"
+   },
+   {
+    "t0": 73.62,
+    "t1": 79.02,
+    "text": "you, his belly canceled him, and after early nightfall the yellow lamps would light up"
+   },
+   {
+    "t0": 79.02,
+    "t1": 85.42,
+    "text": "here and there, the squalid quarter of the brothel, hello Bertie, any good in your mind?"
+   },
+   {
+    "t0": 85.42,
+    "t1": 90.74,
+    "text": "He wore blue silk stockings, blue knee pants with gold buckles, a blue ruffled waist, and"
+   },
+   {
+    "t0": 90.74,
+    "t1": 93.66,
+    "text": "a jacket of bright blue braided with gold."
+   },
+   {
+    "t0": 93.66,
+    "t1": 98.64,
+    "text": "His hat had a peaked crown and a flat brim, and around the brim was a row of tiny golden"
+   },
+   {
+    "t0": 98.64,
+    "t1": 102.28,
+    "text": "bells that tickled when removed, instead of shoes."
+   }
+  ]
+ },
+ "1188-133604-0000|clean": {
+  "passage_id": "1188-133604-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 86.19,
+  "wall_s": 1.5,
+  "n_segments": 17,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 3.4,
+    "text": "You will find me continually speaking of four men,"
+   },
+   {
+    "t0": 3.4,
+    "t1": 10.4,
+    "text": "Titian, Holbein, Turner, and Tintraet, in almost the same terms."
+   },
+   {
+    "t0": 10.4,
+    "t1": 17.0,
+    "text": "They unite every quality, and sometimes you will find me referring to them as colorists,"
+   },
+   {
+    "t0": 17.0,
+    "t1": 20.0,
+    "text": "sometimes as Chiaroscurosts."
+   },
+   {
+    "t0": 20.0,
+    "t1": 23.0,
+    "text": "By being studious of color they are studious of division,"
+   },
+   {
+    "t0": 23.0,
+    "t1": 29.0,
+    "text": "and while the Chiaroscurosts devotes himself to the representation of degrees of force in one thing,"
+   },
+   {
+    "t0": 29.0,
+    "t1": 35.0,
+    "text": "unseparated light, the colorists have for their function the attainment of beauty"
+   },
+   {
+    "t0": 35.0,
+    "t1": 38.0,
+    "text": "by arrangement of the divisions of light."
+   },
+   {
+    "t0": 38.0,
+    "t1": 43.0,
+    "text": "My first and principal reason was that they enforced, beyond all resistance,"
+   },
+   {
+    "t0": 43.0,
+    "t1": 50.0,
+    "text": "on any student who might attempt to copy them, this method of laying portions of distinct hue side by side."
+   },
+   {
+    "t0": 50.0,
+    "t1": 55.0,
+    "text": "Some of the touches, indeed, when the Tint has been mixed with much water,"
+   },
+   {
+    "t0": 55.0,
+    "t1": 61.0,
+    "text": "have been laid in little drops or ponds, so that the pigment might crystallize hard at the edge."
+   },
+   {
+    "t0": 61.0,
+    "t1": 66.0,
+    "text": "It is the head of a parrot with a little flower in his beak from a picture of carpaccios."
+   },
+   {
+    "t0": 66.0,
+    "t1": 72.0,
+    "text": "One of his series of the life of St. George, then he comes to the beak of it."
+   },
+   {
+    "t0": 72.0,
+    "t1": 75.0,
+    "text": "The brown ground beneath is left for the most part."
+   },
+   {
+    "t0": 75.0,
+    "t1": 81.0,
+    "text": "One touch of black is put for the hollow, two delicate lines of dark grey to find the outer curve,"
+   },
+   {
+    "t0": 81.0,
+    "t1": 86.0,
+    "text": "and one little quivering touch of white draws the inner edge of the mandible."
+   }
+  ]
+ },
+ "1188-133604-0000|snr10": {
+  "passage_id": "1188-133604-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 86.19,
+  "wall_s": 1.469,
+  "n_segments": 11,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 13.0,
+    "text": "You will find me continually speaking of four men \u2013 Titian, Holbein, Turner, and Tintarat \u2013 in almost the same terms, that unite every quality,"
+   },
+   {
+    "t0": 13.0,
+    "t1": 19.0,
+    "text": "and sometimes you will find me referring to them as colorists, sometimes as Kiaroscuras."
+   },
+   {
+    "t0": 19.0,
+    "t1": 29.0,
+    "text": "By being studious of color they are studious of division, and while the Kiaroscuras devotes himself to the representation of degrees of force in one thing,"
+   },
+   {
+    "t0": 29.0,
+    "t1": 38.0,
+    "text": "unseparated light, the colorists have for their function the attainment of beauty by arrangement of the divisions of light."
+   },
+   {
+    "t0": 38.0,
+    "t1": 46.0,
+    "text": "My first and principal reason was that they enforced, beyond all resistance, on any student who might attempt to copy them,"
+   },
+   {
+    "t0": 46.0,
+    "t1": 55.0,
+    "text": "this method of laying portions of distinct hue side by side. Some of the touches, indeed, when the Tint has been mixed with much water,"
+   },
+   {
+    "t0": 55.0,
+    "t1": 61.0,
+    "text": "they have been laid in little drops of hogs, so that the pigment might crystallize hard at the edge."
+   },
+   {
+    "t0": 61.0,
+    "t1": 69.0,
+    "text": "Just as the head of a parrot, the little flower in his beak from a picture of Capotra, one of his series of the life of St. George,"
+   },
+   {
+    "t0": 69.0,
+    "t1": 75.0,
+    "text": "then he comes to the beak event. The brown ground beneath his left, for the most part."
+   },
+   {
+    "t0": 75.0,
+    "t1": 81.0,
+    "text": "One touch of black is put for the hollow, two delicate lines of dark grey to find the outer curve,"
+   },
+   {
+    "t0": 81.0,
+    "t1": 86.0,
+    "text": "and one little quivering touch of white draws the inner edge of the mandible."
+   }
+  ]
+ },
+ "1188-133604-0000|snr5": {
+  "passage_id": "1188-133604-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 86.19,
+  "wall_s": 1.582,
+  "n_segments": 19,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 3.24,
+    "text": "You will find me continually speaking of foremen,"
+   },
+   {
+    "t0": 3.24,
+    "t1": 9.9,
+    "text": "Titian, Holbein, Turner, and Tintadat in almost the same terms."
+   },
+   {
+    "t0": 9.9,
+    "t1": 14.78,
+    "text": "They unite every quality and sometimes we will find me"
+   },
+   {
+    "t0": 14.78,
+    "t1": 18.82,
+    "text": "referring to them as colorists, sometimes as Kiaraskuras."
+   },
+   {
+    "t0": 18.82,
+    "t1": 25.2,
+    "text": "By being studious of color they are studious of division and while the Kiaraskuras devotes"
+   },
+   {
+    "t0": 25.2,
+    "t1": 29.26,
+    "text": "himself to the representation of degrees of force in one thing,"
+   },
+   {
+    "t0": 29.26,
+    "t1": 33.88,
+    "text": "unseparated light, the colorists have for their function,"
+   },
+   {
+    "t0": 33.88,
+    "t1": 38.2,
+    "text": "the attainment of beauty, by arrangement of the divisions of light,"
+   },
+   {
+    "t0": 38.2,
+    "t1": 40.92,
+    "text": "my first and principal reason was that they enforced"
+   },
+   {
+    "t0": 40.92,
+    "t1": 45.88,
+    "text": "to fade away beyond all resistance, on any student who wanted to copy them,"
+   },
+   {
+    "t0": 45.88,
+    "t1": 50.84,
+    "text": "this method of laying courses distinct hue side by side,"
+   },
+   {
+    "t0": 50.84,
+    "t1": 54.7,
+    "text": "some of the touches indeed, when the Tint has been mixed with much water,"
+   },
+   {
+    "t0": 54.7,
+    "t1": 61.66,
+    "text": "and in laying little drops of awe, so that the pigment might crystallize hard at the end,"
+   },
+   {
+    "t0": 61.66,
+    "t1": 66.98,
+    "text": "just the head of a parrot, the little flower in his beak from a picture of Karpassa,"
+   },
+   {
+    "t0": 66.98,
+    "t1": 72.48,
+    "text": "one of his series of the life of St. George, then comes to the beak of that,"
+   },
+   {
+    "t0": 72.48,
+    "t1": 75.9,
+    "text": "the brown ground underneath his left is the most powerful,"
+   },
+   {
+    "t0": 75.9,
+    "t1": 80.3,
+    "text": "one touch of black is put for the hollow, two delicate lines of dark gray to find the"
+   },
+   {
+    "t0": 80.3,
+    "t1": 83.92,
+    "text": "outer curve, and one little quivering touch of white,"
+   },
+   {
+    "t0": 83.92,
+    "t1": 86.16,
+    "text": "Does the inner edge of the man do you wore a blue silk?"
+   }
+  ]
+ },
+ "1188-133604-0000|snr0": {
+  "passage_id": "1188-133604-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 86.19,
+  "wall_s": 3.249,
+  "n_segments": 4,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 29.0,
+    "text": "Here she will finally continually speaking of foreman, in almost the same terms, and unite every quality. And sometimes you will find me referring to them as cholores, sometimes as chiaroscurus. By being studious of color they are studious of division, and while the chiaroscurus devotes himself to representation of degrees of force in one thing, unseparated, and so forth."
+   },
+   {
+    "t0": 29.0,
+    "t1": 44.0,
+    "text": "Unseparated light, the colorists have for their function, the attainment of beauty, by arrangement of the divisions of life, my first and principal reason is that they enforced to fade away like an old resisti from her mortal day."
+   },
+   {
+    "t0": 44.0,
+    "t1": 62.0,
+    "text": "Many students, down by the rhythm of a dawn, the soft voices distinct, and thus her gentle lamentation of the touch is my warning due. When the tint has been mixed in my water, of this arm lay, and little drops, why fades the lotus so that the wanton might crystallize, why fade these children of the spring."
+   },
+   {
+    "t0": 62.0,
+    "t1": 85.0,
+    "text": "Instead of a parrot, he hoped the little flower in his dinner, from a pitcher nips and carrots, and bruised potatoes, one of his serious of the life of Saint George, ladled out and thick, then accursed to the power of that sauce, the brown stuff and into his laugh is finished, counseled him. One touch of a blithe early night for the hollow, two dulled light lines of dirt there, and the outer curve of the brothel, and one little quivering touch of weight, and he glows in your mind."
+   }
+  ]
+ },
+ "1188-133604-0000|snr-5": {
+  "passage_id": "1188-133604-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 86.19,
+  "wall_s": 1.949,
+  "n_segments": 17,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.56,
+    "text": "Here she would stay, comforted and sued among the lovely plants and rickensautics, rejoicing"
+   },
+   {
+    "t0": 5.56,
+    "t1": 10.52,
+    "text": "the heart of old Turner, the garner, who since Paulie's first rapturous entrance, had taken"
+   },
+   {
+    "t0": 10.52,
+    "t1": 15.96,
+    "text": "her into his good places for all time, and sometimes she will find me reflecting as"
+   },
+   {
+    "t0": 15.96,
+    "t1": 20.4,
+    "text": "Cole was, and after the glamorous, the man to the boys upon her time were fully satisfied."
+   },
+   {
+    "t0": 20.4,
+    "t1": 24.88,
+    "text": "By being studious of color, they are studious of division, and while the curious purist"
+   },
+   {
+    "t0": 24.88,
+    "t1": 31.46,
+    "text": "devotes himself to representation of degrees of force in one day, unseparated life, the"
+   },
+   {
+    "t0": 31.46,
+    "t1": 38.12,
+    "text": "colorists have for their function, the attainment of beauty, and range of the division's life."
+   },
+   {
+    "t0": 38.12,
+    "t1": 41.0,
+    "text": "This day, it seemed as if she could bear it no longer."
+   },
+   {
+    "t0": 41.0,
+    "t1": 47.0,
+    "text": "To fade away like morning beauty from her mortal day, down by the river of a dawn, her"
+   },
+   {
+    "t0": 47.0,
+    "t1": 52.88,
+    "text": "soft voices heard, and thus her gentle lamentation of the touch is like morning dew, when the"
+   },
+   {
+    "t0": 52.88,
+    "t1": 59.52,
+    "text": "tint has been mixed in the water, of this arm-laying, why fades the lotus of the water?"
+   },
+   {
+    "t0": 59.52,
+    "t1": 62.68,
+    "text": "Why fade these children of the spring?"
+   },
+   {
+    "t0": 62.68,
+    "t1": 66.88,
+    "text": "He hoped there would be stew for dinner, from a pernipse and carrots, and bruised potatoes,"
+   },
+   {
+    "t0": 66.88,
+    "t1": 71.6,
+    "text": "and fat of the life pieces to be ladled out, and thick, and purged to the flower of that"
+   },
+   {
+    "t0": 71.6,
+    "t1": 75.88,
+    "text": "and sauce, the brown-ground beneath his left, his belly-counseled him."
+   },
+   {
+    "t0": 75.88,
+    "t1": 80.48,
+    "text": "One touch of early nightfall, ollie-yellow-lamps of light-hounds, here and there, the squalid"
+   },
+   {
+    "t0": 80.48,
+    "t1": 85.8,
+    "text": "recorder of the brothel, and one little quivering touch of beauty, any good in your mind."
+   }
+  ]
+ },
+ "1320-122612-0000|clean": {
+  "passage_id": "1320-122612-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 70.92,
+  "wall_s": 1.954,
+  "n_segments": 17,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.28,
+    "text": "Since the period of our tale, the active spirit of the country has surrounded it with a belt"
+   },
+   {
+    "t0": 5.28,
+    "t1": 10.1,
+    "text": "of rich and thriving settlements, though none but the hunter or the savage is ever known"
+   },
+   {
+    "t0": 10.1,
+    "t1": 13.84,
+    "text": "even now to penetrate its wild recesses."
+   },
+   {
+    "t0": 13.84,
+    "t1": 18.26,
+    "text": "The dews were suffered to exhale, and the sun had dispersed the mists, and was shedding"
+   },
+   {
+    "t0": 18.26,
+    "t1": 23.82,
+    "text": "a strong and clear light in the forest when the travelers resumed their journey."
+   },
+   {
+    "t0": 23.82,
+    "t1": 28.46,
+    "text": "After proceeding a few miles, the progress of Hawkeye, who led the advance, became more"
+   },
+   {
+    "t0": 28.46,
+    "t1": 30.9,
+    "text": "deliberate and watchful."
+   },
+   {
+    "t0": 30.9,
+    "t1": 35.9,
+    "text": "He often stopped to examine the trees, nor did he cross a rivulet without attentively"
+   },
+   {
+    "t0": 35.9,
+    "t1": 41.24,
+    "text": "considering the quantity, the velocity, and the color of its waters."
+   },
+   {
+    "t0": 41.24,
+    "t1": 45.42,
+    "text": "Distrusting his own judgment, his appeals to the opinion of Chingachkuk were frequent"
+   },
+   {
+    "t0": 45.42,
+    "t1": 47.14,
+    "text": "and earnest."
+   },
+   {
+    "t0": 47.14,
+    "t1": 51.66,
+    "text": "Yet here are we, within a short range of the Skaroons, and not a sign of a trail have"
+   },
+   {
+    "t0": 51.66,
+    "t1": 53.06,
+    "text": "we crossed."
+   },
+   {
+    "t0": 53.06,
+    "t1": 58.94,
+    "text": "Let us retrace our steps, and examine as we go, with keener eyes, Chingachkuk had caught"
+   },
+   {
+    "t0": 58.94,
+    "t1": 63.34,
+    "text": "the look, and, motioning with his hand, he bade him speak."
+   },
+   {
+    "t0": 63.34,
+    "t1": 68.34,
+    "text": "The eyes of the whole party followed the unexpected movement, and read their success in the air"
+   },
+   {
+    "t0": 68.34,
+    "t1": 70.34,
+    "text": "of triumph that the youth assumed."
+   }
+  ]
+ },
+ "1320-122612-0000|snr10": {
+  "passage_id": "1320-122612-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 70.92,
+  "wall_s": 2.933,
+  "n_segments": 11,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.32,
+    "text": "Since the period of our tale, the active spirit of the country has surrounded it with a belt"
+   },
+   {
+    "t0": 5.32,
+    "t1": 10.2,
+    "text": "of rich and thriving settlements, though none but the hunter or the savage is ever known"
+   },
+   {
+    "t0": 10.2,
+    "t1": 13.84,
+    "text": "even now to penetrate its wild recesses."
+   },
+   {
+    "t0": 13.84,
+    "t1": 18.28,
+    "text": "The dews were suffered to exhale and the sun had dispersed the mists and was shedding"
+   },
+   {
+    "t0": 18.28,
+    "t1": 23.84,
+    "text": "a strong and clear light in the forest when the travelers resumed their journey."
+   },
+   {
+    "t0": 23.84,
+    "t1": 28.48,
+    "text": "After proceeding a few miles, the progress of Hawkeye, who led the advance, became more"
+   },
+   {
+    "t0": 28.48,
+    "t1": 34.98,
+    "text": "deliberate and watchful, he often stopped to examine the trees, nor did he cross a rivulet"
+   },
+   {
+    "t0": 34.98,
+    "t1": 40.72,
+    "text": "without attentively considering the quantity, the velocity, and the color of its waters."
+   },
+   {
+    "t0": 40.72,
+    "t1": 46.56,
+    "text": "Distrusting his own judgment, his appeals to the opinion of Ching-Ach-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk,"
+   },
+   {
+    "t0": 46.56,
+    "t1": 51.72,
+    "text": "yet here are we, within a short range of the Skoruns, and not a sign of a trail have"
+   },
+   {
+    "t0": 51.72,
+    "t1": 70.76,
+    "text": "we crossed."
+   }
+  ]
+ },
+ "1320-122612-0000|snr5": {
+  "passage_id": "1320-122612-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 70.92,
+  "wall_s": 3.551,
+  "n_segments": 14,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.92,
+    "text": "\"Since the period of our tale, the active spirit of the country has surrounded it with"
+   },
+   {
+    "t0": 4.92,
+    "t1": 9.8,
+    "text": "a belt of rich and thriving settlements, though none but the hunter or the savage is ever"
+   },
+   {
+    "t0": 9.8,
+    "t1": 13.0,
+    "text": "known even now to penetrate its wild recesses."
+   },
+   {
+    "t0": 13.0,
+    "t1": 18.28,
+    "text": "Its views were suffered to exhale and the sun had dispersed the mists and was shedding"
+   },
+   {
+    "t0": 18.28,
+    "t1": 23.84,
+    "text": "a strong and clear light in the forest when the travelers resumed their journey."
+   },
+   {
+    "t0": 23.84,
+    "t1": 28.48,
+    "text": "After proceeding a few miles, the progress of Hawkeye, who led the advance, became more"
+   },
+   {
+    "t0": 28.48,
+    "t1": 34.98,
+    "text": "deliberate and watchful, he often stopped to examine the trees, nor did he cross a rivulate"
+   },
+   {
+    "t0": 34.98,
+    "t1": 40.92,
+    "text": "without attentively considering the quantity, the velocity, and the color of its waters."
+   },
+   {
+    "t0": 40.92,
+    "t1": 46.8,
+    "text": "Distrusting his way of judgment is appeals to the opinion of Ching-Ach-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk-Guk..."
+   },
+   {
+    "t0": 46.8,
+    "t1": 51.64,
+    "text": "Yet here are we, within a short range of the scourings, and on the beacon of betrayal"
+   },
+   {
+    "t0": 51.64,
+    "t1": 53.08,
+    "text": "have we crossed."
+   },
+   {
+    "t0": 53.08,
+    "t1": 65.28,
+    "text": "Let us retrace our steps and examine as we go with key rise."
+   },
+   {
+    "t0": 65.28,
+    "t1": 69.24,
+    "text": "The whole party followed the unspecced movement and read their success in the air of triumph"
+   },
+   {
+    "t0": 69.24,
+    "t1": 70.72,
+    "text": "the youth assig."
+   }
+  ]
+ },
+ "1320-122612-0000|snr0": {
+  "passage_id": "1320-122612-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 70.92,
+  "wall_s": 1.484,
+  "n_segments": 14,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.92,
+    "text": "\"Since the period of our tale, the act of spirit of the country has surrounded it with"
+   },
+   {
+    "t0": 4.92,
+    "t1": 9.8,
+    "text": "a belt of rich and thriving settlements, though none but the hunter of the savage is ever"
+   },
+   {
+    "t0": 9.8,
+    "t1": 13.12,
+    "text": "known even now to penetrate its wild recesses."
+   },
+   {
+    "t0": 13.12,
+    "t1": 18.36,
+    "text": "The Jews were suffered to exhale and the sun had dispersed the mist and was shedding a"
+   },
+   {
+    "t0": 18.36,
+    "t1": 23.84,
+    "text": "strong and clear light in the forest when the travelers resumed their journey."
+   },
+   {
+    "t0": 23.84,
+    "t1": 28.48,
+    "text": "After proceeding a few miles, the progress of Hawkeye, who led the advance, became more"
+   },
+   {
+    "t0": 28.48,
+    "t1": 35.0,
+    "text": "deliberate and watchful, he often stopped to examine the trees, nor did he cross a riverlet"
+   },
+   {
+    "t0": 35.0,
+    "t1": 40.76,
+    "text": "without a tent of reconsidering the quantity, the velocity, and the color of its waters."
+   },
+   {
+    "t0": 40.76,
+    "t1": 47.0,
+    "text": "To fade away like morning beauty from her mornable day, down by the river Abadana, her"
+   },
+   {
+    "t0": 47.0,
+    "t1": 52.9,
+    "text": "soft voices hurt, and thus her gentle lamentation of false like morning do."
+   },
+   {
+    "t0": 52.9,
+    "t1": 57.32,
+    "text": "\"Let us retrace our steps, O life, of this are we going, with key rise, why fades the"
+   },
+   {
+    "t0": 57.32,
+    "t1": 62.68,
+    "text": "lotus of the one who had caught the look, why fade these children of the spring."
+   },
+   {
+    "t0": 62.68,
+    "t1": 67.38,
+    "text": "He hoped there would be still the whole party furlough, carrots and maroos, potatoes and"
+   },
+   {
+    "t0": 67.38,
+    "t1": 70.76,
+    "text": "fat mutters, and the air of triath, to be ladled out, to the sick and peppered."
+   }
+  ]
+ },
+ "1320-122612-0000|snr-5": {
+  "passage_id": "1320-122612-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 70.92,
+  "wall_s": 1.649,
+  "n_segments": 16,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.68,
+    "text": "Here, she would stay comforted in suits among the lovely plants and rich as high, rejoicing"
+   },
+   {
+    "t0": 5.68,
+    "t1": 10.2,
+    "text": "the hard, the bold turn of the garden, though since Paul is first rapturous entrant, had"
+   },
+   {
+    "t0": 10.2,
+    "t1": 14.02,
+    "text": "taken her into his good races for all time."
+   },
+   {
+    "t0": 14.02,
+    "t1": 17.66,
+    "text": "Every chance she could steal after practice hours were older, and after the clamor and"
+   },
+   {
+    "t0": 17.66,
+    "t1": 22.32,
+    "text": "the shedding of straw and clear light in the forest when her travelers resumed their journey."
+   },
+   {
+    "t0": 22.32,
+    "t1": 28.56,
+    "text": "After proceeding a few miles, the progress of Hawkeye, who led the advance, became more"
+   },
+   {
+    "t0": 28.56,
+    "t1": 32.9,
+    "text": "richer than ever, think what it would be for one of you to be away from Hawkeye, even"
+   },
+   {
+    "t0": 32.9,
+    "t1": 36.6,
+    "text": "a month's friend, nor did he cross a river that without a turn to be considering the"
+   },
+   {
+    "t0": 36.6,
+    "t1": 37.6,
+    "text": "home feeling was the strongest."
+   },
+   {
+    "t0": 37.6,
+    "t1": 40.98,
+    "text": "This day, it seems as if she could bear it no longer."
+   },
+   {
+    "t0": 40.98,
+    "t1": 46.98,
+    "text": "To fade away like morning beauty from her mortal day, down by the river, Abadana, her"
+   },
+   {
+    "t0": 46.98,
+    "t1": 53.42,
+    "text": "soft voices hurt, and thus her gentle lamentation falls like morning dew."
+   },
+   {
+    "t0": 53.42,
+    "t1": 61.04,
+    "text": "Oh, life, of this arse spring, why fades the lotus of the want, why fade these children"
+   },
+   {
+    "t0": 61.04,
+    "t1": 62.66,
+    "text": "of the spring?"
+   },
+   {
+    "t0": 62.66,
+    "t1": 67.64,
+    "text": "He hoped there would be stew for dinner, turnips and carrots, and bruised potatoes and fat"
+   },
+   {
+    "t0": 67.64,
+    "t1": 70.76,
+    "text": "mutty pieces to be ladled out, thick and peppered."
+   }
+  ]
+ },
+ "2094-142345-0000|clean": {
+  "passage_id": "2094-142345-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 86.34,
+  "wall_s": 1.954,
+  "n_segments": 17,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 7.92,
+    "text": "It is a very fine old place of red brick, softened by a pale, powdery lichen, which has"
+   },
+   {
+    "t0": 7.92,
+    "t1": 14.24,
+    "text": "dispersed itself with happy irregularity, so as to bring the red brick into terms of"
+   },
+   {
+    "t0": 14.24,
+    "t1": 21.2,
+    "text": "friendly companionship with the limestone ornaments surrounding the three gables, the windows and"
+   },
+   {
+    "t0": 21.2,
+    "t1": 22.2,
+    "text": "the door-place."
+   },
+   {
+    "t0": 22.2,
+    "t1": 29.24,
+    "text": "But the windows are patched with wooden panes, and the door, I think, is like the gate."
+   },
+   {
+    "t0": 29.24,
+    "t1": 36.2,
+    "text": "It is never opened, for it is a solid, heavy, handsome door, and must once have been in"
+   },
+   {
+    "t0": 36.2,
+    "t1": 41.96,
+    "text": "the habit of shutting with a sonorous bang behind the liveryed lackey, who had just seen"
+   },
+   {
+    "t0": 41.96,
+    "t1": 48.28,
+    "text": "his master and mistress off the grounds in a carriage and pair, a large, open fireplace"
+   },
+   {
+    "t0": 48.28,
+    "t1": 53.34,
+    "text": "with rusty dogs in it and a bare-boarded floor."
+   },
+   {
+    "t0": 53.34,
+    "t1": 57.48,
+    "text": "At the far end, fleeces of wool stacked up."
+   },
+   {
+    "t0": 57.48,
+    "t1": 61.48,
+    "text": "In the middle of the floor, some empty corn bags."
+   },
+   {
+    "t0": 61.48,
+    "t1": 64.32,
+    "text": "And what through the left-hand window?"
+   },
+   {
+    "t0": 64.32,
+    "t1": 70.76,
+    "text": "Several clothes-horses, a pillion, a spinning wheel, and an old box wide open and stuffed full"
+   },
+   {
+    "t0": 70.76,
+    "t1": 73.16,
+    "text": "of colored rags."
+   },
+   {
+    "t0": 73.16,
+    "t1": 78.92,
+    "text": "At the edge of this box, there lies a great wooden doll, which, so far as mutilation is"
+   },
+   {
+    "t0": 78.92,
+    "t1": 84.4,
+    "text": "concerned, bears a strong resemblance to the finest Greek sculpture, and especially in"
+   },
+   {
+    "t0": 84.4,
+    "t1": 85.98,
+    "text": "the total loss of its nose."
+   }
+  ]
+ },
+ "2094-142345-0000|snr10": {
+  "passage_id": "2094-142345-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 86.34,
+  "wall_s": 2.699,
+  "n_segments": 13,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 8.5,
+    "text": "It is a very final place, a red brick, softened by a pale, powdery-likeen, which has dispersed"
+   },
+   {
+    "t0": 8.5,
+    "t1": 16.32,
+    "text": "itself with happy irregularity, so as to bring the red brick into terms of friendly companionship"
+   },
+   {
+    "t0": 16.32,
+    "t1": 22.2,
+    "text": "with the limestone ornaments surrounding the three gables, the windows and the doorplays."
+   },
+   {
+    "t0": 22.2,
+    "t1": 29.24,
+    "text": "But the windows are patched with wooden panes, and the door, I think, is like the gate."
+   },
+   {
+    "t0": 29.24,
+    "t1": 36.2,
+    "text": "It is never open, for it is a solid, heavy, handsome door, and must once have been in"
+   },
+   {
+    "t0": 36.2,
+    "t1": 41.96,
+    "text": "the habit of shedding with a sonorous bang behind the liveryed lackey, who had just seen"
+   },
+   {
+    "t0": 41.96,
+    "t1": 48.52,
+    "text": "his master and mistress off the grounds in a carriage hair, a large open fireplace with"
+   },
+   {
+    "t0": 48.52,
+    "t1": 53.36,
+    "text": "rusty dogs in it, and a bare-boarded floor."
+   },
+   {
+    "t0": 53.36,
+    "t1": 59.8,
+    "text": "The far end fleeces a floor stacked up. In the middle of the floor, some empty corned"
+   },
+   {
+    "t0": 59.8,
+    "t1": 67.18,
+    "text": "bags, and let through the left-hand window, several closed horses, a pillion, a spinning"
+   },
+   {
+    "t0": 67.18,
+    "t1": 73.88,
+    "text": "wheel, and an old box wide open and stuffed full of colored rags. At the edge of this"
+   },
+   {
+    "t0": 73.88,
+    "t1": 80.36,
+    "text": "box, there lies a great wooden doll, which, so far as mutilation is concerned, bears a"
+   },
+   {
+    "t0": 80.36,
+    "t1": 86.24,
+    "text": "strong resemblance to the finest Greek sculpt, and especially in the total loss of its nose."
+   }
+  ]
+ },
+ "2094-142345-0000|snr5": {
+  "passage_id": "2094-142345-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 86.34,
+  "wall_s": 1.704,
+  "n_segments": 14,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 8.52,
+    "text": "It is a very final place, a red brick, softened by a pale, powder-like old, which has dispersed"
+   },
+   {
+    "t0": 8.52,
+    "t1": 16.28,
+    "text": "itself with happy irregularity, so as to bring the red brick into terms of friendly companionship"
+   },
+   {
+    "t0": 16.28,
+    "t1": 22.72,
+    "text": "with a limestone ornaments surrounding the three gables, the windows and the door plates."
+   },
+   {
+    "t0": 22.72,
+    "t1": 29.24,
+    "text": "But the windows are patched with wooden panes, and the door, I think, is like the gate."
+   },
+   {
+    "t0": 29.24,
+    "t1": 36.2,
+    "text": "It is never opened, for it is a solid, heavy, handsome door, and must once have been in"
+   },
+   {
+    "t0": 36.2,
+    "t1": 42.08,
+    "text": "the habit of shedding with a sonorous bang behind the liveryed lackey, to fade away like"
+   },
+   {
+    "t0": 42.08,
+    "t1": 46.68,
+    "text": "morning's euch and mistress off the grounds, in a caraty air, down by the river of Adana,"
+   },
+   {
+    "t0": 46.68,
+    "t1": 52.44,
+    "text": "a large, open fireplace with rusty dogs in it, and a bare-boarded floor, like morning"
+   },
+   {
+    "t0": 52.44,
+    "t1": 59.04,
+    "text": "dew, at the far end of this air spring, why fades the loonies of the water?"
+   },
+   {
+    "t0": 59.04,
+    "t1": 68.76,
+    "text": "And what through the left-hand window, several closed horses, a pillion, a spinning wheel, and"
+   },
+   {
+    "t0": 68.76,
+    "t1": 72.4,
+    "text": "an old box wide open and stuffed full of colored rags."
+   },
+   {
+    "t0": 72.4,
+    "t1": 80.08,
+    "text": "At the edge of this box, there lies a great wooden doll, which so far as mutilation is concerned,"
+   },
+   {
+    "t0": 80.08,
+    "t1": 85.0,
+    "text": "bears a strong resemblance to the finest Greek sculpture, and especially in the total loss"
+   },
+   {
+    "t0": 85.0,
+    "t1": 88.24,
+    "text": "of its new world blue silks."
+   }
+  ]
+ },
+ "2094-142345-0000|snr0": {
+  "passage_id": "2094-142345-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 86.34,
+  "wall_s": 1.7,
+  "n_segments": 24,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.0,
+    "text": "It is a very final place, a red brick, softened by a pale,"
+   },
+   {
+    "t0": 5.0,
+    "t1": 11.0,
+    "text": "how reliable, which has dispersed its brow with happy irregularity,"
+   },
+   {
+    "t0": 11.0,
+    "t1": 16.0,
+    "text": "so as to bring the red brick into terms of friendly companionship,"
+   },
+   {
+    "t0": 16.0,
+    "t1": 20.0,
+    "text": "with a limestone ornament surrounding the three gables,"
+   },
+   {
+    "t0": 20.0,
+    "t1": 23.0,
+    "text": "the windows and the door plates."
+   },
+   {
+    "t0": 23.0,
+    "t1": 26.0,
+    "text": "But the windows are patched with wooden panes,"
+   },
+   {
+    "t0": 26.0,
+    "t1": 29.0,
+    "text": "and the door, I think, is like the game."
+   },
+   {
+    "t0": 29.0,
+    "t1": 31.0,
+    "text": "It is never open."
+   },
+   {
+    "t0": 31.0,
+    "t1": 34.0,
+    "text": "For it is a solid, heavy, handsome door,"
+   },
+   {
+    "t0": 34.0,
+    "t1": 39.0,
+    "text": "and must once have been in the habit of shedding with a sudderous bed"
+   },
+   {
+    "t0": 39.0,
+    "t1": 41.0,
+    "text": "behind the liveryed lackey,"
+   },
+   {
+    "t0": 41.0,
+    "t1": 44.0,
+    "text": "to fade away like morning's youth from her workplace,"
+   },
+   {
+    "t0": 44.0,
+    "t1": 48.0,
+    "text": "down by the river of Adana, her soft voices hurt,"
+   },
+   {
+    "t0": 48.0,
+    "t1": 53.0,
+    "text": "and thus her gentle lamentation falls like morning dew,"
+   },
+   {
+    "t0": 53.0,
+    "t1": 59.0,
+    "text": "at the far end of this r-screen, why fades the ludest of the water,"
+   },
+   {
+    "t0": 59.0,
+    "t1": 62.0,
+    "text": "why fades these children of the spring?"
+   },
+   {
+    "t0": 62.0,
+    "t1": 64.0,
+    "text": "He hoped there would be stew for dinner,"
+   },
+   {
+    "t0": 64.0,
+    "t1": 67.0,
+    "text": "several clothes horses, a pillion, a spinning wheel,"
+   },
+   {
+    "t0": 67.0,
+    "t1": 70.0,
+    "text": "and a fat, muttoned piece of steel ladled out thick,"
+   },
+   {
+    "t0": 70.0,
+    "t1": 72.0,
+    "text": "stuffed full of coloured rags."
+   },
+   {
+    "t0": 72.0,
+    "t1": 76.0,
+    "text": "At the edge of this box, there lies a great wooden doll."
+   },
+   {
+    "t0": 76.0,
+    "t1": 80.0,
+    "text": "After early nightfall, the other lambs fly up here and there,"
+   },
+   {
+    "t0": 80.0,
+    "t1": 83.0,
+    "text": "bears a strong resemblance to the finest Greek sculpture,"
+   },
+   {
+    "t0": 83.0,
+    "t1": 86.0,
+    "text": "and especially the total loss of its new world blue silks."
+   }
+  ]
+ },
+ "2094-142345-0000|snr-5": {
+  "passage_id": "2094-142345-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 86.34,
+  "wall_s": 1.512,
+  "n_segments": 15,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 7.44,
+    "text": "Here she would stay comforted and soon the long the lovely plants and rich exotic pales rejoicing the heart of old Turner the gardener"
+   },
+   {
+    "t0": 7.44,
+    "t1": 11.58,
+    "text": "Which has to follow his first rapturous with happy irregularity into his good great"
+   },
+   {
+    "t0": 11.58,
+    "t1": 19.8,
+    "text": "So as to bring the red brick into turn she could steal after practice hours were over and after the glamorous demands of the boys upon her time"
+   },
+   {
+    "t0": 19.8,
+    "t1": 26.68,
+    "text": "They will be satisfied and the door was seized to fly on the wings of the windows are patched with wooden panes and the door"
+   },
+   {
+    "t0": 26.68,
+    "t1": 29.0,
+    "text": "I think you must be kinder to her than ever"
+   },
+   {
+    "t0": 29.0,
+    "t1": 32.2,
+    "text": "It is never over think what it would be for one of you to be a lay solid"
+   },
+   {
+    "t0": 32.2,
+    "t1": 34.4,
+    "text": "Hit him on the fence and some door"
+   },
+   {
+    "t0": 34.4,
+    "t1": 40.6,
+    "text": "Somehow all the days when the habit of shedding the strong this bay it seemed as if she could bear it no longer"
+   },
+   {
+    "t0": 40.6,
+    "t1": 44.24,
+    "text": "To fade away like morning beauty from her mortal days"
+   },
+   {
+    "t0": 44.24,
+    "t1": 52.8,
+    "text": "Down by the river of Adana her soft voice is heard and thus her gentle lamentation falls like morning do"
+   },
+   {
+    "t0": 52.8,
+    "t1": 61.8,
+    "text": "Oh life of this are spring why fades the lotus of the water why fade these children of the spring?"
+   },
+   {
+    "t0": 61.8,
+    "t1": 69.44,
+    "text": "He hoped there would be stew for dinner hernips and carrots and bruised potatoes and fat mutton pieces to be ladled out"
+   },
+   {
+    "t0": 69.44,
+    "t1": 77.4,
+    "text": "A thick, peppered flower-fat sauce stuffed into you his belly hot open after early nightfall"
+   },
+   {
+    "t0": 77.4,
+    "t1": 83.52,
+    "text": "The other lamps were light up here and there the there's a strong resemblance to the finest Greeks hello Bertie"
+   },
+   {
+    "t0": 83.52,
+    "t1": 86.4,
+    "text": "It's good in your mind. He wore blue silks to"
+   }
+  ]
+ },
+ "3575-170457-0000|clean": {
+  "passage_id": "3575-170457-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 67.73,
+  "wall_s": 1.275,
+  "n_segments": 17,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.68,
+    "text": "\"And often has my mother said, while on her lap I laid my head, she feared for time I"
+   },
+   {
+    "t0": 5.68,
+    "t1": 8.62,
+    "text": "was not made, but for eternity."
+   },
+   {
+    "t0": 8.62,
+    "t1": 11.88,
+    "text": "Why are we to be denied each other's society?"
+   },
+   {
+    "t0": 11.88,
+    "t1": 13.48,
+    "text": "Why are we to be divided?"
+   },
+   {
+    "t0": 13.48,
+    "t1": 18.24,
+    "text": "Surely it must be because we are in danger of loving each other too well, of losing sight"
+   },
+   {
+    "t0": 18.24,
+    "t1": 21.48,
+    "text": "of the creator and idolatry of the creature."
+   },
+   {
+    "t0": 21.48,
+    "t1": 24.64,
+    "text": "We used to dispute about politics and religion."
+   },
+   {
+    "t0": 24.64,
+    "t1": 29.0,
+    "text": "She, a Tory and clergyman's daughter, was always in a minority, of one in our house,"
+   },
+   {
+    "t0": 29.0,
+    "t1": 32.0,
+    "text": "of violent dissent and radicalism."
+   },
+   {
+    "t0": 32.0,
+    "t1": 36.92,
+    "text": "Her feeble health gave her, her yielding manner, for she could never oppose anyone without"
+   },
+   {
+    "t0": 36.92,
+    "t1": 40.12,
+    "text": "gathering up all her strength for the struggle."
+   },
+   {
+    "t0": 40.12,
+    "t1": 45.68,
+    "text": "He spoke French perfectly, I've been told, when need was, but delighted usually in talking"
+   },
+   {
+    "t0": 45.68,
+    "t1": 48.12,
+    "text": "the broadest Yorkshire."
+   },
+   {
+    "t0": 48.12,
+    "t1": 53.32,
+    "text": "And so life and death have dispersed the circle of violent radicals and dissenters, into which"
+   },
+   {
+    "t0": 53.32,
+    "t1": 59.32,
+    "text": "20 years ago the little quiet, resolute clergyman's daughter was received, and by whom she was"
+   },
+   {
+    "t0": 59.32,
+    "t1": 61.58,
+    "text": "truly loved and honoured."
+   },
+   {
+    "t0": 61.58,
+    "t1": 67.32,
+    "text": "January and February of 1837 had passed away, and still there was no reply from the Southie."
+   }
+  ]
+ },
+ "3575-170457-0000|snr10": {
+  "passage_id": "3575-170457-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 67.73,
+  "wall_s": 1.232,
+  "n_segments": 18,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.4,
+    "text": "and often has my mother said, while on her lap I laid my head,"
+   },
+   {
+    "t0": 4.4,
+    "t1": 8.0,
+    "text": "she feared for time I was not made but for eternity."
+   },
+   {
+    "t0": 8.0,
+    "t1": 11.5,
+    "text": "Why are we to be denied each other's society?"
+   },
+   {
+    "t0": 11.5,
+    "t1": 13.4,
+    "text": "Why are we to be divided?"
+   },
+   {
+    "t0": 13.4,
+    "t1": 17.0,
+    "text": "Surely it must be because we're in danger of loving each other too well,"
+   },
+   {
+    "t0": 17.0,
+    "t1": 21.0,
+    "text": "of losing sight of the creator and idolatry of the creature."
+   },
+   {
+    "t0": 21.0,
+    "t1": 24.0,
+    "text": "We used to dispute about politics and religion."
+   },
+   {
+    "t0": 24.0,
+    "t1": 29.0,
+    "text": "She, a Tory and clergyman's daughter, was always in a minority of one in our house,"
+   },
+   {
+    "t0": 29.0,
+    "t1": 32.0,
+    "text": "of violent dissent and radicalism."
+   },
+   {
+    "t0": 32.0,
+    "t1": 35.0,
+    "text": "Her feeble health gave her, her yielding manner,"
+   },
+   {
+    "t0": 35.0,
+    "t1": 40.0,
+    "text": "for she could never oppose anyone without gathering up all her strength for the struggle."
+   },
+   {
+    "t0": 40.0,
+    "t1": 44.0,
+    "text": "He spoke French perfectly, I've endured when need was,"
+   },
+   {
+    "t0": 44.0,
+    "t1": 48.0,
+    "text": "but delighted usually in talking the broadest Yorkshire,"
+   },
+   {
+    "t0": 48.0,
+    "t1": 53.0,
+    "text": "and so life and death have dispersed the circle of violent radicals and dissenters"
+   },
+   {
+    "t0": 53.0,
+    "t1": 58.0,
+    "text": "into which 20 years ago a little quiet, resolute clergyman's daughter was received,"
+   },
+   {
+    "t0": 58.0,
+    "t1": 61.0,
+    "text": "and by whom she was truly loved and honored."
+   },
+   {
+    "t0": 61.0,
+    "t1": 65.0,
+    "text": "January and February of 1837 had passed away,"
+   },
+   {
+    "t0": 65.0,
+    "t1": 68.0,
+    "text": "and still there was no reply from Saudi."
+   }
+  ]
+ },
+ "3575-170457-0000|snr5": {
+  "passage_id": "3575-170457-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 67.73,
+  "wall_s": 1.402,
+  "n_segments": 20,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.3,
+    "text": "And often has my mother said, while on her lap I laid my head,"
+   },
+   {
+    "t0": 4.3,
+    "t1": 8.3,
+    "text": "\"She feared for time I was not made, but for eternity."
+   },
+   {
+    "t0": 8.3,
+    "t1": 11.3,
+    "text": "Why are we to be denied each other's society?"
+   },
+   {
+    "t0": 11.3,
+    "t1": 13.3,
+    "text": "Why are we to be divided?"
+   },
+   {
+    "t0": 13.3,
+    "t1": 17.2,
+    "text": "Surely it must be because we're in danger of loving each other too well,"
+   },
+   {
+    "t0": 17.2,
+    "t1": 21.0,
+    "text": "of losing sight of the creator and I don't achieve the creature.\""
+   },
+   {
+    "t0": 21.0,
+    "t1": 24.0,
+    "text": "We used to dispute about politics and religion."
+   },
+   {
+    "t0": 24.0,
+    "t1": 28.8,
+    "text": "She, a Tory and clergyman's daughter, was always in a minority of one in our house,"
+   },
+   {
+    "t0": 28.8,
+    "t1": 31.3,
+    "text": "a violent descent in radicalism."
+   },
+   {
+    "t0": 31.3,
+    "t1": 34.6,
+    "text": "Her feeble health gave her, her yielding manner,"
+   },
+   {
+    "t0": 34.6,
+    "t1": 39.6,
+    "text": "for she could never oppose anyone without gathering up all her strength for the struggle."
+   },
+   {
+    "t0": 39.6,
+    "t1": 44.1,
+    "text": "He spoke French person to fade away like morning beauty from her mortal day,"
+   },
+   {
+    "t0": 44.1,
+    "t1": 46.8,
+    "text": "but delighted usually in talking the broadest torture,"
+   },
+   {
+    "t0": 46.8,
+    "t1": 52.5,
+    "text": "and so life and death have dispersed the circle of violent radicals and desitters"
+   },
+   {
+    "t0": 52.5,
+    "t1": 55.6,
+    "text": "into which twenty years ago a little quiet,"
+   },
+   {
+    "t0": 55.6,
+    "t1": 58.6,
+    "text": "resolute clergyman's daughter was received,"
+   },
+   {
+    "t0": 58.6,
+    "t1": 60.6,
+    "text": "and by whom she was she loved and honored."
+   },
+   {
+    "t0": 60.6,
+    "t1": 61.6,
+    "text": "\"Why fade these children of this story?\""
+   },
+   {
+    "t0": 61.6,
+    "t1": 65.1,
+    "text": "\"January and February of 1837 had passed away,"
+   },
+   {
+    "t0": 65.1,
+    "t1": 67.6,
+    "text": "and still there was no reply from Saudi.\""
+   }
+  ]
+ },
+ "3575-170457-0000|snr0": {
+  "passage_id": "3575-170457-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 67.73,
+  "wall_s": 1.943,
+  "n_segments": 14,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.28,
+    "text": "and often has my mother said while on a hot lap I laid my head she feared for"
+   },
+   {
+    "t0": 5.28,
+    "t1": 10.7,
+    "text": "time I was not made but for eternity. Why are we to be denied each other's society"
+   },
+   {
+    "t0": 10.7,
+    "t1": 16.96,
+    "text": "and why are we to be divided? Surely it must be because we're in danger of loving each other too well"
+   },
+   {
+    "t0": 16.96,
+    "t1": 22.48,
+    "text": "over the inside of the creator and I don't achieve the creature. We used to dispute about"
+   },
+   {
+    "t0": 22.48,
+    "t1": 27.0,
+    "text": "politics and religion. She, a Tory and clergyman's daughter, was always in a"
+   },
+   {
+    "t0": 27.0,
+    "t1": 32.34,
+    "text": "minority of one in our house of violent descent and radicalism. Her fubile"
+   },
+   {
+    "t0": 32.34,
+    "t1": 36.84,
+    "text": "health gave her her yielding manner for she could never oppose anyone without"
+   },
+   {
+    "t0": 36.84,
+    "t1": 41.56,
+    "text": "gathering up all her strength for the struggle. He spoke French to fade away"
+   },
+   {
+    "t0": 41.56,
+    "t1": 47.4,
+    "text": "like morning beauty from her mortal day. Down by the river of Adana her soft"
+   },
+   {
+    "t0": 47.4,
+    "t1": 52.36,
+    "text": "voices and so life in death and thus her gentle lamenting protocols like morning"
+   },
+   {
+    "t0": 52.36,
+    "t1": 57.28,
+    "text": "dew into which 20 years ago a little life of this are sprays why fades the"
+   },
+   {
+    "t0": 57.28,
+    "t1": 61.84,
+    "text": "lotus of the water and by whom she is why fade these children of the spring"
+   },
+   {
+    "t0": 61.84,
+    "t1": 65.92,
+    "text": "January and February I hoped it would be soon for dinner, turnips and carrots and"
+   },
+   {
+    "t0": 65.92,
+    "t1": 69.48,
+    "text": "booze potatoes and fat molds."
+   }
+  ]
+ },
+ "3575-170457-0000|snr-5": {
+  "passage_id": "3575-170457-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 67.73,
+  "wall_s": 1.605,
+  "n_segments": 15,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.78,
+    "text": "Here, she once has my mother said, \"Well, the mama's lovely man said rich exotic.\""
+   },
+   {
+    "t0": 4.78,
+    "t1": 8.96,
+    "text": "She feared for the time I was hard-made, turned by the golden, who, since Paul is first wrapped"
+   },
+   {
+    "t0": 8.96,
+    "t1": 12.02,
+    "text": "through the night, he had taken her into his good graces for all time."
+   },
+   {
+    "t0": 12.02,
+    "t1": 14.02,
+    "text": "Why are we to be divided?"
+   },
+   {
+    "t0": 14.02,
+    "t1": 16.92,
+    "text": "Every chance he could steal after Brack has our return to well."
+   },
+   {
+    "t0": 16.92,
+    "t1": 21.76,
+    "text": "And after the cleverest amount of the creators of long-term time, fully satisfied, we used"
+   },
+   {
+    "t0": 21.76,
+    "t1": 24.64,
+    "text": "to dispute about Paul to his religion, to the flowers."
+   },
+   {
+    "t0": 24.64,
+    "t1": 29.36,
+    "text": "She, a Tory and clergyman's daughter, was always in a minority, of one in our house,"
+   },
+   {
+    "t0": 29.36,
+    "t1": 33.48,
+    "text": "to sink what it'd be for one of you to be away from home, if you both helped with her"
+   },
+   {
+    "t0": 33.48,
+    "t1": 37.88,
+    "text": "and her yielding manner, so she could never oppose any one with no gathering of all her"
+   },
+   {
+    "t0": 37.88,
+    "t1": 40.72,
+    "text": "strength for the strength she lived as if she could bear it no longer."
+   },
+   {
+    "t0": 40.72,
+    "t1": 47.0,
+    "text": "To fade away like morning beauty from her mortal day, down by the river of Adana, her"
+   },
+   {
+    "t0": 47.0,
+    "t1": 55.14,
+    "text": "soft voices heard, and thus her gentle lamentation falls like morning dew, a whole life of this"
+   },
+   {
+    "t0": 55.14,
+    "t1": 62.76,
+    "text": "arse spring, why fades the lotus of the water, why fade these children of the spring, they"
+   },
+   {
+    "t0": 62.76,
+    "t1": 67.76,
+    "text": "I hope there would be stew for dinner, turnips and carrots and booze, potatoes and fat milk."
+   }
+  ]
+ },
+ "3729-6852-0000|clean": {
+  "passage_id": "3729-6852-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 88.62,
+  "wall_s": 1.553,
+  "n_segments": 16,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.96,
+    "text": "To celebrate the arrival of her son, Sylvia gave a splendid supper to which she had invited"
+   },
+   {
+    "t0": 5.96,
+    "t1": 11.96,
+    "text": "all her relatives, and it was a good opportunity for me to make their acquaintance."
+   },
+   {
+    "t0": 11.96,
+    "t1": 17.24,
+    "text": "Without saying it positively, she made me understand that being herself an illustrious"
+   },
+   {
+    "t0": 17.24,
+    "t1": 24.0,
+    "text": "member of the Republic of Letters, she was well aware that she was speaking to an insect."
+   },
+   {
+    "t0": 24.0,
+    "t1": 29.88,
+    "text": "In order to please her, I spoke to her of the Abbey Conti, and I had occasion to quote"
+   },
+   {
+    "t0": 29.88,
+    "t1": 32.52,
+    "text": "two lines of that profound writer."
+   },
+   {
+    "t0": 32.52,
+    "t1": 38.52,
+    "text": "Madame corrected me with a patronizing air for my pronunciation of the word \"skevra\","
+   },
+   {
+    "t0": 38.52,
+    "t1": 44.32,
+    "text": "which means \"divided\", saying that it ought to be pronounced \"skeora\", and she added"
+   },
+   {
+    "t0": 44.32,
+    "t1": 48.88,
+    "text": "that I ought to be very glad to have learned so much on the first day of my arrival in"
+   },
+   {
+    "t0": 48.88,
+    "t1": 54.26,
+    "text": "Paris, telling me that it would be an important day in my life."
+   },
+   {
+    "t0": 54.26,
+    "t1": 61.16,
+    "text": "Her face was an enigma for it inspired everyone with the warmest sympathy, and yet, if you"
+   },
+   {
+    "t0": 61.16,
+    "t1": 66.24,
+    "text": "examined it attentively, there was not one beautiful feature."
+   },
+   {
+    "t0": 66.24,
+    "t1": 70.56,
+    "text": "She could not be called handsome, but no one could have thought her ugly."
+   },
+   {
+    "t0": 70.56,
+    "t1": 77.64,
+    "text": "Sylvia was the adoration of France, and her talent was the real support of all the comedies"
+   },
+   {
+    "t0": 77.64,
+    "t1": 83.84,
+    "text": "which the greatest authors wrote for her, especially of \"The Plays of Marivot\"."
+   },
+   {
+    "t0": 83.84,
+    "t1": 88.08,
+    "text": "For without her, his comedies would never have gone to prosperity."
+   }
+  ]
+ },
+ "3729-6852-0000|snr10": {
+  "passage_id": "3729-6852-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 88.62,
+  "wall_s": 1.581,
+  "n_segments": 16,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.94,
+    "text": "To celebrate the arrival of her son, Sylvia gave a splendid supper to which she had invited"
+   },
+   {
+    "t0": 5.94,
+    "t1": 11.86,
+    "text": "all her relatives, and it was a good opportunity for me to make their acquaintance."
+   },
+   {
+    "t0": 11.86,
+    "t1": 17.3,
+    "text": "Without saying it positively, she made me understand that being herself an illustrious"
+   },
+   {
+    "t0": 17.3,
+    "t1": 24.02,
+    "text": "member of the Republic of Letters, she was well aware that she was speaking to an insect."
+   },
+   {
+    "t0": 24.02,
+    "t1": 29.9,
+    "text": "In order to please her, I spoke to her of the Abbey Conti, and I had occasion to quote"
+   },
+   {
+    "t0": 29.9,
+    "t1": 32.58,
+    "text": "two lines of that profound writer."
+   },
+   {
+    "t0": 32.58,
+    "t1": 38.54,
+    "text": "Madame corrected me with a patronizing heir for my pronunciation of the word \"skevra,\""
+   },
+   {
+    "t0": 38.54,
+    "t1": 44.48,
+    "text": "which means \"divided,\" saying that it ought to be pronounced \"cura,\" and she added that"
+   },
+   {
+    "t0": 44.48,
+    "t1": 49.98,
+    "text": "I ought to be very glad to have learned so much in the first day of my arrival in Paris,"
+   },
+   {
+    "t0": 49.98,
+    "t1": 54.02,
+    "text": "telling me that it would be an important day in my life."
+   },
+   {
+    "t0": 54.02,
+    "t1": 61.28,
+    "text": "A face was an enigma for it inspired everyone with the warmest sympathy, and yet if you"
+   },
+   {
+    "t0": 61.28,
+    "t1": 66.3,
+    "text": "had damaged it attentively, there was not one beautiful feature."
+   },
+   {
+    "t0": 66.3,
+    "t1": 70.74,
+    "text": "She could not be called handsome, but no one could have thought of anything."
+   },
+   {
+    "t0": 70.74,
+    "t1": 77.3,
+    "text": "Sylvia was the adoration of France, and her talent was the real support of all the comedies,"
+   },
+   {
+    "t0": 77.3,
+    "t1": 83.86,
+    "text": "which is the greatest author's wrote for her, especially of the plays of Marivot."
+   },
+   {
+    "t0": 83.86,
+    "t1": 88.58,
+    "text": "For without her, his comedies would never have gone to posterity."
+   }
+  ]
+ },
+ "3729-6852-0000|snr5": {
+  "passage_id": "3729-6852-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 88.62,
+  "wall_s": 1.511,
+  "n_segments": 19,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.96,
+    "text": "To celebrate the arrival of her son, Sylvia gave a splendid supper to which she had invited"
+   },
+   {
+    "t0": 5.96,
+    "t1": 11.84,
+    "text": "all her relatives, and it was a good opportunity for me to make their acquaintance."
+   },
+   {
+    "t0": 11.84,
+    "t1": 17.32,
+    "text": "Without saying it positively, she made me understand that being herself an illustrious"
+   },
+   {
+    "t0": 17.32,
+    "t1": 24.04,
+    "text": "member of the Republic of Letters, she was well aware that she was speaking to an insect."
+   },
+   {
+    "t0": 24.04,
+    "t1": 29.92,
+    "text": "In order to please her, I spoke to her of the Abbey Conti, and I had occasion to quote"
+   },
+   {
+    "t0": 29.92,
+    "t1": 32.6,
+    "text": "two lines of that profound writer."
+   },
+   {
+    "t0": 32.6,
+    "t1": 38.56,
+    "text": "Madame corrected me with a patronizing air for my pronunciation of the word \"skevra\","
+   },
+   {
+    "t0": 38.56,
+    "t1": 44.48,
+    "text": "which means \"divided\", saying that it ought to be pronounced \"cure\", and she added that"
+   },
+   {
+    "t0": 44.48,
+    "t1": 49.64,
+    "text": "I ought to be very glad to have learned so much in the first day of my arrival in Paris,"
+   },
+   {
+    "t0": 49.64,
+    "t1": 53.88,
+    "text": "telling me that it would be an important day in my life."
+   },
+   {
+    "t0": 53.88,
+    "t1": 59.52,
+    "text": "No life of this art spring inspired every word with the warmest sympathy."
+   },
+   {
+    "t0": 59.52,
+    "t1": 62.72,
+    "text": "Why fade these children out the spring?"
+   },
+   {
+    "t0": 62.72,
+    "t1": 66.28,
+    "text": "He hoped there was not one beautiful feature."
+   },
+   {
+    "t0": 66.28,
+    "t1": 70.6,
+    "text": "She did not be called handsome, but no one could have thought about it."
+   },
+   {
+    "t0": 70.6,
+    "t1": 73.44,
+    "text": "Sylvia was the adoration of France."
+   },
+   {
+    "t0": 73.44,
+    "t1": 79.12,
+    "text": "And her talent was the real support of all the comedies, which the greatest authors wrote"
+   },
+   {
+    "t0": 79.12,
+    "t1": 80.12,
+    "text": "from her."
+   },
+   {
+    "t0": 80.12,
+    "t1": 86.48,
+    "text": "\"Especially out, the plays of Maryville for without her mind, his comedies would never"
+   },
+   {
+    "t0": 86.48,
+    "t1": 88.64,
+    "text": "have gone to plastic.\""
+   }
+  ]
+ },
+ "3729-6852-0000|snr0": {
+  "passage_id": "3729-6852-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 88.62,
+  "wall_s": 1.558,
+  "n_segments": 18,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.96,
+    "text": "To celebrate the arrival of her son, Sylvia gave a splendid supper to which she had invited"
+   },
+   {
+    "t0": 5.96,
+    "t1": 11.78,
+    "text": "all her relatives, and it was a good opportunity for me to make their acquaintance."
+   },
+   {
+    "t0": 11.78,
+    "t1": 17.3,
+    "text": "Without saying it positively, she made me understand that being herself, an illustrious"
+   },
+   {
+    "t0": 17.3,
+    "t1": 24.02,
+    "text": "member of the Republic of Letters, she was well aware that she was speaking to an insect."
+   },
+   {
+    "t0": 24.02,
+    "t1": 29.88,
+    "text": "In order to please her, I spoke to her of the Abbey Conti, and I had occasion to quote"
+   },
+   {
+    "t0": 29.88,
+    "t1": 35.48,
+    "text": "two lines of that profound writer, \"Madame corrected me with a patronizing air for my"
+   },
+   {
+    "t0": 35.48,
+    "t1": 42.26,
+    "text": "pronunciation of the word 'skevra' which means 'divided' to fade away like morning"
+   },
+   {
+    "t0": 42.26,
+    "t1": 46.64,
+    "text": "beauty from her mortal day, and she added that I have to be very glad to have learned"
+   },
+   {
+    "t0": 46.64,
+    "t1": 51.88,
+    "text": "so much in the first day of my arrival in Paris, telling me that it would be an important"
+   },
+   {
+    "t0": 51.88,
+    "t1": 53.88,
+    "text": "day in my life."
+   },
+   {
+    "t0": 53.88,
+    "t1": 61.74,
+    "text": "No life of this art spring, why fades the lotus of the want, why fade these children of the"
+   },
+   {
+    "t0": 61.74,
+    "t1": 62.74,
+    "text": "spring?\""
+   },
+   {
+    "t0": 62.74,
+    "t1": 67.92,
+    "text": "He hoped there would be stew for dinner, turnips and carrots and bruised potato and fat,"
+   },
+   {
+    "t0": 67.92,
+    "t1": 73.62,
+    "text": "but no one could have thought out in thick, peppered flower fat sauce, stuffed it into"
+   },
+   {
+    "t0": 73.62,
+    "t1": 78.82,
+    "text": "you, and her talent was the real support of all the parties, and the greatest artist"
+   },
+   {
+    "t0": 78.82,
+    "t1": 82.3,
+    "text": "wrote here and there, the squallet quarter of the brothels."
+   },
+   {
+    "t0": 82.3,
+    "t1": 84.94,
+    "text": "\"Hello Bertie, any gluten or wine?"
+   },
+   {
+    "t0": 84.94,
+    "t1": 88.62,
+    "text": "Your blue silk stockings, blue knee pants with gold-bite.\""
+   }
+  ]
+ },
+ "3729-6852-0000|snr-5": {
+  "passage_id": "3729-6852-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 88.62,
+  "wall_s": 1.678,
+  "n_segments": 20,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.6,
+    "text": "Here, she would celebrate the arrival of her son, Sylvia gave us splendid supper, rejoicing"
+   },
+   {
+    "t0": 5.6,
+    "t1": 10.4,
+    "text": "by the heart of all her relatives, and it was its good opportunity for me to make their"
+   },
+   {
+    "t0": 10.4,
+    "t1": 11.4,
+    "text": "acquaintance."
+   },
+   {
+    "t0": 11.4,
+    "t1": 15.32,
+    "text": "Had taken her into his good place without saying it positively, she made me understand that"
+   },
+   {
+    "t0": 15.32,
+    "t1": 20.12,
+    "text": "being herself an illustrious member of the river of the forest upon her time was well"
+   },
+   {
+    "t0": 20.12,
+    "t1": 24.0,
+    "text": "aware that she was speaking to and insect, to fly on the wings of the wind."
+   },
+   {
+    "t0": 24.0,
+    "t1": 29.6,
+    "text": "In order to please her, I spoke to her of the abbey context, and I had occasion to"
+   },
+   {
+    "t0": 29.6,
+    "t1": 33.0,
+    "text": "think what it means for one of you to be away from home, even among men."
+   },
+   {
+    "t0": 33.0,
+    "t1": 37.2,
+    "text": "But am corrected me with a patronizing air of all the days for the home feeling was the"
+   },
+   {
+    "t0": 37.2,
+    "t1": 38.2,
+    "text": "strongest."
+   },
+   {
+    "t0": 38.2,
+    "t1": 42.24,
+    "text": "This day, which means that if you could bear it no longer, to fade away like morning"
+   },
+   {
+    "t0": 42.24,
+    "t1": 49.64,
+    "text": "beauty from her mortal day, down by the river of Adana, her soft voice is heard, and thus"
+   },
+   {
+    "t0": 49.64,
+    "t1": 53.12,
+    "text": "her gentle lamentation falls like morning dew."
+   },
+   {
+    "t0": 53.12,
+    "t1": 60.96,
+    "text": "Oh, life, of this arse spring, why fades the lotus of the water, why fade these children"
+   },
+   {
+    "t0": 60.96,
+    "t1": 62.64,
+    "text": "of the spring?"
+   },
+   {
+    "t0": 62.64,
+    "t1": 68.08,
+    "text": "He hoped there would be stew for dinner, turnips and carrots and bruised potatoes and fat mutton"
+   },
+   {
+    "t0": 68.08,
+    "t1": 74.12,
+    "text": "pieces to be ladled out and thick, peppered, flour-fat and sauce, stuffed it into you,"
+   },
+   {
+    "t0": 74.12,
+    "t1": 76.4,
+    "text": "as belly-counted him."
+   },
+   {
+    "t0": 76.4,
+    "t1": 80.92,
+    "text": "After early nightfall, the yellow lamps would light up here and there, the squallet quarter"
+   },
+   {
+    "t0": 80.92,
+    "t1": 88.72,
+    "text": "of the brothels."
+   }
+  ]
+ },
+ "4446-2271-0000|clean": {
+  "passage_id": "4446-2271-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 60.52,
+  "wall_s": 1.222,
+  "n_segments": 13,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.28,
+    "text": "\"Mainhall liked Alexander because he was an engineer.\" He had preconceived ideas about"
+   },
+   {
+    "t0": 5.28,
+    "t1": 9.78,
+    "text": "everything, and his idea about Americans was that they should be engineers or mechanics."
+   },
+   {
+    "t0": 9.78,
+    "t1": 14.58,
+    "text": "\"It's tremendously well put on, too. It's been on only two weeks, and I've been half"
+   },
+   {
+    "t0": 14.58,
+    "t1": 19.72,
+    "text": "a dozen times already. Do you know, Alexander, Mainhall looked with perplexity up into the"
+   },
+   {
+    "t0": 19.72,
+    "t1": 24.92,
+    "text": "top of the handsome, and rubbed his pink cheek with his gloved finger? Do you know, I sometimes"
+   },
+   {
+    "t0": 24.92,
+    "t1": 30.44,
+    "text": "think of taking to criticism seriously myself.\" \"She saves her hand, too. She's had her best"
+   },
+   {
+    "t0": 30.44,
+    "t1": 34.94,
+    "text": "in the second act. He's been wanting to marry Hilda these three years and more. She doesn't"
+   },
+   {
+    "t0": 34.94,
+    "t1": 39.48,
+    "text": "take up with anybody, you know. Irene Burgoyne, one of her family, told me in confidence that"
+   },
+   {
+    "t0": 39.48,
+    "t1": 43.68,
+    "text": "there was a romance somewhere back in the beginning. Mainhall vouched for her constancy"
+   },
+   {
+    "t0": 43.68,
+    "t1": 48.82,
+    "text": "with a loftiness that made Alexander smile, even while a kind of rapid excitement was tingling"
+   },
+   {
+    "t0": 48.82,
+    "t1": 53.4,
+    "text": "through him. \"He's another who's awfully keen about her. Let me introduce you, Sir Harry"
+   },
+   {
+    "t0": 53.4,
+    "t1": 58.48,
+    "text": "Town, Mr. Partley Alexander, the American Engineer. I say, Sir Harry, the little girl's"
+   },
+   {
+    "t0": 58.48,
+    "t1": 60.2,
+    "text": "going famously tonight, isn't she?\""
+   }
+  ]
+ },
+ "4446-2271-0000|snr10": {
+  "passage_id": "4446-2271-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 60.52,
+  "wall_s": 1.29,
+  "n_segments": 19,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 3.36,
+    "text": "\"Mean Hall liked Alexander because he was an engineer."
+   },
+   {
+    "t0": 3.36,
+    "t1": 7.92,
+    "text": "He meant frequency ideas about everything, and his idea about Americans was that they"
+   },
+   {
+    "t0": 7.92,
+    "t1": 9.9,
+    "text": "should be engineers and mechanics."
+   },
+   {
+    "t0": 9.9,
+    "t1": 12.16,
+    "text": "It's tremendously well put on, too."
+   },
+   {
+    "t0": 12.16,
+    "t1": 15.88,
+    "text": "It's been on only two weeks, and I've been half a dozen times already."
+   },
+   {
+    "t0": 15.88,
+    "t1": 20.92,
+    "text": "Do you know, Alexander, \"Mean Hall looked with perplexity up into the top of the handsome"
+   },
+   {
+    "t0": 20.92,
+    "t1": 23.28,
+    "text": "and rubbed his pink cheek with his blood finger?\""
+   },
+   {
+    "t0": 23.28,
+    "t1": 28.44,
+    "text": "\"Do you know, I sometimes think of taking to criticism seriously myself."
+   },
+   {
+    "t0": 28.44,
+    "t1": 29.84,
+    "text": "She saves her hand, too."
+   },
+   {
+    "t0": 29.84,
+    "t1": 31.6,
+    "text": "She's at her best in the second act."
+   },
+   {
+    "t0": 31.6,
+    "t1": 34.6,
+    "text": "He's been wanting to marry Hilden in three years and more."
+   },
+   {
+    "t0": 34.6,
+    "t1": 36.52,
+    "text": "She doesn't take up with anybody, you know."
+   },
+   {
+    "t0": 36.52,
+    "t1": 40.64,
+    "text": "Irene Grigoyne, one of her families, told me in confidence that there was a romance somewhere"
+   },
+   {
+    "t0": 40.64,
+    "t1": 41.64,
+    "text": "back in the future."
+   },
+   {
+    "t0": 41.64,
+    "t1": 46.56,
+    "text": "\"Mean Hall vouch for her constancy with a loftiness that gave Alexander a smile, even"
+   },
+   {
+    "t0": 46.56,
+    "t1": 49.88,
+    "text": "while a kind of rapid excitement was tingling through him."
+   },
+   {
+    "t0": 49.88,
+    "t1": 51.72,
+    "text": "He's another exotic thing about her."
+   },
+   {
+    "t0": 51.72,
+    "t1": 56.52,
+    "text": "Let me introduce you, Sir Harry Town, Mr. Bartly Alexander, the American engineer."
+   },
+   {
+    "t0": 56.52,
+    "t1": 60.48,
+    "text": "Why say Sir Harry, the little girl is going famously to my decision?"
+   }
+  ]
+ },
+ "4446-2271-0000|snr5": {
+  "passage_id": "4446-2271-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 60.52,
+  "wall_s": 1.291,
+  "n_segments": 4,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 16.0,
+    "text": "\"Me and Paul like Alexander because he was an engineer. He contributed to ideas about everything, and his idea about Americans was that they should be engineers and mechanics. It's tremendously well put on too. It's been on only two weeks and I've been half a dozen times already."
+   },
+   {
+    "t0": 16.0,
+    "t1": 36.0,
+    "text": "\"Do you know, Alexander? Me and Paul looked with complexity after the top of the handset and rubbed his pink cheek with his glove finger? Do you know I sometimes think of taking to criticism seriously myself? She saves her hand too. She's at her best in the sense of that. He's been wanting to marry Hilden's three years and more. She doesn't take up with anybody, you know."
+   },
+   {
+    "t0": 36.0,
+    "t1": 56.0,
+    "text": "\"I remember going one of her family and told me in confidence that there was a romance somewhere back to fade away like morning empty from her. Down by the river of Adana, her soft voice is heard. And thus her gentle lamentation about her. Let me introduce you, Sir Harry Town, Mr. Partly Alexander, the American engineer."
+   },
+   {
+    "t0": 56.0,
+    "t1": 60.5,
+    "text": "Why Faith is so hard, the little girl is going famously to my decision."
+   }
+  ]
+ },
+ "4446-2271-0000|snr0": {
+  "passage_id": "4446-2271-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 60.52,
+  "wall_s": 1.271,
+  "n_segments": 15,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.04,
+    "text": "Here she would stay, comforted as to the mother of the lovely plants and rich exaltors,"
+   },
+   {
+    "t0": 5.04,
+    "t1": 9.96,
+    "text": "rejoicing the heart, and his idea of the Mardins was that they should be entranced by entrance."
+   },
+   {
+    "t0": 9.96,
+    "t1": 12.28,
+    "text": "It's immensely well put on, too."
+   },
+   {
+    "t0": 12.28,
+    "t1": 16.2,
+    "text": "It's been on only two weeks, and I've been happy to stand after practice hours,"
+   },
+   {
+    "t0": 16.2,
+    "t1": 21.06,
+    "text": "and after the clapping demands of the boys upon her time were fully satisfied,"
+   },
+   {
+    "t0": 21.06,
+    "t1": 23.86,
+    "text": "and rubbed his teeth with his blood-finger."
+   },
+   {
+    "t0": 23.86,
+    "t1": 27.54,
+    "text": "Do you know I sometimes think of taking two purposes and seriously myself."
+   },
+   {
+    "t0": 27.54,
+    "t1": 29.68,
+    "text": "She saves her hand, too."
+   },
+   {
+    "t0": 29.68,
+    "t1": 34.24,
+    "text": "She's at her best in the Santa V. He's been wanting to marry Hylvins three years and more."
+   },
+   {
+    "t0": 34.24,
+    "t1": 37.98,
+    "text": "She doesn't take up with anybody in the home, I linger for one of her family."
+   },
+   {
+    "t0": 37.98,
+    "t1": 41.04,
+    "text": "This day, it's told me in confidence that there is a moment somewhere back to me."
+   },
+   {
+    "t0": 41.04,
+    "t1": 46.88,
+    "text": "To fade away like morning beauty from her mortal day, down by the river of Adana,"
+   },
+   {
+    "t0": 46.88,
+    "t1": 53.36,
+    "text": "her soft voices hurt, and thus her gentle lamentation falls like morning dew."
+   },
+   {
+    "t0": 53.36,
+    "t1": 59.36,
+    "text": "Oh, life of this arse-brained, why fades the lotus of the logic?"
+   },
+   {
+    "t0": 59.36,
+    "t1": 61.36,
+    "text": "Why fade these chains?"
+   }
+  ]
+ },
+ "4446-2271-0000|snr-5": {
+  "passage_id": "4446-2271-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 60.52,
+  "wall_s": 0.997,
+  "n_segments": 11,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.64,
+    "text": "Here, she would stay, comforted in Susan among the lovely plants and rich exotics, rejoicing"
+   },
+   {
+    "t0": 5.64,
+    "t1": 11.04,
+    "text": "the heart of the garden, whose since Pauli's first rapturous entrance had taken her, it"
+   },
+   {
+    "t0": 11.04,
+    "t1": 13.48,
+    "text": "is good grace for all time."
+   },
+   {
+    "t0": 13.48,
+    "t1": 18.48,
+    "text": "Every chance she could steal after practice hours were owed, and after the glamorous demands"
+   },
+   {
+    "t0": 18.48,
+    "t1": 23.8,
+    "text": "of the boys upon her time were fully satisfied, was seized to fly on the wings of the wind"
+   },
+   {
+    "t0": 23.8,
+    "t1": 24.8,
+    "text": "to the clouds."
+   },
+   {
+    "t0": 24.8,
+    "t1": 47.04,
+    "text": "To fade away like morning beauty from her mortal day, down by the river of Adana, her"
+   },
+   {
+    "t0": 47.04,
+    "t1": 54.38,
+    "text": "soft voice is heard, and thus her gentle lamentation falls like morning dew, oh life"
+   },
+   {
+    "t0": 54.38,
+    "t1": 56.6,
+    "text": "of this our spring."
+   },
+   {
+    "t0": 56.6,
+    "t1": 59.48,
+    "text": "Why fades the lotus of the water?"
+   },
+   {
+    "t0": 59.48,
+    "t1": 60.48,
+    "text": "my fate these ch-"
+   }
+  ]
+ },
+ "5105-28233-0000|clean": {
+  "passage_id": "5105-28233-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 79.86,
+  "wall_s": 1.364,
+  "n_segments": 18,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.0,
+    "text": "\"length of service, fourteen years, three months and five days.\""
+   },
+   {
+    "t0": 5.0,
+    "t1": 9.48,
+    "text": "He seemed born to please without being conscious of the power he possessed."
+   },
+   {
+    "t0": 9.48,
+    "t1": 14.84,
+    "text": "It must be owned, and no one was more ready to confess it than himself, that his literary"
+   },
+   {
+    "t0": 14.84,
+    "t1": 17.68,
+    "text": "attainments were by no means of a high order."
+   },
+   {
+    "t0": 17.68,
+    "t1": 23.12,
+    "text": "We don't spin tops, is a favorite saying, amongst artillery officers, indicating that"
+   },
+   {
+    "t0": 23.12,
+    "t1": 26.68,
+    "text": "they do not shirk their duty by frivolous pursuits."
+   },
+   {
+    "t0": 26.68,
+    "t1": 31.16,
+    "text": "And it must be confessed that Servedak, being naturally idle, was very much given to spinning"
+   },
+   {
+    "t0": 31.16,
+    "t1": 32.64,
+    "text": "tops."
+   },
+   {
+    "t0": 32.64,
+    "t1": 37.68,
+    "text": "Once in action he was leading a detachment of infantry through an entrenchment."
+   },
+   {
+    "t0": 37.68,
+    "t1": 41.64,
+    "text": "Sometimes he would wander on foot upon the sandy shore, and sometimes he would enjoy"
+   },
+   {
+    "t0": 41.64,
+    "t1": 47.16,
+    "text": "a ride along the summit of the cliff, altogether being in no hurry at all to bring his task"
+   },
+   {
+    "t0": 47.16,
+    "t1": 48.6,
+    "text": "to an end."
+   },
+   {
+    "t0": 48.6,
+    "t1": 54.4,
+    "text": "No cathedral, not even Burgos itself, could vie with the church at Montmartre."
+   },
+   {
+    "t0": 54.4,
+    "t1": 61.16,
+    "text": "Ben Zuf's most ambitious desire was to induce the captain to go with him, and end his days"
+   },
+   {
+    "t0": 61.16,
+    "t1": 63.28,
+    "text": "in his much-loved home."
+   },
+   {
+    "t0": 63.28,
+    "t1": 69.52,
+    "text": "And so incessantly were Servedak's ears besieged with descriptions of the unparalleled beauties"
+   },
+   {
+    "t0": 69.52,
+    "t1": 75.8,
+    "text": "and advantages of this eighteenth Arondissement of Paris, that he could scarcely hear the name"
+   },
+   {
+    "t0": 75.8,
+    "t1": 79.4,
+    "text": "of Montmartre without a conscious thrill of aversion."
+   }
+  ]
+ },
+ "5105-28233-0000|snr10": {
+  "passage_id": "5105-28233-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 79.86,
+  "wall_s": 1.342,
+  "n_segments": 17,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.0,
+    "text": "Length of service, 14 years, three months and five days."
+   },
+   {
+    "t0": 5.0,
+    "t1": 9.48,
+    "text": "He seemed born to please without being conscious of the power he possessed."
+   },
+   {
+    "t0": 9.48,
+    "t1": 14.84,
+    "text": "It must be owned, and no one was more ready to confess it than himself, that his literary"
+   },
+   {
+    "t0": 14.84,
+    "t1": 17.7,
+    "text": "attainments were binomines of a high order."
+   },
+   {
+    "t0": 17.7,
+    "t1": 23.4,
+    "text": "We don't spin tops is a favorite saying amongst artillery officers, indicating that they do"
+   },
+   {
+    "t0": 23.4,
+    "t1": 26.66,
+    "text": "not shirk their duty by frivolous pursuits."
+   },
+   {
+    "t0": 26.66,
+    "t1": 31.34,
+    "text": "But it must be confessed that Servedak, being naturally idle, was very much given to spinning"
+   },
+   {
+    "t0": 31.34,
+    "t1": 32.7,
+    "text": "tops."
+   },
+   {
+    "t0": 32.7,
+    "t1": 37.7,
+    "text": "Once in action he was leading a detachment of infantry through an entrenchment."
+   },
+   {
+    "t0": 37.7,
+    "t1": 41.82,
+    "text": "Sometimes he would wander on foot upon the sandy shore, and sometimes he would enjoy a"
+   },
+   {
+    "t0": 41.82,
+    "t1": 44.58,
+    "text": "ride along the summit of the cliff."
+   },
+   {
+    "t0": 44.58,
+    "t1": 49.88,
+    "text": "Altogether being in no hurry at all to bring his task to an end, no cathedral that even"
+   },
+   {
+    "t0": 49.88,
+    "t1": 54.34,
+    "text": "Burgos himself could vie with the church at Montmartre."
+   },
+   {
+    "t0": 54.34,
+    "t1": 60.3,
+    "text": "The sins of his most ambitious desire was to induce the captain to go with him and end"
+   },
+   {
+    "t0": 60.3,
+    "t1": 67.7,
+    "text": "his days in his much loved home, and so incessantly were Servedak's ears besieged with descriptions"
+   },
+   {
+    "t0": 67.7,
+    "t1": 74.34,
+    "text": "of the unparalleled beauties and advantages of this 18th are undissimal of Paris, that"
+   },
+   {
+    "t0": 74.34,
+    "t1": 79.38,
+    "text": "he could scarcely hear the name of Montmartre without a conscious thrill of aversion."
+   }
+  ]
+ },
+ "5105-28233-0000|snr5": {
+  "passage_id": "5105-28233-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 79.86,
+  "wall_s": 1.383,
+  "n_segments": 17,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 6.18,
+    "text": "length of service 14 years three months and five days he seemed born to please"
+   },
+   {
+    "t0": 6.18,
+    "t1": 11.24,
+    "text": "without being conscious of the power he possessed it must be owned and no one"
+   },
+   {
+    "t0": 11.24,
+    "t1": 15.78,
+    "text": "was more ready to confess it than himself that his literary attainments were by"
+   },
+   {
+    "t0": 15.78,
+    "t1": 21.32,
+    "text": "no means of a high order we don't spin tops is a favorite saying amongst artillery"
+   },
+   {
+    "t0": 21.32,
+    "t1": 25.6,
+    "text": "officers indicating that they do not shirk their duty by frivolous pursuits"
+   },
+   {
+    "t0": 25.6,
+    "t1": 30.32,
+    "text": "but it must be confessed to the server that being naturally idle was very much"
+   },
+   {
+    "t0": 30.32,
+    "t1": 35.52,
+    "text": "given the spinning tops once in action he was leading a detachment of infantry"
+   },
+   {
+    "t0": 35.52,
+    "t1": 40.16,
+    "text": "through entrenchment sometimes he would wander on foot upon the sandy shore"
+   },
+   {
+    "t0": 40.16,
+    "t1": 45.28,
+    "text": "and sometimes he would wave a ride along the summer of the cliff altogether being"
+   },
+   {
+    "t0": 45.28,
+    "t1": 49.88,
+    "text": "with no hurry at all during his task to annoys his herd no cathedral does even"
+   },
+   {
+    "t0": 49.88,
+    "t1": 56.26,
+    "text": "go himself could buy with the church at Montmartre all lines of his most ambitious"
+   },
+   {
+    "t0": 56.26,
+    "t1": 60.44,
+    "text": "disciples wife AIDS was to induce the captain to go with my faith and his"
+   },
+   {
+    "t0": 60.44,
+    "t1": 64.6,
+    "text": "children of his much-loved home he hoped they would so incessantly were"
+   },
+   {
+    "t0": 64.6,
+    "t1": 69.24,
+    "text": "served at his ears besieged with descriptions of the unparalleled beauties"
+   },
+   {
+    "t0": 69.24,
+    "t1": 74.56,
+    "text": "and advantages of this 18th are undissimal of parents that he could"
+   },
+   {
+    "t0": 74.56,
+    "t1": 78.68,
+    "text": "scarcely hear the name of Montmartre early night without a conscious thrill of"
+   },
+   {
+    "t0": 78.68,
+    "t1": 79.88,
+    "text": "I have a version there."
+   }
+  ]
+ },
+ "5105-28233-0000|snr0": {
+  "passage_id": "5105-28233-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 79.86,
+  "wall_s": 1.394,
+  "n_segments": 17,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.24,
+    "text": "length of service 14 years, three months and five days he seemed"
+   },
+   {
+    "t0": 5.24,
+    "t1": 9.88,
+    "text": "warned to please without being conscious of the power he possessed. It must be"
+   },
+   {
+    "t0": 9.88,
+    "t1": 14.84,
+    "text": "owned and no one was more ready to confess it than himself. That his literary"
+   },
+   {
+    "t0": 14.84,
+    "t1": 19.44,
+    "text": "attainments were by no means of a high order. We don't spend talks as a"
+   },
+   {
+    "t0": 19.44,
+    "t1": 23.56,
+    "text": "favorite saying amongst artillery officers indicating that they do not"
+   },
+   {
+    "t0": 23.56,
+    "t1": 28.16,
+    "text": "shirk their duty by frivolous pursuits. But it must be confessed and serviced"
+   },
+   {
+    "t0": 28.16,
+    "t1": 33.58,
+    "text": "that being naturally idle was very much given the spinning tops. Once in action"
+   },
+   {
+    "t0": 33.58,
+    "t1": 37.96,
+    "text": "he was leading a detachment of infantry through entrenchment. Sometimes he would"
+   },
+   {
+    "t0": 37.96,
+    "t1": 43.18,
+    "text": "wander on foot on the sandy shore and to fade away like riding a bumpy from her"
+   },
+   {
+    "t0": 43.18,
+    "t1": 47.38,
+    "text": "more than day. All together by the river, no hurry at all done, his task of"
+   },
+   {
+    "t0": 47.38,
+    "t1": 52.2,
+    "text": "voice is heard. No cathedral, thus her gentle lamentation full, goodbye with the"
+   },
+   {
+    "t0": 52.2,
+    "t1": 58.12,
+    "text": "church at Montmartre. Oh, lines of smurf spring, why fades the loatest of the"
+   },
+   {
+    "t0": 58.12,
+    "t1": 63.0,
+    "text": "captain to go with why fate and his children of the spring loved home. He hoped"
+   },
+   {
+    "t0": 63.0,
+    "t1": 66.56,
+    "text": "there would be so incessantly were sternents and carrots and brews with"
+   },
+   {
+    "t0": 66.56,
+    "t1": 71.92,
+    "text": "descriptions that of the unparalleled ease out and advantages of this 18th are"
+   },
+   {
+    "t0": 71.92,
+    "t1": 76.4,
+    "text": "undissimable. Stuffed into you that he could scarcely hear the name of Montmartre"
+   },
+   {
+    "t0": 76.4,
+    "t1": 81.64,
+    "text": "early nightfall and the yellow lamps of a version there."
+   }
+  ]
+ },
+ "5105-28233-0000|snr-5": {
+  "passage_id": "5105-28233-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 79.86,
+  "wall_s": 1.501,
+  "n_segments": 19,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.04,
+    "text": "Here, she would stay, comforted in screws, the bubble of the plants and rich exotics."
+   },
+   {
+    "t0": 5.04,
+    "t1": 8.0,
+    "text": "He seemed born to please without being conscious of the power he possessed."
+   },
+   {
+    "t0": 8.0,
+    "t1": 12.72,
+    "text": "Since Paul is first rapturous, it must be owned, and no one was already too confessing"
+   },
+   {
+    "t0": 12.72,
+    "t1": 13.72,
+    "text": "for all time."
+   },
+   {
+    "t0": 13.72,
+    "t1": 17.92,
+    "text": "Every chance he could steal after practice was ruled by an hour ago, and after the clammers"
+   },
+   {
+    "t0": 17.92,
+    "t1": 21.72,
+    "text": "demands of the boys upon her time were fully satisfied, and a monster artillery officer"
+   },
+   {
+    "t0": 21.72,
+    "t1": 25.54,
+    "text": "indicating that they do not shirk their duty by frivolous pursuits."
+   },
+   {
+    "t0": 25.54,
+    "t1": 29.84,
+    "text": "Then, dear, said Mrs. Bingham, you must be kinder to her than ever."
+   },
+   {
+    "t0": 29.84,
+    "t1": 34.14,
+    "text": "You must be supportive of being for one of you to be away from home, even among men."
+   },
+   {
+    "t0": 34.14,
+    "t1": 39.2,
+    "text": "Somehow, of all the days when the home feeling was the strongest, this seemed as if she"
+   },
+   {
+    "t0": 39.2,
+    "t1": 40.96,
+    "text": "could bear it no longer."
+   },
+   {
+    "t0": 40.96,
+    "t1": 47.08,
+    "text": "To fade away like riding a beauty from her mortal day, down by the river of Adana, her"
+   },
+   {
+    "t0": 47.08,
+    "t1": 53.84,
+    "text": "soft voice is heard, and thus her gentle lamentation falls like morning tea."
+   },
+   {
+    "t0": 53.84,
+    "t1": 61.72,
+    "text": "No life of this art spring, why fades the lotus of the water, why fade these children of the"
+   },
+   {
+    "t0": 61.72,
+    "t1": 62.72,
+    "text": "spring?"
+   },
+   {
+    "t0": 62.72,
+    "t1": 68.12,
+    "text": "He hoped there would be stewhood there, turnips and carrots and brews, potatoes and fat mutton"
+   },
+   {
+    "t0": 68.12,
+    "t1": 73.0,
+    "text": "pieces to be ladled out in thick, peppered, flower-faton sores."
+   },
+   {
+    "t0": 73.0,
+    "t1": 76.44,
+    "text": "Stuffed into you, his belly crumpled him."
+   },
+   {
+    "t0": 76.44,
+    "t1": 79.88,
+    "text": "After early nightfall, the yellow lamps will light up here and there."
+   }
+  ]
+ },
+ "5142-33396-0000|clean": {
+  "passage_id": "5142-33396-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 56.52,
+  "wall_s": 1.259,
+  "n_segments": 13,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.48,
+    "text": "\"At another time, Harold asked, 'What is your country, Olaf? Have you always been a"
+   },
+   {
+    "t0": 4.48,
+    "t1": 5.48,
+    "text": "thrall?'"
+   },
+   {
+    "t0": 5.48,
+    "t1": 10.96,
+    "text": "The thrall's eyes flashed. Two hundred warriors feasted in his hall and followed him to battle."
+   },
+   {
+    "t0": 10.96,
+    "t1": 16.72,
+    "text": "The rest of you, off of a viking. He had three ships. These he gave to three of my brothers."
+   },
+   {
+    "t0": 16.72,
+    "t1": 20.68,
+    "text": "But I stayed that spring and built me a boat. I made her for only twenty wars because I"
+   },
+   {
+    "t0": 20.68,
+    "t1": 24.84,
+    "text": "thought few men would follow me. For I was young, fifteen years old."
+   },
+   {
+    "t0": 24.84,
+    "t1": 30.44,
+    "text": "At the prow I carved the head with open mouth, and forked tongue thrust out. I painted the"
+   },
+   {
+    "t0": 30.44,
+    "t1": 36.08,
+    "text": "eyes red for anger. There stands so I said, and glare and hiss at my foes. In the stern"
+   },
+   {
+    "t0": 36.08,
+    "t1": 40.72,
+    "text": "I carved the tail up almost as high as the head. There she sat on the rollers, as fair"
+   },
+   {
+    "t0": 40.72,
+    "t1": 45.72,
+    "text": "a ship as I ever saw. Then I will get me a farm and will win her in that land. Now who"
+   },
+   {
+    "t0": 45.72,
+    "t1": 51.12,
+    "text": "will follow me? Here's but a boy, the man said. Thirty men, one after another, raised"
+   },
+   {
+    "t0": 51.12,
+    "t1": 55.56,
+    "text": "their horns and said, as our boat flashed down the rollers into the water, I made this song"
+   },
+   {
+    "t0": 55.56,
+    "t1": 56.24,
+    "text": "and sang it."
+   }
+  ]
+ },
+ "5142-33396-0000|snr10": {
+  "passage_id": "5142-33396-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 56.52,
+  "wall_s": 1.2,
+  "n_segments": 19,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 3.14,
+    "text": "At another time, Harold asked, \"What is your country, Olaf?"
+   },
+   {
+    "t0": 3.14,
+    "t1": 5.38,
+    "text": "Have you always been a thrall?\""
+   },
+   {
+    "t0": 5.38,
+    "t1": 7.24,
+    "text": "The thrall's eyes flashed."
+   },
+   {
+    "t0": 7.24,
+    "t1": 10.92,
+    "text": "Two hundred warriors feasted in his hall and followed him to battle."
+   },
+   {
+    "t0": 10.92,
+    "t1": 14.32,
+    "text": "The rest of you, off of Viking, he had three ships."
+   },
+   {
+    "t0": 14.32,
+    "t1": 16.52,
+    "text": "He gave to three of my brothers."
+   },
+   {
+    "t0": 16.52,
+    "t1": 18.6,
+    "text": "But I stayed dead, spraying and built me a boat."
+   },
+   {
+    "t0": 18.6,
+    "t1": 22.68,
+    "text": "I made her for only 20 wars because I thought few men would follow me."
+   },
+   {
+    "t0": 22.68,
+    "t1": 24.96,
+    "text": "I was young, 15 years old."
+   },
+   {
+    "t0": 24.96,
+    "t1": 29.86,
+    "text": "At the prow, I carved the head with open mouth and four tongue thrust out."
+   },
+   {
+    "t0": 29.86,
+    "t1": 32.12,
+    "text": "I painted the eyes red for anger."
+   },
+   {
+    "t0": 32.12,
+    "t1": 35.44,
+    "text": "There, stand so I said, and glare and hiss at my foes."
+   },
+   {
+    "t0": 35.44,
+    "t1": 38.88,
+    "text": "In the stern, I carved the tail up almost as high as the head."
+   },
+   {
+    "t0": 38.88,
+    "t1": 42.5,
+    "text": "There, she sat on the rollers as fair a ship as I ever saw."
+   },
+   {
+    "t0": 42.5,
+    "t1": 45.4,
+    "text": "Then I will get me a farm and we'll win her in that land."
+   },
+   {
+    "t0": 45.4,
+    "t1": 46.8,
+    "text": "Now, who will follow me?"
+   },
+   {
+    "t0": 46.8,
+    "t1": 49.12,
+    "text": "His boat a boy, the man said."
+   },
+   {
+    "t0": 49.12,
+    "t1": 52.44,
+    "text": "Thirty men, one after another, raised their horns and said,"
+   },
+   {
+    "t0": 52.44,
+    "t1": 56.4,
+    "text": "\"As our boat flashed down the rollers into the water, I made this song and sang it.\""
+   }
+  ]
+ },
+ "5142-33396-0000|snr5": {
+  "passage_id": "5142-33396-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 56.52,
+  "wall_s": 1.122,
+  "n_segments": 16,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.0,
+    "text": "At another time, Harold asked, \"What is your country, Ola? Have you always been a thrall?\""
+   },
+   {
+    "t0": 5.0,
+    "t1": 11.0,
+    "text": "The thrall's eyes have lashed, two hundred warriors feasted in his hall and followed him to battle."
+   },
+   {
+    "t0": 11.0,
+    "t1": 14.0,
+    "text": "Rest of you, off of Viking, he had three ships."
+   },
+   {
+    "t0": 14.0,
+    "t1": 19.0,
+    "text": "He gave the three of my brothers, but I stayed dead, sprang and built me a boat."
+   },
+   {
+    "t0": 19.0,
+    "t1": 23.0,
+    "text": "I made her for only twenty wars because I thought few men would follow me."
+   },
+   {
+    "t0": 23.0,
+    "t1": 25.0,
+    "text": "I was young, fifteen years old."
+   },
+   {
+    "t0": 25.0,
+    "t1": 29.0,
+    "text": "At the prow I carved the head with open mouth, and four tongue thrust out."
+   },
+   {
+    "t0": 29.0,
+    "t1": 31.0,
+    "text": "I painted the eyes red for Angk."
+   },
+   {
+    "t0": 31.0,
+    "t1": 34.0,
+    "text": "There, stan so I said, and glare and hissed my foes."
+   },
+   {
+    "t0": 34.0,
+    "t1": 38.0,
+    "text": "In the stern I carved the tail up almost as high as the head."
+   },
+   {
+    "t0": 38.0,
+    "t1": 41.0,
+    "text": "There, she sat on the rollers as fair shift by every stall."
+   },
+   {
+    "t0": 41.0,
+    "t1": 44.0,
+    "text": "Then I will get me a farm and we'll win her in that letter."
+   },
+   {
+    "t0": 44.0,
+    "t1": 46.0,
+    "text": "Now who will follow?"
+   },
+   {
+    "t0": 46.0,
+    "t1": 48.0,
+    "text": "Just vote a boy, said."
+   },
+   {
+    "t0": 48.0,
+    "t1": 51.0,
+    "text": "Thirty men, one after another, raised their horns, said,"
+   },
+   {
+    "t0": 51.0,
+    "t1": 56.0,
+    "text": "\"As our boat flashed down the rollers into the water, I made this song and sang it.\""
+   }
+  ]
+ },
+ "5142-33396-0000|snr0": {
+  "passage_id": "5142-33396-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 56.52,
+  "wall_s": 1.476,
+  "n_segments": 24,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 3.52,
+    "text": "At another time, Harold asked, \"What is your country, Ollie?\""
+   },
+   {
+    "t0": 3.52,
+    "t1": 5.0,
+    "text": "\"That you always been a trawl?\""
+   },
+   {
+    "t0": 5.0,
+    "t1": 6.64,
+    "text": "\"Rejoised from the heart of the blast.\""
+   },
+   {
+    "t0": 6.64,
+    "t1": 7.48,
+    "text": "\"Turner, the gardener, the guardian.\""
+   },
+   {
+    "t0": 7.48,
+    "t1": 9.48,
+    "text": "\"Two hundred warriors, these two in his wrath, trawl.\""
+   },
+   {
+    "t0": 9.48,
+    "t1": 10.48,
+    "text": "\"All has him to battle.\""
+   },
+   {
+    "t0": 10.48,
+    "t1": 12.68,
+    "text": "\"They've taken her into rest of you off of her all time.\""
+   },
+   {
+    "t0": 12.68,
+    "t1": 13.68,
+    "text": "\"He had three ships.\""
+   },
+   {
+    "t0": 13.68,
+    "t1": 16.64,
+    "text": "\"Every chance he could steal after my brother's hours were over.\""
+   },
+   {
+    "t0": 16.64,
+    "t1": 18.84,
+    "text": "\"But I stayed there for the clamor, and built me a man's of the boar.\""
+   },
+   {
+    "t0": 18.84,
+    "t1": 22.04,
+    "text": "\"I made her from her tiny whirlpool because I thought few men would follow me.\""
+   },
+   {
+    "t0": 22.04,
+    "t1": 24.92,
+    "text": "\"Was seized to fly on the wings of the 15 years of the blowers.\""
+   },
+   {
+    "t0": 24.92,
+    "t1": 27.56,
+    "text": "\"At the prowl, a scarf that had missed its open mouth.\""
+   },
+   {
+    "t0": 27.56,
+    "t1": 28.56,
+    "text": "\"You must be blinded to her.\""
+   },
+   {
+    "t0": 28.56,
+    "t1": 31.56,
+    "text": "\"I don't think I've thrust out.\""
+   },
+   {
+    "t0": 31.56,
+    "t1": 32.56,
+    "text": "\"I painted the eyes red for Hank.\""
+   },
+   {
+    "t0": 32.56,
+    "t1": 35.28,
+    "text": "\"There, stan so I said, and glare and hissed my foes.\""
+   },
+   {
+    "t0": 35.28,
+    "t1": 39.2,
+    "text": "\"In the stern, I harmed the tail of almost as high as this day.\""
+   },
+   {
+    "t0": 39.2,
+    "t1": 41.2,
+    "text": "\"There she could stand on the roller.\""
+   },
+   {
+    "t0": 41.2,
+    "t1": 44.44,
+    "text": "\"To fade away like morning beauties from her mortal day.\""
+   },
+   {
+    "t0": 44.44,
+    "t1": 45.44,
+    "text": "\"Then I'll get me a farm, and win her in that loop.\""
+   },
+   {
+    "t0": 45.44,
+    "t1": 49.28,
+    "text": "\"Down by the river of Adana, her soft voice is heard.\""
+   },
+   {
+    "t0": 49.28,
+    "t1": 52.76,
+    "text": "\"And thus her gentle lamentation falls like morning dew.\""
+   },
+   {
+    "t0": 52.76,
+    "t1": 56.12,
+    "text": "\"As our boat flashed down the roller of the water, I made this song and sang it.\""
+   }
+  ]
+ },
+ "5142-33396-0000|snr-5": {
+  "passage_id": "5142-33396-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 56.52,
+  "wall_s": 0.941,
+  "n_segments": 9,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.58,
+    "text": "Here she will stay, comforted and soon, come on the lovely plants and rich exotics, rejoicing"
+   },
+   {
+    "t0": 5.58,
+    "t1": 10.18,
+    "text": "the heart of old Turner, the gardener, who since Wally's first rapturous entrance had"
+   },
+   {
+    "t0": 10.18,
+    "t1": 13.84,
+    "text": "taken her into his good graces for all time."
+   },
+   {
+    "t0": 13.84,
+    "t1": 18.48,
+    "text": "Every chance she could steal after practice hours were over, and after the clamorous demands"
+   },
+   {
+    "t0": 18.48,
+    "t1": 23.96,
+    "text": "of the boys upon her time were fully satisfied, was seized to fly on the wings of the wind"
+   },
+   {
+    "t0": 23.96,
+    "t1": 24.96,
+    "text": "for the flowers."
+   },
+   {
+    "t0": 24.96,
+    "t1": 46.96,
+    "text": "To fade away like morning beauty from her mortal day, down by the river of Adana, her"
+   },
+   {
+    "t0": 46.96,
+    "t1": 55.12,
+    "text": "soft voice is heard, and thus her gentle lamentation falls like morning dew, \"Oh life, of this"
+   },
+   {
+    "t0": 55.12,
+    "t1": 56.12,
+    "text": "arse spring.\""
+   }
+  ]
+ },
+ "5683-32865-0000|clean": {
+  "passage_id": "5683-32865-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 88.17,
+  "wall_s": 1.459,
+  "n_segments": 15,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 6.88,
+    "text": "\"You know, Captain Lake,\" said Lord Shelford, addressing me. He had his hand upon Lake's"
+   },
+   {
+    "t0": 6.88,
+    "t1": 7.88,
+    "text": "shoulder."
+   },
+   {
+    "t0": 7.88,
+    "t1": 14.08,
+    "text": "\"They are cousins, you know. We are all cousins.\" Whatever Lord Shelford said, Miss Brandon"
+   },
+   {
+    "t0": 14.08,
+    "t1": 20.12,
+    "text": "received it very graciously, and even with a momentary smile. But her greeting to Captain"
+   },
+   {
+    "t0": 20.12,
+    "t1": 27.08,
+    "text": "Lake was more than usually haughty and frozen, and her features, I fancied, particularly"
+   },
+   {
+    "t0": 27.08,
+    "t1": 33.88,
+    "text": "proud and pale. At dinner, Lake was easy and amusing. \"I'm glad you'd like it,\" says"
+   },
+   {
+    "t0": 33.88,
+    "t1": 40.1,
+    "text": "Wilder, chuckling, binignantly on it, over his shoulder. \"I believe I have a little taste"
+   },
+   {
+    "t0": 40.1,
+    "t1": 45.92,
+    "text": "that way. Those are all real, you know, those jewels.\" And he placed it in that gentleman's"
+   },
+   {
+    "t0": 45.92,
+    "t1": 51.6,
+    "text": "fingers, who now took his turn at the lamp, and contemplated the little parallelogram with"
+   },
+   {
+    "t0": 51.6,
+    "t1": 58.0,
+    "text": "the gleam of sly amusement. \"I was thinking it's very like the Ace of Hearts,\" answered"
+   },
+   {
+    "t0": 58.0,
+    "t1": 64.2,
+    "text": "the Captain softly, smiling on. \"Whereupon Lake laughed quietly, still looking on the Ace"
+   },
+   {
+    "t0": 64.2,
+    "t1": 71.28,
+    "text": "of Hearts with his sly eyes. And Wilder laughed too. More suddenly and noisily than the humor"
+   },
+   {
+    "t0": 71.28,
+    "t1": 76.44,
+    "text": "of the joke seemed quite to call for, and glanced a grim look from the corners of his"
+   },
+   {
+    "t0": 76.44,
+    "t1": 82.44,
+    "text": "eyes on Lake. But the gallant Captain did not seem to perceive it, and after a few seconds"
+   },
+   {
+    "t0": 82.44,
+    "t1": 87.68,
+    "text": "more he handed it very innocently, back to Mrs. Dorothy, only remarking."
+   }
+  ]
+ },
+ "5683-32865-0000|snr10": {
+  "passage_id": "5683-32865-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 88.17,
+  "wall_s": 1.526,
+  "n_segments": 20,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 4.8,
+    "text": "\"You know Captain Lake,\" said Lord Shelford, addressing me."
+   },
+   {
+    "t0": 4.8,
+    "t1": 7.72,
+    "text": "He had his hand on Lake Shelford."
+   },
+   {
+    "t0": 7.72,
+    "t1": 9.62,
+    "text": "\"They are cousins, you know."
+   },
+   {
+    "t0": 9.62,
+    "t1": 11.8,
+    "text": "We are all cousins."
+   },
+   {
+    "t0": 11.8,
+    "t1": 16.76,
+    "text": "Whatever Lord Shelford said, Ms. Brandon received it very graciously, and even with a"
+   },
+   {
+    "t0": 16.76,
+    "t1": 24.08,
+    "text": "momentary smile, but her greeting to Captain Lake was more than usually haughty and frozen,"
+   },
+   {
+    "t0": 24.08,
+    "t1": 29.24,
+    "text": "and her features, I fancied, particularly proud and pale."
+   },
+   {
+    "t0": 29.24,
+    "t1": 32.4,
+    "text": "At dinner Lake was easy at a museum."
+   },
+   {
+    "t0": 32.4,
+    "t1": 38.2,
+    "text": "I'm glad you like it,\" says Wilder, chuckling, beignantly on it, over his shoulder."
+   },
+   {
+    "t0": 38.2,
+    "t1": 40.88,
+    "text": "\"I believe I have a little taste that way."
+   },
+   {
+    "t0": 40.88,
+    "t1": 44.2,
+    "text": "Those are all real, you know, those jewels.\""
+   },
+   {
+    "t0": 44.2,
+    "t1": 49.92,
+    "text": "And he placed it in that gentleman's fingers, who now took his turn at the lamp and contemplated"
+   },
+   {
+    "t0": 49.92,
+    "t1": 53.64,
+    "text": "the little parallelogram with a gleam or sly amusement."
+   },
+   {
+    "t0": 53.64,
+    "t1": 59.72,
+    "text": "\"I was thinking, it's very like the Ace of Hearts,\" answered the captain softly, smiling"
+   },
+   {
+    "t0": 59.72,
+    "t1": 60.72,
+    "text": "on."
+   },
+   {
+    "t0": 60.72,
+    "t1": 67.08,
+    "text": "\"Whereupon Lake laughed quietly, still looking on the Ace of Hearts with his sly eyes,"
+   },
+   {
+    "t0": 67.08,
+    "t1": 72.2,
+    "text": "and Wilder laughed too, more said in the annoysily than the humour of the joke seemed"
+   },
+   {
+    "t0": 72.2,
+    "t1": 77.84,
+    "text": "quite to call for, and glanced a grim look from the corners of his eyes on Lake."
+   },
+   {
+    "t0": 77.84,
+    "t1": 82.96,
+    "text": "But the gallant captain did not seem to perceive it, and after a few seconds more he"
+   },
+   {
+    "t0": 82.96,
+    "t1": 88.16,
+    "text": "handed it very innocently back to Mrs. Darby, only remarking.\""
+   }
+  ]
+ },
+ "5683-32865-0000|snr5": {
+  "passage_id": "5683-32865-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 88.17,
+  "wall_s": 1.608,
+  "n_segments": 19,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 7.4,
+    "text": "\"You know Captain Lake,\" said Lord Chelford, addressing me, \"Do you have his hand on Lake Shorner's?\""
+   },
+   {
+    "t0": 7.4,
+    "t1": 13.12,
+    "text": "\"They are cousins, you know. We are all cousins. Whatever Lord Chelford said,"
+   },
+   {
+    "t0": 13.12,
+    "t1": 17.96,
+    "text": "Miss Brandon received it very graciously, and even with a momentary smile,"
+   },
+   {
+    "t0": 17.96,
+    "t1": 23.56,
+    "text": "but her greeting to Captain Lake was more than usually haughty and frozen,"
+   },
+   {
+    "t0": 23.56,
+    "t1": 28.28,
+    "text": "and her features, I fancied, particularly proud and pale."
+   },
+   {
+    "t0": 28.28,
+    "t1": 32.2,
+    "text": "At dinner, Lake was easy to be away from home."
+   },
+   {
+    "t0": 32.2,
+    "t1": 37.76,
+    "text": "\"I'm glad you like it,\" says Wilder, chuckling, beneath me on it, over his shoulder."
+   },
+   {
+    "t0": 37.76,
+    "t1": 40.8,
+    "text": "\"I believe I have a little taste that way.\""
+   },
+   {
+    "t0": 40.8,
+    "t1": 44.04,
+    "text": "\"To fade away like a morning beauty from mortal day.\""
+   },
+   {
+    "t0": 44.04,
+    "t1": 48.68,
+    "text": "\"Down by the river of Adana, who now tubbies turn to the lamp,"
+   },
+   {
+    "t0": 48.68,
+    "t1": 53.52,
+    "text": "and contemplate the gentle landing cake and bolts like morning light amusement.\""
+   },
+   {
+    "t0": 53.52,
+    "t1": 59.32,
+    "text": "\"Oh, life of this arse-free.\" \"I was thinking, I very like the ace of hearts.\""
+   },
+   {
+    "t0": 59.32,
+    "t1": 61.72,
+    "text": "\"The hands of the goutin' softly, smile on.\""
+   },
+   {
+    "t0": 61.72,
+    "t1": 66.92,
+    "text": "\"Whereupon Lake laughed quietly, still looking on the ace of hearts with his sly eyes,"
+   },
+   {
+    "t0": 66.92,
+    "t1": 73.72,
+    "text": "and Wilder laughed two, more said in the annoissely than the humor of the joke seemed quite to call forth,"
+   },
+   {
+    "t0": 73.72,
+    "t1": 78.32,
+    "text": "and glanced a grim look from the corners of his eyes on Lake."
+   },
+   {
+    "t0": 78.32,
+    "t1": 82.72,
+    "text": "But the gallant captain did not seem to perceive it, and after a few seconds more,"
+   },
+   {
+    "t0": 82.72,
+    "t1": 84.72,
+    "text": "he handed it very innocently.\""
+   },
+   {
+    "t0": 84.72,
+    "t1": 87.72,
+    "text": "\"Back to Mrs. Darby.\" \"Only remarking.\""
+   }
+  ]
+ },
+ "5683-32865-0000|snr0": {
+  "passage_id": "5683-32865-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 88.17,
+  "wall_s": 1.743,
+  "n_segments": 5,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 13.4,
+    "text": "\"Here, you know Captain Lee, said Lord Chelford adressing his optics, rejoicing the heart on the corner of the gardener, who said to all his friends, 'We are all coziness into his good grace,' whatever Lord Chelford said."
+   },
+   {
+    "t0": 13.4,
+    "t1": 28.2,
+    "text": "\"Mr. Brandon received it very graciously, and even with the momentary smatherest, a man of the bold, the breeding to Captain Lee satisfied was more than usually haughty and frozen, and her features, I fancied, particularly proud and pale."
+   },
+   {
+    "t0": 28.2,
+    "t1": 53.2,
+    "text": "\"I'm glad you like it,\" says Wilder, \"chuckling the daze with the honour, over his shoulder. I believe I have a little taste that way,\" to fade away like morning beauty from her mortal day, down by the river of Adana, her soft voices heard, and thus her gentle lamentation falls like morning tea."
+   },
+   {
+    "t0": 53.2,
+    "t1": 81.2,
+    "text": "\"Oh, life, of this arse ring, why fades the lotus of the water, why fade these children of the spring, he hoped there would be steward dinner, turnips and carrots and bruised potatoes and fat and mutton pieces to be laid out, they peppered, the humor of the joke seemed quite to call forth, and glanced a grim look from the corners of his eye on the lake, but the gallant captain did not seem to perceive it,"
+   },
+   {
+    "t0": 81.2,
+    "t1": 111.2,
+    "text": "and after a few seconds more he handed very incense to him, back to Mrs. Darby's blue silk stockings, blue knee pants, with"
+   }
+  ]
+ },
+ "5683-32865-0000|snr-5": {
+  "passage_id": "5683-32865-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 88.17,
+  "wall_s": 1.723,
+  "n_segments": 34,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 2.6,
+    "text": "Here she would stay, comforted and soothing,"
+   },
+   {
+    "t0": 2.6,
+    "t1": 5.04,
+    "text": "among the lovely plans of the Strixautics,"
+   },
+   {
+    "t0": 5.04,
+    "t1": 7.56,
+    "text": "rejoicing the heart of old Turner, the gardener,"
+   },
+   {
+    "t0": 7.56,
+    "t1": 9.8,
+    "text": "who, since Paul is first rapturous entrance,"
+   },
+   {
+    "t0": 9.8,
+    "t1": 13.4,
+    "text": "had taken her into his good grace whatever the royal time."
+   },
+   {
+    "t0": 13.4,
+    "t1": 16.16,
+    "text": "Every chance she could steal after practice hours"
+   },
+   {
+    "t0": 16.16,
+    "t1": 19.08,
+    "text": "and even with the mandatory spamorous demands of the boys"
+   },
+   {
+    "t0": 19.08,
+    "t1": 20.96,
+    "text": "upon her time were fully satisfied,"
+   },
+   {
+    "t0": 20.96,
+    "t1": 23.88,
+    "text": "was more than usualish to fly on the wings of the wind"
+   },
+   {
+    "t0": 23.88,
+    "t1": 24.88,
+    "text": "and her flowers."
+   },
+   {
+    "t0": 24.88,
+    "t1": 27.56,
+    "text": "I fancied, then dear, ticketily proud."
+   },
+   {
+    "t0": 27.56,
+    "t1": 29.12,
+    "text": "You must be kinder to her than ever."
+   },
+   {
+    "t0": 29.12,
+    "t1": 31.28,
+    "text": "At dinner, think what it would be for one of you"
+   },
+   {
+    "t0": 31.28,
+    "t1": 32.48,
+    "text": "to be away from home."
+   },
+   {
+    "t0": 32.48,
+    "t1": 34.56,
+    "text": "I'm glad you like it, says Wilder."
+   },
+   {
+    "t0": 34.56,
+    "t1": 36.6,
+    "text": "Somehow, a couple of days when the honey"
+   },
+   {
+    "t0": 36.6,
+    "t1": 38.0,
+    "text": "fell over the shoulder."
+   },
+   {
+    "t0": 38.0,
+    "t1": 41.0,
+    "text": "This day I believe I have a little tear on my way."
+   },
+   {
+    "t0": 41.0,
+    "t1": 44.68,
+    "text": "To fade away like morning beauty from her mortal day,"
+   },
+   {
+    "t0": 44.68,
+    "t1": 49.24,
+    "text": "down by the river of Adana, her soft voices heard,"
+   },
+   {
+    "t0": 49.24,
+    "t1": 53.84,
+    "text": "and thus her gentle lamentation falls like morning deep."
+   },
+   {
+    "t0": 53.84,
+    "t1": 57.84,
+    "text": "Oh, life of this arse spring, why fades the lotus"
+   },
+   {
+    "t0": 57.84,
+    "t1": 59.36,
+    "text": "of the water?"
+   },
+   {
+    "t0": 59.36,
+    "t1": 62.64,
+    "text": "Why fade these children of the spring?"
+   },
+   {
+    "t0": 62.64,
+    "t1": 64.64,
+    "text": "He hoped there would be stew for dinner,"
+   },
+   {
+    "t0": 64.64,
+    "t1": 67.12,
+    "text": "turnips and carrots and bruised potatoes"
+   },
+   {
+    "t0": 67.12,
+    "t1": 70.76,
+    "text": "and fat and muttoned pieces to be ladled out, thick and peppered,"
+   },
+   {
+    "t0": 70.76,
+    "t1": 73.84,
+    "text": "flower-batten sauce, stuffed it into you"
+   },
+   {
+    "t0": 73.84,
+    "t1": 76.28,
+    "text": "and glanced the grill from the corners of his arm."
+   },
+   {
+    "t0": 76.28,
+    "t1": 78.4,
+    "text": "After early nightfall, the yellow lamps"
+   },
+   {
+    "t0": 78.4,
+    "t1": 81.12,
+    "text": "would light up here and there as a squalid quarter"
+   },
+   {
+    "t0": 81.12,
+    "t1": 82.92,
+    "text": "of the bottle."
+   },
+   {
+    "t0": 82.92,
+    "t1": 85.4,
+    "text": "Hello, Bertie, any good in your mind?"
+   },
+   {
+    "t0": 85.4,
+    "t1": 88.2,
+    "text": "wore blue silk stockings, blue knee pants with"
+   }
+  ]
+ },
+ "8224-274381-0000|clean": {
+  "passage_id": "8224-274381-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 99.07,
+  "wall_s": 1.367,
+  "n_segments": 14,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 8.7,
+    "text": "Though thrown into prison for this enterprise and detained some time, he was not discouraged,"
+   },
+   {
+    "t0": 8.7,
+    "t1": 16.08,
+    "text": "but still continued by his countenance and protection to infuse spirit into the distressed"
+   },
+   {
+    "t0": 16.08,
+    "t1": 23.98,
+    "text": "royalists. Among other persons of distinction who united themselves to him was Lord Napier"
+   },
+   {
+    "t0": 23.98,
+    "t1": 31.36,
+    "text": "of Murchiston, son of the famous inventor of the logarithms, the person to whom the title"
+   },
+   {
+    "t0": 31.36,
+    "t1": 40.72,
+    "text": "of \"A Great Man\" is more justly due than to any other whom his country ever produced,"
+   },
+   {
+    "t0": 40.72,
+    "t1": 46.94,
+    "text": "while the former foretold that the Scottish covenanters were secretly forming a union"
+   },
+   {
+    "t0": 46.94,
+    "t1": 53.04,
+    "text": "with the English Parliament and inculcated the necessity of preventing them by some vigorous"
+   },
+   {
+    "t0": 53.04,
+    "t1": 60.0,
+    "text": "undertaking. The latter still insisted that every such attempt would precipitate them into"
+   },
+   {
+    "t0": 60.0,
+    "t1": 66.76,
+    "text": "measures to which otherwise they were not, perhaps, inclined. The king's ears were now"
+   },
+   {
+    "t0": 66.76,
+    "t1": 74.16,
+    "text": "open to Montrose's councils, who proposed none but the boldest and most daring, agreeably"
+   },
+   {
+    "t0": 74.16,
+    "t1": 80.32,
+    "text": "to the desperate state of the royal cause in Scotland. Five hundred men more, who had"
+   },
+   {
+    "t0": 80.32,
+    "t1": 86.72,
+    "text": "been levied by the covenanters, were persuaded to embrace the royal cause, and with this"
+   },
+   {
+    "t0": 86.72,
+    "t1": 93.32,
+    "text": "combined force he hastened to attack Lord Elco, who lay at Perth with an army of six"
+   },
+   {
+    "t0": 93.32,
+    "t1": 98.6,
+    "text": "thousand men, assembled upon the first news of the Irish invasion."
+   }
+  ]
+ },
+ "8224-274381-0000|snr10": {
+  "passage_id": "8224-274381-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 99.07,
+  "wall_s": 1.757,
+  "n_segments": 16,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 8.7,
+    "text": "Though thrown into prison for this enterprise and detained some time, he was not discouraged,"
+   },
+   {
+    "t0": 8.7,
+    "t1": 16.1,
+    "text": "but still continued by his countenance and protection to infuse spirit into the distressed"
+   },
+   {
+    "t0": 16.1,
+    "t1": 18.54,
+    "text": "royalists."
+   },
+   {
+    "t0": 18.54,
+    "t1": 25.98,
+    "text": "Among other persons of distinction who united themselves to him was Lord Napier of Murchiston,"
+   },
+   {
+    "t0": 25.98,
+    "t1": 29.54,
+    "text": "son of the famous inventor of the logarithms."
+   },
+   {
+    "t0": 29.54,
+    "t1": 37.62,
+    "text": "The person to whom the title of \"A Great Man\" is more justly due than to any other whom"
+   },
+   {
+    "t0": 37.62,
+    "t1": 45.22,
+    "text": "his country ever produced, while the former foretold that the Scottish covenanters were"
+   },
+   {
+    "t0": 45.22,
+    "t1": 51.22,
+    "text": "secretly forming the union with the English Parliament and inculcated the necessity of"
+   },
+   {
+    "t0": 51.22,
+    "t1": 54.26,
+    "text": "preventing him by some vigorous undertaking."
+   },
+   {
+    "t0": 54.26,
+    "t1": 61.06,
+    "text": "A letter still insisted that every such attempt would precipitate them into measures to which"
+   },
+   {
+    "t0": 61.06,
+    "t1": 65.22,
+    "text": "otherwise they were not perhaps inclined."
+   },
+   {
+    "t0": 65.22,
+    "t1": 71.84,
+    "text": "The Karen's ears were now open to Montrose's council, who proposed none but the boldest"
+   },
+   {
+    "t0": 71.84,
+    "t1": 78.38,
+    "text": "and most daring, agreeably to the desperate state of the royal cause in Scotland."
+   },
+   {
+    "t0": 78.38,
+    "t1": 84.46,
+    "text": "Five hundred men more who had been levied by the covenanters were persuaded to embrace"
+   },
+   {
+    "t0": 84.46,
+    "t1": 91.74,
+    "text": "the royal cause, and with this combined force he hastened to attack Lord Elko, who lay at"
+   },
+   {
+    "t0": 91.74,
+    "t1": 98.54,
+    "text": "Perth with an army of six thousand men assembled upon the first news of the Irish invasion."
+   }
+  ]
+ },
+ "8224-274381-0000|snr5": {
+  "passage_id": "8224-274381-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 99.07,
+  "wall_s": 1.748,
+  "n_segments": 15,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 8.56,
+    "text": "Though thrown into prison for this enterprise, and detained at some time, he was not discouraged,"
+   },
+   {
+    "t0": 8.56,
+    "t1": 16.08,
+    "text": "but still continued by his countenance and protection to infuse spirit into the distressed"
+   },
+   {
+    "t0": 16.08,
+    "t1": 24.0,
+    "text": "royalists. Among other persons of distinction who united themselves to him was Lord Napier"
+   },
+   {
+    "t0": 24.0,
+    "t1": 30.72,
+    "text": "of Murchiston, son of the famous inventor of the logarithms, the person to whom the"
+   },
+   {
+    "t0": 30.72,
+    "t1": 40.68,
+    "text": "title of \"A Great Man\" is more justly due than to any other whom his country ever produced,"
+   },
+   {
+    "t0": 40.68,
+    "t1": 46.88,
+    "text": "while the former, like tall, at the Scottish covenanters, were secretly forming on union"
+   },
+   {
+    "t0": 46.88,
+    "t1": 53.72,
+    "text": "her soft voice unheard, and thus rejected them in satiable, preventing them why some vigorous undertaking"
+   },
+   {
+    "t0": 53.72,
+    "t1": 59.32,
+    "text": "\"O life, alas, are still insisted, why fate eludes itself to water, would precipitate"
+   },
+   {
+    "t0": 59.32,
+    "t1": 65.16,
+    "text": "why fate measures shall return otherwise, they were not prepared to be stolen for dinner,"
+   },
+   {
+    "t0": 65.16,
+    "t1": 71.9,
+    "text": "the carrot's ears were now open to Montrose's council, who proposed none but the boldest"
+   },
+   {
+    "t0": 71.9,
+    "t1": 76.78,
+    "text": "and most daring, agreeably to the desperate state of the royal court, after her early"
+   },
+   {
+    "t0": 76.78,
+    "t1": 82.6,
+    "text": "nine fall, the yellow lamp, five hundred men wore, who had been levied by the covenanters,"
+   },
+   {
+    "t0": 82.6,
+    "t1": 88.84,
+    "text": "were persuaded to embrace the royal courts, and with this combined force he hastened to"
+   },
+   {
+    "t0": 88.84,
+    "t1": 96.0,
+    "text": "attack, roared Elko, who lay at birth with an army of six thousand men, assembled upon"
+   },
+   {
+    "t0": 96.0,
+    "t1": 99.08,
+    "text": "the first news of the Irish invasion."
+   }
+  ]
+ },
+ "8224-274381-0000|snr0": {
+  "passage_id": "8224-274381-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 99.07,
+  "wall_s": 1.745,
+  "n_segments": 18,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 8.48,
+    "text": "Though thrown into prison for this enterprise and detained some time, it was not discouraged,"
+   },
+   {
+    "t0": 8.48,
+    "t1": 16.1,
+    "text": "but still continued by his countenance and protection to infuse spirit into the distressed"
+   },
+   {
+    "t0": 16.1,
+    "t1": 17.1,
+    "text": "wireless."
+   },
+   {
+    "t0": 17.1,
+    "t1": 25.96,
+    "text": "Among other persons of distinction, the united themselves to him was Lord Napier of Murchiston,"
+   },
+   {
+    "t0": 25.96,
+    "t1": 33.2,
+    "text": "one of the famous inventor of the logarithms, the person to whom the title of a great man"
+   },
+   {
+    "t0": 33.2,
+    "t1": 40.48,
+    "text": "is more justly due than to any other whom his country ever produced."
+   },
+   {
+    "t0": 40.48,
+    "t1": 45.96,
+    "text": "Well, to fade away like tawning you at the front of what covet enters, down by the river"
+   },
+   {
+    "t0": 45.96,
+    "t1": 52.4,
+    "text": "of Adana, her soft voices heard, and thus her gentle lamentation falls like mortise"
+   },
+   {
+    "t0": 52.4,
+    "t1": 58.4,
+    "text": "and vigorous undertaking, \"O life, of this arse spring, why fades the ludest of the water?\""
+   },
+   {
+    "t0": 58.4,
+    "t1": 62.68,
+    "text": "would precipitate the white-fade measure children of the spring."
+   },
+   {
+    "t0": 62.68,
+    "t1": 68.1,
+    "text": "He hoped there would be stew for dinner, turnips and carrots at brews, potatoes, and fat roses"
+   },
+   {
+    "t0": 68.1,
+    "t1": 73.0,
+    "text": "cows to be ladled out, and purposed, knurfed, but flour-fasts on the most daring,"
+   },
+   {
+    "t0": 73.0,
+    "t1": 77.6,
+    "text": "\"Stuff it into yerably to the desperate state of the royal causes, after early nightfall,"
+   },
+   {
+    "t0": 77.6,
+    "t1": 82.8,
+    "text": "the yellow lamps would light up in your wall, who had been levied by the ravenous."
+   },
+   {
+    "t0": 82.8,
+    "t1": 88.2,
+    "text": "What converted it to a good race to the royal cause, and with this combined force he had"
+   },
+   {
+    "t0": 88.2,
+    "t1": 93.36,
+    "text": "a gold buckle, a blue ruffled waist, and a jacket and a white blue braided with gold."
+   },
+   {
+    "t0": 93.36,
+    "t1": 98.64,
+    "text": "His hat had a peaked crown of a flat brim, and around the brim with a row of tiny golden"
+   },
+   {
+    "t0": 98.64,
+    "t1": 99.04,
+    "text": "Bells."
+   }
+  ]
+ },
+ "8224-274381-0000|snr-5": {
+  "passage_id": "8224-274381-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 99.07,
+  "wall_s": 1.776,
+  "n_segments": 7,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 25.0,
+    "text": "Here she would stand to prison for this enterprise and detain some time, rejoicing the heart of old Turner, the Gardener, who since Pauli's first rapturous, and continued by his countenance and protection to infuse spirits, he could stand after practice hours were only, and after the clamorous demands of the boys upon her time were fully satisfied, was seized to fly on the wings of the wind, to the flowers."
+   },
+   {
+    "t0": 25.0,
+    "t1": 40.0,
+    "text": "Some of the famous inventors of the longer than ever, think what it would be for one of you to be away from home, even among friends, is more justly due, somehow of all the days where the home feeling was the strongest, this day it seemed as if she could bear it no longer."
+   },
+   {
+    "t0": 40.0,
+    "t1": 53.0,
+    "text": "To fade away like morning beauty from her mortality, down by the river of Adana, her soft voices heard, and thus her gentle lamentation falls like morning's due."
+   },
+   {
+    "t0": 53.0,
+    "t1": 76.0,
+    "text": "Oh, life, of this arse brain, why fades the lotus of the water? Why fade these children of the spring? He hoped there would be stew for dinner, turnips and carrots and bruised potatoes and fat mutters pieces to be ladled out, thick, peppered, flower-fast sauce, stuffed into you, please belly, counseled him."
+   },
+   {
+    "t0": 76.0,
+    "t1": 83.0,
+    "text": "After early nightfall, the yellow lamps would light up here and there, the squalid quarter of the brothels."
+   },
+   {
+    "t0": 83.0,
+    "t1": 93.0,
+    "text": "Hello, Bertie! Good in your mind? He wore blue silk stockings, blue knee pants with gold buckles, a blue ruffled waist, and a jacket of bright blue braided with gold."
+   },
+   {
+    "t0": 93.0,
+    "t1": 99.0,
+    "text": "His hat had a peaked crown with a flat brim, and around the brim with a row of tiny golden bells."
+   }
+  ]
+ },
+ "8555-284447-0000|clean": {
+  "passage_id": "8555-284447-0000",
+  "cond": "clean",
+  "snr_target": null,
+  "dur_s": 70.68,
+  "wall_s": 1.352,
+  "n_segments": 16,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.32,
+    "text": "Then he rushed downstairs into the courtyard, shouting loudly for his soldiers and threatening"
+   },
+   {
+    "t0": 5.32,
+    "t1": 10.14,
+    "text": "to patch everybody in his dominions if the sailor-man was not recaptured."
+   },
+   {
+    "t0": 10.14,
+    "t1": 15.64,
+    "text": "Hold him fast, my man, and as soon as I've had my coffee in Erbil, I will take him to"
+   },
+   {
+    "t0": 15.64,
+    "t1": 18.16,
+    "text": "the room of the great knife and patch him."
+   },
+   {
+    "t0": 18.16,
+    "t1": 21.52,
+    "text": "\"I wouldn't mind a cup of coffee myself,\" said Kenbill."
+   },
+   {
+    "t0": 21.52,
+    "t1": 26.68,
+    "text": "\"I've had considerable exercise this morning, and I'm all ready for breakfast.\""
+   },
+   {
+    "t0": 26.68,
+    "t1": 31.28,
+    "text": "The Cotton Bill made no such attempt, knowing it would be useless."
+   },
+   {
+    "t0": 31.28,
+    "t1": 36.56,
+    "text": "As soon as they entered the room of the great knife, the bullaroo gave a yell of disappointment."
+   },
+   {
+    "t0": 36.56,
+    "t1": 41.26,
+    "text": "The room of the great knife was high and big, and around it ran rows of benches for the"
+   },
+   {
+    "t0": 41.26,
+    "t1": 43.56,
+    "text": "spectators to sit upon."
+   },
+   {
+    "t0": 43.56,
+    "t1": 48.72,
+    "text": "In one place, at the head of the room, was a raised platform for the royal family, with"
+   },
+   {
+    "t0": 48.72,
+    "t1": 53.52,
+    "text": "elegant throne chairs for the king and queen, and a sixth smaller but richly upholstered"
+   },
+   {
+    "t0": 53.52,
+    "t1": 56.44,
+    "text": "chairs for the snow-nosed princesses."
+   },
+   {
+    "t0": 56.44,
+    "t1": 62.76,
+    "text": "Therefore, Her Majesty paid no attention to anyone, and no one paid any attention to her."
+   },
+   {
+    "t0": 62.76,
+    "t1": 67.96,
+    "text": "Rich jewels of blue stones glittered upon their persons, and the royal ladies were fully as"
+   },
+   {
+    "t0": 67.96,
+    "t1": 70.44,
+    "text": "gorgeous as there were haughty and overbearing."
+   }
+  ]
+ },
+ "8555-284447-0000|snr10": {
+  "passage_id": "8555-284447-0000",
+  "cond": "snr10",
+  "snr_target": 10,
+  "dur_s": 70.68,
+  "wall_s": 1.379,
+  "n_segments": 17,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.4,
+    "text": "Then he rushed downstairs into the courtyard, shouting loudly for his soldiers and threatening"
+   },
+   {
+    "t0": 5.4,
+    "t1": 6.4,
+    "text": "to patch."
+   },
+   {
+    "t0": 6.4,
+    "t1": 12.04,
+    "text": "Everybody in his dominions at the Sailor Moon was not recaptured, hold him fast to my men,"
+   },
+   {
+    "t0": 12.04,
+    "t1": 16.92,
+    "text": "and as soon as I had my coffee in her bill, I would take him to the room of a great knife"
+   },
+   {
+    "t0": 16.92,
+    "t1": 17.92,
+    "text": "and patch him."
+   },
+   {
+    "t0": 17.92,
+    "t1": 21.52,
+    "text": "\"I wouldn't mind the cup of coffee myself,\" said Kenbill."
+   },
+   {
+    "t0": 21.52,
+    "t1": 26.24,
+    "text": "\"I've had considerable exercise this morning, and I'm all ready for breakfast.\""
+   },
+   {
+    "t0": 26.24,
+    "t1": 31.28,
+    "text": "But Kenbill made no such attempt, knowing it would be useless."
+   },
+   {
+    "t0": 31.28,
+    "t1": 36.56,
+    "text": "As soon as they entered the room of the great knife, the buluru gave a yellow disappointment."
+   },
+   {
+    "t0": 36.56,
+    "t1": 41.44,
+    "text": "The room of the great knife was high and bid, and around it ran rows of benches for the"
+   },
+   {
+    "t0": 41.44,
+    "t1": 43.54,
+    "text": "spectators to sit upon."
+   },
+   {
+    "t0": 43.54,
+    "t1": 48.72,
+    "text": "In one place, at the head of the river, was a raised platform for the royal family, with"
+   },
+   {
+    "t0": 48.72,
+    "t1": 53.84,
+    "text": "elegant round chairs licking plain, and a six-mauler but richly upholstered chairs"
+   },
+   {
+    "t0": 53.84,
+    "t1": 56.32,
+    "text": "all life on this or spring."
+   },
+   {
+    "t0": 56.32,
+    "t1": 61.56,
+    "text": "They are for her majesty, they have no attention to anyone, and are one made in the attention"
+   },
+   {
+    "t0": 61.56,
+    "t1": 67.4,
+    "text": "to her rich tools of blue stones, glitter upon those persons, and the royal ladies were"
+   },
+   {
+    "t0": 67.4,
+    "t1": 70.64,
+    "text": "fully as gorgeous as they were haughty and overbearing."
+   }
+  ]
+ },
+ "8555-284447-0000|snr5": {
+  "passage_id": "8555-284447-0000",
+  "cond": "snr5",
+  "snr_target": 5,
+  "dur_s": 70.68,
+  "wall_s": 2.601,
+  "n_segments": 18,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.46,
+    "text": "Then he rushed downstairs into the courtyard, shouting loudly for his soldiers and threatened"
+   },
+   {
+    "t0": 5.46,
+    "t1": 10.32,
+    "text": "to patch everybody in his dominions at the ceiling and was more recaptured, holding him"
+   },
+   {
+    "t0": 10.32,
+    "t1": 15.96,
+    "text": "fast to my men, and as soon as I had my property in her bill, I would take him to the room"
+   },
+   {
+    "t0": 15.96,
+    "t1": 18.28,
+    "text": "of the great knife and patch him."
+   },
+   {
+    "t0": 18.28,
+    "t1": 21.52,
+    "text": "\"I wouldn't mind a couple of coffee myself,\" said Kenton Bill."
+   },
+   {
+    "t0": 21.52,
+    "t1": 26.24,
+    "text": "\"I have had considerable exercise this morning, and I'm all ready for breakfast.\""
+   },
+   {
+    "t0": 26.24,
+    "t1": 31.28,
+    "text": "But Kenton Bill made no such a team, knowing it would be useless."
+   },
+   {
+    "t0": 31.28,
+    "t1": 36.56,
+    "text": "As soon as they entered the room of the great knife, the buliru gave a yellow disappointment."
+   },
+   {
+    "t0": 36.56,
+    "t1": 41.44,
+    "text": "The room of the great knife was high and big, and around it ran rows of benches for the"
+   },
+   {
+    "t0": 41.44,
+    "t1": 42.44,
+    "text": "spectacles."
+   },
+   {
+    "t0": 42.44,
+    "t1": 46.92,
+    "text": "To fade away like morning beauty from her mortal life, down by the river, was a raised platform"
+   },
+   {
+    "t0": 46.92,
+    "t1": 47.92,
+    "text": "for the loyal family."
+   },
+   {
+    "t0": 47.92,
+    "t1": 53.44,
+    "text": "Her soft voice is heard, and thus her gentle lamentation falls, like literally a poster"
+   },
+   {
+    "t0": 53.44,
+    "t1": 56.6,
+    "text": "chairs for the son of those who said, \"Oh, life of this arse spring!"
+   },
+   {
+    "t0": 56.6,
+    "t1": 59.52,
+    "text": "Why fades the lotus of the want?"
+   },
+   {
+    "t0": 59.52,
+    "t1": 62.68,
+    "text": "Why fade these children of the spring?"
+   },
+   {
+    "t0": 62.68,
+    "t1": 66.92,
+    "text": "They hoped there would be stew for dinner, turnips and carrots and brews, and the royal"
+   },
+   {
+    "t0": 66.92,
+    "t1": 70.68,
+    "text": "ladies were fully as gorgeous as the world haughty and overbearing.\""
+   }
+  ]
+ },
+ "8555-284447-0000|snr0": {
+  "passage_id": "8555-284447-0000",
+  "cond": "snr0",
+  "snr_target": 0,
+  "dur_s": 70.68,
+  "wall_s": 1.735,
+  "n_segments": 16,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 5.2,
+    "text": "Here she was staying, comforted in portyard, shouting mouths and foolish soldiers and threats."
+   },
+   {
+    "t0": 5.2,
+    "t1": 7.68,
+    "text": "A joyous patch could be both turned in the guards of the salemos."
+   },
+   {
+    "t0": 7.68,
+    "t1": 12.04,
+    "text": "Who since Pauli's first rapturous entrance, had taken her into his good graces for all time?"
+   },
+   {
+    "t0": 12.04,
+    "t1": 16.86,
+    "text": "And as soon as I've had my coffee and milk, I'll take him to the room with a great knife"
+   },
+   {
+    "t0": 16.86,
+    "t1": 17.86,
+    "text": "and patch him."
+   },
+   {
+    "t0": 17.86,
+    "t1": 21.58,
+    "text": "I wouldn't mind a couple of them, I'm so sad as I can, Bill."
+   },
+   {
+    "t0": 21.58,
+    "t1": 26.86,
+    "text": "I've had considerable exercise this morning, and I'm all ready for breakfast, 'cause that"
+   },
+   {
+    "t0": 26.86,
+    "t1": 32.42,
+    "text": "Bill made me such a team, knowing it would be useless, as soon as they entered the room"
+   },
+   {
+    "t0": 32.42,
+    "t1": 36.56,
+    "text": "of the great knife, the buluru gave a yell of disappointment."
+   },
+   {
+    "t0": 36.56,
+    "t1": 41.52,
+    "text": "The room of the great knife was high and bid, and around her round rose a bit, to fade away"
+   },
+   {
+    "t0": 41.52,
+    "t1": 44.4,
+    "text": "like morning beauty from her morning day."
+   },
+   {
+    "t0": 44.4,
+    "t1": 51.04,
+    "text": "Down by the river of Adana, her soft voice is heard, and thus her gentle lamentation"
+   },
+   {
+    "t0": 51.04,
+    "t1": 59.48,
+    "text": "falls like morning deels, oh, life of this arse spring, why fades the lotus of the want,"
+   },
+   {
+    "t0": 59.48,
+    "t1": 62.64,
+    "text": "why fade these children of the spring."
+   },
+   {
+    "t0": 62.64,
+    "t1": 67.44,
+    "text": "They hoped there would be stew for dinner, turnips and carrots and brews, potatoes and"
+   },
+   {
+    "t0": 67.44,
+    "t1": 70.68,
+    "text": "Nothing but a place to be ladled out, thick peppered."
+   }
+  ]
+ },
+ "8555-284447-0000|snr-5": {
+  "passage_id": "8555-284447-0000",
+  "cond": "snr-5",
+  "snr_target": -5,
+  "dur_s": 70.68,
+  "wall_s": 1.163,
+  "n_segments": 7,
+  "segments": [
+   {
+    "t0": 0.0,
+    "t1": 13.0,
+    "text": "Here she was staying comforted and sued among the lovely plants and rich exotics, rejoicing the heart of both Turner, the Gardener, who since Paul is first rapturous entrance had taken her into his good graces for all time."
+   },
+   {
+    "t0": 13.0,
+    "t1": 21.0,
+    "text": "Every chance she could steal after practice hours were over and after the glamorous demands of the boys on her time were fully satisfied."
+   },
+   {
+    "t0": 21.0,
+    "t1": 48.0,
+    "text": "To fade away like morning beauty from her mortal day, down by the river of Adana, her soft voice is heard."
+   },
+   {
+    "t0": 48.0,
+    "t1": 53.0,
+    "text": "And thus her gentle lamentation falls like morning do's."
+   },
+   {
+    "t0": 53.0,
+    "t1": 58.0,
+    "text": "O life of this arse spring, why fades the lotus of the water?"
+   },
+   {
+    "t0": 58.0,
+    "t1": 62.0,
+    "text": "Why fade these children of the spring?"
+   },
+   {
+    "t0": 62.0,
+    "t1": 71.0,
+    "text": "He hoped there would be stew for dinner, turnips and carrots and brews, potatoes and fat button pieces to be ladled out in thick pepper dough."
+   }
+  ]
+ }
+}
