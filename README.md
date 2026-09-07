@@ -5,6 +5,25 @@
 
 Winnow is a hackathon project that compresses live speech transcripts in real time before they reach an LLM, demonstrably without losing meaning. Spoken language is verbose; LLM input tokens cost money. Winnow shows you the savings, the diff, and a side-by-side fidelity audit, then lets you talk to the compressed transcript through a Claude-Projects-style workspace.
 
+Its GPU systems track now includes a profile-guided TurboQuant runtime planner:
+given a tensor shape, GPU fingerprint, numerical error budget, and installed
+backends, it selects among PyTorch, Triton, and native CUDA only inside the
+envelope supported by retained measurements. Unknown GPUs and unsupported
+shapes fall back to PyTorch.
+
+The planner can be inspected without credentials, a GPU, or model downloads:
+
+```bash
+python3 turboquant_kv/dispatch_report.py
+```
+
+That check holds out 18 of 48 A6000 shapes across 4-bit and 6-bit profiles,
+measures dispatcher overhead,
+and exercises three fallback controls. The most useful negative result remains
+visible: at the largest matched shape the native CUDA kernel was **8.12x slower**
+than Triton TF32, while unquantized fp16 beat every quantized arm in the
+end-to-end decode study. See [`turboquant_kv/README.md`](turboquant_kv/README.md).
+
 ---
 
 ## What it does
