@@ -1,0 +1,20 @@
+{
+  "triton_fp32": {
+    "n_regs": 40,
+    "n_spills": 2048,
+    "shared": 98304,
+    "num_warps": 4,
+    "num_stages": 2,
+    "name": "_tq_dequant_kernel",
+    "cubin": "triton_fp32.cubin"
+  },
+  "triton_tf32": {
+    "n_regs": 166,
+    "n_spills": 0,
+    "shared": 98304,
+    "num_warps": 4,
+    "num_stages": 2,
+    "name": "_tq_dequant_kernel",
+    "cubin": "triton_tf32.cubin"
+  }
+}
