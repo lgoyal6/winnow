@@ -1,0 +1,57 @@
+{
+  "device": {
+    "MAX_THREADS_PER_SM": 1536,
+    "MAX_SHARED_PER_SM": 102400,
+    "REGS_PER_SM": 65536,
+    "WARP_SIZE": 32,
+    "SM_COUNT": 84,
+    "MAX_BLOCKS_PER_SM": 16,
+    "MAX_SHARED_PER_BLOCK_OPTIN": 101376,
+    "MAX_SHARED_PER_BLOCK": 49152,
+    "REGS_PER_BLOCK": 65536
+  },
+  "kernels": [
+    {
+      "label": "native_cuda_fp32",
+      "mangled": "_Z17tq_dequant_kernelILi128ELi6EEvPKhPK6__halfPKfS6_P13__nv_bfloat16iiii",
+      "regs_per_thread": 30,
+      "spill_local_bytes_per_thread": 0,
+      "static_smem_bytes": 4096,
+      "dynamic_smem_bytes": 0,
+      "block_threads": 1024,
+      "warps_per_block": 32,
+      "max_active_blocks_per_sm": 1,
+      "active_warps_per_sm": 32,
+      "max_warps_per_sm": 48,
+      "theoretical_occupancy_pct": 66.67
+    },
+    {
+      "label": "triton_fp32",
+      "mangled": "_tq_dequant_kernel",
+      "regs_per_thread": 40,
+      "spill_local_bytes_per_thread": 8192,
+      "static_smem_bytes": 0,
+      "dynamic_smem_bytes": 98304,
+      "block_threads": 128,
+      "warps_per_block": 4,
+      "max_active_blocks_per_sm": 1,
+      "active_warps_per_sm": 4,
+      "max_warps_per_sm": 48,
+      "theoretical_occupancy_pct": 8.33
+    },
+    {
+      "label": "triton_tf32",
+      "mangled": "_tq_dequant_kernel",
+      "regs_per_thread": 166,
+      "spill_local_bytes_per_thread": 0,
+      "static_smem_bytes": 0,
+      "dynamic_smem_bytes": 98304,
+      "block_threads": 128,
+      "warps_per_block": 4,
+      "max_active_blocks_per_sm": 1,
+      "active_warps_per_sm": 4,
+      "max_warps_per_sm": 48,
+      "theoretical_occupancy_pct": 8.33
+    }
+  ]
+}
