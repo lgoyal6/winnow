@@ -36,9 +36,6 @@ from model_guard import guarded_from_pretrained
 
 CU = ROOT / "turboquant_kv" / "csrc" / "tq_dequant.cu"
 ext = load(name="tq_dequant_cuda_ext", sources=[str(CU)], verbose=False)
-TRITON_FUSED = C._fused_dequant
-
-
 def cuda_fused(packed, norms, centroids, Pi, bw, D, out=None, allow_tf32=False):
     """Same signature as the Triton entry point cache.py already calls, so the
     ONLY difference between arms is which kernel runs."""
@@ -72,9 +69,11 @@ def run(arm, ctx, gen):
         from transformers import DynamicCache
         pkv = DynamicCache()
     else:
-        C._fused_dequant = cuda_fused if arm == "native_cuda_fp32" else TRITON_FUSED
         pkv = C.TQPackedCache(cfg, a.bw, max_cache_len=ctx + gen + 8, device="cuda",
-                              use_kernel=True, allow_tf32=(arm == "triton_tf32"))
+                              use_kernel=True, allow_tf32=(arm == "triton_tf32"),
+                              kernel_backend=arm,
+                              native_kernel=(cuda_fused if arm == "native_cuda_fp32"
+                                             else None))
     # prefill
     torch.cuda.synchronize(); t0 = time.perf_counter()
     # logits_to_keep=1: without it the prefill materialises

@@ -45,6 +45,10 @@ from scipy.stats import norm as _norm
 from transformers.cache_utils import DynamicCache, DynamicLayer
 
 from packing import pack, packed_bytes, unpack
+from dispatch import (
+    Hardware, NumericalContract, Shape, default_dispatcher,
+)
+from native_kernel import existing_native_kernel
 
 try:
     from kernel import tq_dequant as _fused_dequant
@@ -153,13 +157,25 @@ class TQPackedLayer(DynamicLayer):
     def __init__(self, head_dim: int, bit_width: int, device,
                  max_cache_len: int, num_outlier_channels: int = 0,
                  outlier_bits: int = 0, chunk: int = 1024,
-                 use_kernel: bool = True, allow_tf32: bool = True):
+                 use_kernel: bool = True, allow_tf32: bool = True,
+                 kernel_backend: str = "auto", native_kernel=None,
+                 dispatcher=None):
         super().__init__()
         # The fused kernel covers the plain (no outlier channel) path; the
         # outlier variant splits the head dim between two codebooks and still
         # goes through the chunked torch path.
-        self.use_kernel = use_kernel and _fused_dequant is not None
+        self.use_kernel = use_kernel
         self.allow_tf32 = allow_tf32
+        self.kernel_backend = kernel_backend if use_kernel else "torch_fp32"
+        if self.kernel_backend not in {
+            "auto", "torch_fp32", "triton_fp32", "triton_tf32",
+            "native_cuda_fp32",
+        }:
+            raise ValueError(f"unknown kernel_backend={self.kernel_backend!r}")
+        self._native_dequant = native_kernel or existing_native_kernel()
+        self._dispatcher = dispatcher or default_dispatcher()
+        self.last_dispatch_decision = None
+        self._hardware = None
         self._bw = bit_width
         self._hd = head_dim
         self._max = max_cache_len
@@ -181,6 +197,7 @@ class TQPackedLayer(DynamicLayer):
     def lazy_initialization(self, ks: torch.Tensor, vs: torch.Tensor) -> None:
         B, H, _, D = ks.shape
         self.dtype, self.device = ks.dtype, ks.device
+        self._hardware = Hardware.from_torch(torch, self.device)
         dev = ks.device
         def buf(nb):
             return torch.empty(B, H, self._max, nb, dtype=torch.uint8, device=dev)
@@ -225,12 +242,46 @@ class TQPackedLayer(DynamicLayer):
         B, H, D = self._shape
         out = torch.empty(B, H, length, D, dtype=self.dtype, device=self.device)
 
+        backend = "torch_fp32"
         if self.use_kernel and not self._out_dim:
+            if self.kernel_backend == "auto":
+                available = {"torch_fp32"}
+                if _fused_dequant is not None:
+                    available.update({"triton_fp32", "triton_tf32"})
+                if self._native_dequant is not None:
+                    available.add("native_cuda_fp32")
+                contract = (
+                    NumericalContract.quantization_aware()
+                    if self.allow_tf32 else NumericalContract.reference_exact()
+                )
+                decision = self._dispatcher.select(
+                    self._hardware,
+                    Shape(B, H, length, D, self._bw), contract, available,
+                )
+                backend = decision.backend
+                self.last_dispatch_decision = decision
+            else:
+                backend = self.kernel_backend
+
+        if backend in {"triton_fp32", "triton_tf32"}:
+            if _fused_dequant is None:
+                raise RuntimeError(f"requested {backend}, but Triton is unavailable")
             # One launch for the whole history: unpack, gather, rotate and
             # rescale in registers, writing the output dtype directly.
             _fused_dequant(p_r[:, :, :length], n_r[:, :, :length],
                            self._tq.centroids, self._tq.Pi, self._bw, D,
-                           out=out, allow_tf32=self.allow_tf32)
+                           out=out, allow_tf32=(backend == "triton_tf32"))
+            return out
+
+        if backend == "native_cuda_fp32":
+            if self._native_dequant is None:
+                raise RuntimeError(
+                    "requested native_cuda_fp32, but no built extension was provided"
+                )
+            self._native_dequant(
+                p_r[:, :, :length], n_r[:, :, :length],
+                self._tq.centroids, self._tq.Pi, self._bw, D, out=out,
+            )
             return out
 
         for s in range(0, length, self._chunk):
@@ -324,7 +375,9 @@ class TQPackedCache(DynamicCache):
     def __init__(self, config, bit_width: int, max_cache_len: int,
                  device="cuda", num_outlier_channels: int = 0,
                  outlier_bits: int = 0, chunk: int = 1024,
-                 use_kernel: bool = True, allow_tf32: bool = True):
+                 use_kernel: bool = True, allow_tf32: bool = True,
+                 kernel_backend: str = "auto", native_kernel=None,
+                 dispatcher=None):
         head_dim = (getattr(config, "head_dim", None)
                     or config.hidden_size // config.num_attention_heads)
         n_layers = config.num_hidden_layers
@@ -332,7 +385,8 @@ class TQPackedCache(DynamicCache):
         self.layers = [
             TQPackedLayer(head_dim, bit_width, device, max_cache_len,
                           num_outlier_channels, outlier_bits, chunk,
-                          use_kernel, allow_tf32)
+                          use_kernel, allow_tf32, kernel_backend,
+                          native_kernel, dispatcher)
             for _ in range(n_layers)
         ]
         self.bit_width = bit_width
