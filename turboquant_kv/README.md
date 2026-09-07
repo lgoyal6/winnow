@@ -287,7 +287,55 @@ bitwidth_sweep.py  reconstruction error and output parity vs bit width
 diagnose.py        why 4-bit fails: error, kurtosis, clipping, ctx sensitivity
 bench_kernel.py    phase C: correctness gate, shape sweep, losing region
 run_longbench.py   phase B: scored eval across arms
+csrc/tq_dequant.cu  native CUDA transcription of kernel.py, fp32 rotation
+bench_cuda_kernel.py  torch vs triton vs CUDA harness; refuses to time without a GPU
+results/cuda/      raw 24-shape sweeps from the A6000 run, plus the host string
 ```
+
+### The native CUDA arm
+
+`csrc/tq_dequant.cu` was compiled and measured on an RTX A6000 (sm_86, driver
+595.71.05) on 2026-09-05 with CUDA 12.9, torch 2.13.0+cu129 and triton 3.7.1.
+`bench_cuda_kernel.py --check` printed CORRECT. Raw output is in `results/cuda/`.
+
+At the matched headline shape (B=16, H=4, L=16384, N=1048576, D=128,
+bit_width=6) it takes **10548.3 us** against the TF32 Triton arm's **1298.8 us**,
+so it is **8.12x slower** than that arm - and **10.15x faster** than the fp32
+Triton arm at 107047.2 us, which is its actual numeric peer. It is exact where
+TF32 is not: 0.000e+00 max absolute error and 0.000e+00 relative L2 against the
+fp32 PyTorch reference at that shape, where TF32 Triton measures 3.125e-02 and
+2.020e-03. Its worst absolute error over the whole 24-shape sweep is 7.812e-03,
+and exactly 0 from N=2048 upward.
+
+**The 8.12x does not survive a decode step.** Swapping only which kernel
+`TQPackedLayer._load` calls, on Qwen3-0.6B bf16, batch 1, greedy, 32 tokens:
+
+| context | TF32 Triton | native CUDA | fp16, no quantized cache |
+|---|---|---|---|
+| 2048 | 65.651 ms/tok | **64.095** | 36.010 |
+| 8192 | 66.241 ms/tok | **64.483** | 36.366 |
+| 16384 | **66.262** ms/tok | 88.950 | 36.708 |
+
+The CUDA arm is faster end to end at ctx 2048 and 8192; only at 16384 does a gap
+appear, and it is 1.34x, not 8.12x. A batch-1 eager decode loop is launch-bound,
+so only about 35% of the extra GPU work (64.3 ms/pass) becomes extra wall time
+(22.7 ms/token). Note also that the unquantized fp16 cache beats every quantized
+arm at every context length here.
+
+**Why it loses the microbenchmark**, from static counts and the driver occupancy
+API rather than hardware counters - Nsight Compute could not be used on that box
+(`RmProfilingAdminOnly=1`, no root, so `ncu` returns `ERR_NVGPUCTRPERM`):
+
+- not occupancy: 66.67% for this kernel against 8.33% for both Triton arms
+- not coalescing: breaking it deliberately costs a further 10.9x
+- not DRAM bandwidth: 35.2 GB/s of a measured 683.4 GB/s peak, 5.15%
+- it is instruction issue: 0 MMA and 8 FFMA here against 256 HMMA and 0 FFMA for
+  the TF32 arm, i.e. 32 MACs per issued instruction against 1024, plus one
+  global load of `Pi` per FMA against one per 1310 MACs
+
+The fp32 Triton arm's 12.6x loss to PyTorch is now explained too: it spills its
+accumulator (8192 spill bytes per thread, 8259 LDL + 1976 STL), so that was
+Triton's fp32 dot, not the fusion idea.
 
 ## Commands
 
@@ -301,6 +349,8 @@ python bench_kernel.py --bw 6 --tf32
 python bench_kernel.py --bw 6            # fp32, exact and slower
 python run_longbench.py --per-bucket 10
 python run_longbench.py --per-bucket 10 --no-kernel   # phase C gate
+python bench_cuda_kernel.py --check-bits             # CPU: CUDA kernel index math
+python bench_cuda_kernel.py --check --bench --bw 6   # needs a GPU; see results/cuda/
 ```
 
 Every GPU job on the shared box goes through a `flock` wrapper. Two benchmarks
