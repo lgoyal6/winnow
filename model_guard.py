@@ -54,12 +54,30 @@ import hashlib
 import json
 import os
 import pickletools
+import warnings
 import zipfile
 from typing import Dict, Mapping, Optional, Sequence
 
 
 class ArtifactRejected(Exception):
     """An artifact failed verification and must not be activated."""
+
+
+class VerifiedSnapshot(str):
+    """A local snapshot path whose bytes passed `verify_hf_snapshot`."""
+
+    def __new__(cls, path: str, model_id: str, manifest: Mapping):
+        value = super().__new__(cls, path)
+        value.model_id = model_id
+        value.manifest = dict(manifest)
+        return value
+
+    def __reduce__(self):
+        """Keep provenance attached when libraries deepcopy their arguments."""
+        return type(self), (str(self), self.model_id, self.manifest)
+
+
+_ACTIVE_MODELS: Dict[tuple, object] = {}
 
 
 # --------------------------------------------------------------------------- #
@@ -72,11 +90,11 @@ REVISIONS: Dict[str, str] = {
         "ebaba9b0e874dadd3003ffcff828e4397e568089",
     "BAAI/bge-reranker-v2-m3": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
     "BAAI/bge-small-en-v1.5": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+    "Qwen/Qwen3-0.6B": "c1899de289a04d12100db370d81485cdf75e47ca",
     "Qwen/Qwen2.5-7B-Instruct": "a09a35458c702b33eeacc393d103063234e8bc28",
     "Qwen/Qwen2.5-14B-Instruct": "cf98f3b3bbb457ad9e2bb7baf9a0125b6b88caa8",
     "mistralai/Mistral-7B-Instruct-v0.3": "c170c708c41dac9275d15a8fff4eca08d52bab71",
 }
-
 
 def pinned_revision(model_id: str) -> str:
     """Return the pinned commit SHA for `model_id`, or refuse.
@@ -110,7 +128,14 @@ def guarded_kwargs(model_id: str, **kwargs) -> dict:
             f"use_safetensors=False on {model_id!r} allows the pickled .bin "
             "checkpoint path; refused"
         )
-    kwargs["revision"] = kwargs.get("revision") or pinned_revision(model_id)
+    pinned = pinned_revision(model_id)
+    requested = kwargs.get("revision")
+    if requested is not None and requested != pinned:
+        raise ArtifactRejected(
+            f"{model_id!r} must use pinned revision {pinned}; "
+            f"caller requested {requested!r}"
+        )
+    kwargs["revision"] = pinned
     kwargs["use_safetensors"] = True
     kwargs["trust_remote_code"] = False
     return kwargs
@@ -124,9 +149,45 @@ def guarded_from_pretrained(loader, model_id: str, **kwargs):
     them; the revision pin and the remote-code refusal still apply.
     """
     kw = guarded_kwargs(model_id, **kwargs)
-    if "Tokenizer" in getattr(loader, "__name__", ""):
-        kw.pop("use_safetensors", None)
-    return loader.from_pretrained(model_id, **kw)
+    is_tokenizer = "Tokenizer" in getattr(loader, "__name__", "")
+    download_kwargs = {
+        key: kw.pop(key)
+        for key in ("cache_dir", "token", "local_files_only", "force_download")
+        if key in kw
+    }
+    activation_key = (
+        model_id,
+        getattr(loader, "__module__", ""),
+        getattr(loader, "__qualname__", getattr(loader, "__name__", "")),
+    )
+    previous = None if is_tokenizer else _ACTIVE_MODELS.get(activation_key)
+    try:
+        snapshot_dir = verified_snapshot_download(
+            model_id, include_weights=not is_tokenizer, **download_kwargs
+        )
+        kw.pop("revision", None)
+        kw["local_files_only"] = True
+        if is_tokenizer:
+            kw.pop("use_safetensors", None)
+            return loader.from_pretrained(snapshot_dir, **kw)
+
+        candidate = loader.from_pretrained(snapshot_dir, **kw)
+        return activate_loaded_model(
+            snapshot_dir,
+            candidate,
+            activation_key=activation_key,
+            previous=previous,
+        )
+    except ArtifactRejected as exc:
+        if previous is not None:
+            warnings.warn(
+                f"replacement for {model_id!r} was rejected; keeping the "
+                f"previous model active: {exc}",
+                RuntimeWarning,
+                stacklevel=2,
+            )
+            return previous
+        raise
 
 
 # --------------------------------------------------------------------------- #
@@ -393,18 +454,56 @@ class KnownGood:
     def current(self, model_id: str) -> Optional[dict]:
         return self._data.get(model_id)
 
-    def activate(self, snapshot_dir: str, manifest: Mapping) -> dict:
-        """Verify `snapshot_dir` against `manifest`, then promote it.
+    def activate(
+        self,
+        snapshot_dir: str,
+        manifest: Optional[Mapping] = None,
+        *,
+        state: Optional[Mapping] = None,
+    ) -> dict:
+        """Validate a candidate completely, then atomically promote its record.
 
-        On failure the exception propagates and nothing is written.
+        A `VerifiedSnapshot` is the production path. Its bytes already passed
+        the Hugging Face manifest check, and `state` must now pass the persisted
+        tensor schema plus the finite-value check. Plain paths retain the small
+        generic-manifest path used by callers outside Hugging Face.
         """
+        if isinstance(snapshot_dir, VerifiedSnapshot):
+            if state is None:
+                raise ArtifactRejected("verified model activation requires tensor state")
+            model_id = snapshot_dir.model_id
+            candidate_spec = _tensor_spec(state)
+            current = self.current(model_id)
+            expected_spec = current.get("tensor_spec") if current else None
+            validate_tensors(state, expected_spec or candidate_spec)
+            record = dict(snapshot_dir.manifest)
+            record["model_id"] = model_id
+            record["tensor_spec"] = candidate_spec
+            return self.promote_verified(record)
+
+        if state is not None:
+            raise ArtifactRejected("tensor activation requires a VerifiedSnapshot")
+        if manifest is None:
+            raise ArtifactRejected("plain snapshot activation requires a manifest")
         verify_snapshot(snapshot_dir, manifest)
-        self._data[manifest["model_id"]] = dict(manifest)
+        return self.promote_verified(manifest)
+
+    def promote_verified(self, record: Mapping) -> dict:
+        """Persist a record after the caller completed artifact and tensor checks.
+
+        This is intentionally separate from `activate`, whose generic manifest
+        verifier does not understand Hugging Face git blob ids. Product code may
+        call this only through `KnownGood.activate`.
+        """
+        model_id = record["model_id"]
+        self._data[model_id] = dict(record)
+        parent = os.path.dirname(os.path.abspath(self.path))
+        os.makedirs(parent, exist_ok=True)
         tmp = f"{self.path}.tmp"
         with open(tmp, "w") as fh:
             json.dump(self._data, fh, indent=2, sort_keys=True)
         os.replace(tmp, self.path)  # atomic: never leave a half-written store
-        return dict(manifest)
+        return dict(record)
 
 
 # --------------------------------------------------------------------------- #
@@ -426,27 +525,248 @@ def llmlingua_model_config(model_id: str, **extra) -> dict:
     model directory ships - and here that directory is a mutable cache volume.
     Passing this dict turns it off and pins the revision.
     """
-    cfg = {"trust_remote_code": False, "revision": pinned_revision(model_id)}
+    cfg = {
+        "trust_remote_code": False,
+        "revision": pinned_revision(model_id),
+        "local_files_only": True,
+    }
     cfg.update(extra)
     if cfg.get("trust_remote_code"):
         raise ArtifactRejected(
             f"trust_remote_code=True on {model_id!r} executes repo-supplied "
             "Python at load time; refused"
         )
+    if cfg.get("local_files_only") is not True:
+        raise ArtifactRejected(
+            f"local_files_only=False on {model_id!r} could bypass the verified "
+            "snapshot; refused"
+        )
+    if cfg.get("revision") != pinned_revision(model_id):
+        raise ArtifactRejected(
+            f"{model_id!r} must use pinned revision {pinned_revision(model_id)}; "
+            f"caller requested {cfg.get('revision')!r}"
+        )
     return cfg
 
 
-def pinned_snapshot_download(model_id: str, **kwargs):
+def pinned_snapshot_download(model_id: str, *, include_weights: bool = True, **kwargs):
     """`huggingface_hub.snapshot_download` at the pinned revision.
 
     Without a revision the download resolves `main`, so a cache that was
     populated last month and one populated today can hold different weights
     under the same name.
     """
+    pinned = pinned_revision(model_id)
+    requested = kwargs.get("revision")
+    if requested is not None and requested != pinned:
+        raise ArtifactRejected(
+            f"{model_id!r} must use pinned revision {pinned}; "
+            f"caller requested {requested!r}"
+        )
+
+    manifest = artifact_manifest(model_id)
+    requested_patterns = kwargs.get("allow_patterns")
+    expected_patterns = sorted(
+        path for path in manifest["files"]
+        if include_weights or ".safetensors" not in path
+    )
+    if requested_patterns is not None and sorted(requested_patterns) != expected_patterns:
+        raise ArtifactRejected(
+            f"{model_id!r} allow_patterns must exactly match the reviewed manifest"
+        )
+
     from huggingface_hub import snapshot_download
 
-    kwargs.setdefault("revision", pinned_revision(model_id))
+    kwargs["revision"] = pinned
+    kwargs["allow_patterns"] = expected_patterns
     return snapshot_download(model_id, **kwargs)
+
+
+def artifact_manifest(model_id: str) -> dict:
+    """Return the checked-in content manifest for one reviewed model."""
+    try:
+        from model_artifacts import ARTIFACT_MANIFEST
+
+        manifest = ARTIFACT_MANIFEST["models"][model_id]
+    except (ImportError, KeyError, TypeError, ValueError) as exc:
+        raise ArtifactRejected(
+            f"no readable artifact manifest for {model_id!r}: {exc}"
+        ) from None
+    pinned = pinned_revision(model_id)
+    if manifest.get("revision") != pinned:
+        raise ArtifactRejected(
+            f"artifact manifest for {model_id!r} names revision "
+            f"{manifest.get('revision')!r}, expected {pinned}"
+        )
+    return manifest
+
+
+def _git_blob_oid(path: str) -> str:
+    size = os.path.getsize(path)
+    digest = hashlib.sha1()
+    digest.update(f"blob {size}\0".encode())
+    with open(path, "rb") as fh:
+        for block in iter(lambda: fh.read(1 << 20), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def verify_hf_snapshot(
+    snapshot_dir: str,
+    model_id: str,
+    manifest: Optional[Mapping] = None,
+    *,
+    include_weights: bool = True,
+) -> None:
+    """Verify the exact files a Transformers loader may consume.
+
+    The trust root is the checked-in manifest gathered from the pinned Hub
+    commit. LFS entries carry their content sha256; regular git entries carry
+    their git blob object id. Both are recomputed from local cache bytes before
+    the cache path is passed to Transformers.
+    """
+    expected_revision = pinned_revision(model_id)
+    manifest = dict(manifest or artifact_manifest(model_id))
+    if manifest.get("revision") != expected_revision:
+        raise ArtifactRejected(
+            f"manifest revision {manifest.get('revision')!r} does not match "
+            f"pinned revision {expected_revision}"
+        )
+
+    resolved = os.path.realpath(snapshot_dir)
+    if os.path.basename(resolved) != expected_revision:
+        raise ArtifactRejected(
+            f"{snapshot_dir}: resolved snapshot is not pinned revision "
+            f"{expected_revision}"
+        )
+
+    reviewed = manifest.get("files", {})
+    expected = {
+        path: digest for path, digest in reviewed.items()
+        if include_weights or ".safetensors" not in path
+    }
+    for rel, wanted in expected.items():
+        path = os.path.join(snapshot_dir, rel)
+        if not os.path.isfile(path):
+            raise ArtifactRejected(f"{snapshot_dir}: missing reviewed file {rel}")
+        size = os.path.getsize(path)
+        if size != wanted["bytes"]:
+            raise ArtifactRejected(
+                f"{snapshot_dir}: {rel} is {size} bytes, manifest says "
+                f"{wanted['bytes']}"
+            )
+        if "sha256" in wanted:
+            got = sha256_file(path)
+            if got != wanted["sha256"]:
+                raise ArtifactRejected(
+                    f"{snapshot_dir}: {rel} sha256 {got[:12]}... != manifest "
+                    f"{wanted['sha256'][:12]}..."
+                )
+        elif "git_oid" in wanted:
+            got = _git_blob_oid(path)
+            if got != wanted["git_oid"]:
+                raise ArtifactRejected(
+                    f"{snapshot_dir}: {rel} git blob {got[:12]}... != manifest "
+                    f"{wanted['git_oid'][:12]}..."
+                )
+        else:
+            raise ArtifactRejected(f"{rel}: manifest entry has no digest")
+
+    loadable_suffixes = (
+        ".json", ".txt", ".model", ".tiktoken", ".safetensors",
+        ".bin", ".pt", ".pth", ".ckpt", ".py",
+    )
+    for root, _dirs, names in os.walk(snapshot_dir):
+        for name in names:
+            rel = os.path.relpath(os.path.join(root, name), snapshot_dir)
+            if rel.endswith(loadable_suffixes) and rel not in reviewed:
+                raise ArtifactRejected(
+                    f"{snapshot_dir}: unreviewed loadable file {rel}; refused"
+                )
+    if include_weights:
+        assert_no_pickled_weights(snapshot_dir)
+
+
+def verified_snapshot_download(
+    model_id: str, *, include_weights: bool = True, **kwargs
+) -> VerifiedSnapshot:
+    """Download only reviewed files, verify their bytes, then return the path."""
+    snapshot_dir = pinned_snapshot_download(
+        model_id, include_weights=include_weights, **kwargs
+    )
+    verify_hf_snapshot(snapshot_dir, model_id, include_weights=include_weights)
+    return VerifiedSnapshot(snapshot_dir, model_id, artifact_manifest(model_id))
+
+
+def _tensor_spec(state: Mapping) -> dict:
+    if not state:
+        raise ArtifactRejected("loaded model exposes an empty state dict")
+    order = list(state.keys())
+    tensors = {}
+    for name in order:
+        tensor = state[name]
+        shape = tuple(getattr(tensor, "shape", ()))
+        if not shape:
+            raise ArtifactRejected(f"{name}: tensor has no declared shape")
+        tensors[name] = {
+            "shape": [int(value) for value in shape],
+            "dtype": _dtype_name(tensor),
+        }
+    return {"order": order, "tensors": tensors}
+
+
+def _known_good_path() -> str:
+    configured = os.environ.get("WINNOW_KNOWN_GOOD_PATH")
+    if configured:
+        return configured
+    hf_home = os.environ.get("HF_HOME", os.path.expanduser("~/.cache/huggingface"))
+    return os.path.join(hf_home, "winnow-known-good.json")
+
+
+def activate_loaded_model(
+    snapshot: VerifiedSnapshot,
+    candidate,
+    *,
+    tensor_owner=None,
+    activation_key=None,
+    previous=None,
+):
+    """Validate loaded tensors, persist known-good state, then publish candidate.
+
+    `snapshot` can only come from `verified_snapshot_download`. `tensor_owner`
+    handles wrappers such as LLMLingua whose actual torch module is `.model`.
+    A rejected replacement returns the prior in-process object when one exists;
+    otherwise it fails closed. The persisted known-good record is never changed
+    by a rejected candidate, so a cold process retains an operator-visible
+    rollback target even though Python model objects themselves are not portable.
+    """
+    if not isinstance(snapshot, VerifiedSnapshot):
+        raise ArtifactRejected("activation requires a verified snapshot")
+    model_id = snapshot.model_id
+    key = activation_key or (model_id, type(candidate).__module__, type(candidate).__name__)
+    previous = previous if previous is not None else _ACTIVE_MODELS.get(key)
+    source = tensor_owner if tensor_owner is not None else candidate
+
+    try:
+        state_dict = getattr(source, "state_dict", None)
+        if not callable(state_dict):
+            raise ArtifactRejected("loaded model exposes no state_dict for validation")
+        state = state_dict()
+        known_good = KnownGood(_known_good_path())
+        known_good.activate(snapshot, state=state)
+    except ArtifactRejected as exc:
+        if previous is not None:
+            warnings.warn(
+                f"replacement for {model_id!r} was rejected; keeping the "
+                f"previous model active: {exc}",
+                RuntimeWarning,
+                stacklevel=2,
+            )
+            return previous
+        raise
+
+    _ACTIVE_MODELS[key] = candidate
+    return candidate
 
 
 def assert_no_pickled_weights(snapshot_dir: str) -> Sequence[str]:

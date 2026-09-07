@@ -56,7 +56,7 @@ hf = [
 Homepage = "https://github.com/lgoyal6/winnow"
 
 [tool.setuptools]
-py-modules = ["model_guard", "token_merge"]
+py-modules = ["model_artifacts", "model_guard", "token_merge"]
 
 [tool.setuptools.packages.find]
 include = ["attentionrag*"]

@@ -39,7 +39,7 @@ image = (
     # both read/write the standard HF cache layout there.
     .env({"HF_HOME": CACHE_DIR, "HF_HUB_ENABLE_HF_TRANSFER": "1"})
     # Ship our local two-stage logic and the artifact guard into the image.
-    .add_local_python_source("two_stage_compressor", "model_guard")
+    .add_local_python_source("two_stage_compressor", "model_artifacts", "model_guard")
 )
 
 app = modal.App("llmlingua2-xlm", image=image)
@@ -67,25 +67,35 @@ class Compressor:
         #
         # Populate-once-then-read: downloads only if the volume is empty,
         # otherwise this resolves straight from the cached volume.
-        from model_guard import (assert_no_pickled_weights,
-                                 llmlingua_model_config,
-                                 pinned_snapshot_download)
+        from model_guard import (
+            activate_loaded_model,
+            llmlingua_model_config,
+            verified_snapshot_download,
+        )
 
         # Pinned revisions: without one this resolves `main`, so the same model
         # name can mean different bytes on a volume that is never re-downloaded.
-        for name in (MODEL_NAME, RERANKER_NAME):
-            assert_no_pickled_weights(pinned_snapshot_download(name))
+        snapshots = {
+            name: verified_snapshot_download(name)
+            for name in (MODEL_NAME, RERANKER_NAME)
+        }
         hf_cache_vol.commit()  # persist any newly downloaded files to the volume
 
         from llmlingua import PromptCompressor
 
-        self.compressor = PromptCompressor(
-            model_name=MODEL_NAME,
+        candidate = PromptCompressor(
+            model_name=snapshots[MODEL_NAME],
             use_llmlingua2=True,
             device_map="cuda",
             # llmlingua 0.2.2 defaults trust_remote_code to True and forwards it
             # into AutoConfig/AutoTokenizer/AutoModel. See model_guard.
-            model_config=llmlingua_model_config(MODEL_NAME),
+            model_config=llmlingua_model_config(MODEL_NAME, local_files_only=True),
+        )
+        self.compressor = activate_loaded_model(
+            snapshots[MODEL_NAME],
+            candidate,
+            tensor_owner=candidate.model,
+            activation_key=(MODEL_NAME, "llmlingua"),
         )
 
         # Coarse-stage reranker (raw transformers cross-encoder; see module docs
@@ -93,6 +103,7 @@ class Compressor:
         from two_stage_compressor import CrossEncoderReranker
 
         self.reranker = CrossEncoderReranker(RERANKER_NAME, device="cuda", use_fp16=True)
+        hf_cache_vol.commit()
 
     @modal.method()
     def compress(self, text: str, rate: float = 0.5, return_labels: bool = False):

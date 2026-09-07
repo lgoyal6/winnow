@@ -21,19 +21,26 @@ import shutil
 import sys
 import tempfile
 import types
+import warnings
 import zipfile
 
 from model_guard import (
     ArtifactRejected,
     KnownGood,
+    VerifiedSnapshot,
+    activate_loaded_model,
+    artifact_manifest,
     assert_no_pickled_weights,
     build_manifest,
+    guarded_from_pretrained,
     guarded_kwargs,
     llmlingua_model_config,
+    pinned_snapshot_download,
     pinned_revision,
     scan_checkpoint,
     scan_pickle,
     validate_tensors,
+    verify_hf_snapshot,
     verify_snapshot,
 )
 
@@ -192,6 +199,15 @@ def test_every_model_id_used_in_the_repo_has_a_pin():
     assert not missing, f"model ids used in the repo with no pinned revision: {missing}"
 
 
+def test_every_pinned_model_has_a_matching_artifact_manifest():
+    from model_guard import REVISIONS
+
+    for model_id, revision in REVISIONS.items():
+        manifest = artifact_manifest(model_id)
+        assert manifest["revision"] == revision
+        assert manifest["files"], model_id
+
+
 def test_guarded_kwargs_forces_the_flags_and_refuses_opt_out():
     kw = guarded_kwargs("BAAI/bge-small-en-v1.5")
     assert kw["revision"] == pinned_revision("BAAI/bge-small-en-v1.5")
@@ -203,15 +219,41 @@ def test_guarded_kwargs_forces_the_flags_and_refuses_opt_out():
             use_safetensors=False)
 
 
+def test_guarded_kwargs_refuses_revision_override():
+    msg = _raises(
+        ArtifactRejected,
+        guarded_kwargs,
+        "BAAI/bge-small-en-v1.5",
+        revision="main",
+    )
+    assert "pinned revision" in msg, msg
+
+
+def test_all_revision_entry_points_refuse_override_before_network():
+    model = "BAAI/bge-small-en-v1.5"
+    assert "pinned revision" in _raises(
+        ArtifactRejected, pinned_snapshot_download, model, revision="main"
+    )
+    assert "pinned revision" in _raises(
+        ArtifactRejected, llmlingua_model_config,
+        "microsoft/llmlingua-2-xlm-roberta-large-meetingbank",
+        revision="main",
+    )
+
+
 def test_llmlingua_model_config_turns_remote_code_off_and_pins():
     """llmlingua 0.2.2 defaults trust_remote_code to True; this is the opt-out."""
     cfg = llmlingua_model_config("microsoft/llmlingua-2-xlm-roberta-large-meetingbank")
     assert cfg["trust_remote_code"] is False
+    assert cfg["local_files_only"] is True
     assert cfg["revision"] == pinned_revision(
         "microsoft/llmlingua-2-xlm-roberta-large-meetingbank")
     _raises(ArtifactRejected, llmlingua_model_config,
             "microsoft/llmlingua-2-xlm-roberta-large-meetingbank",
             trust_remote_code=True)
+    _raises(ArtifactRejected, llmlingua_model_config,
+            "microsoft/llmlingua-2-xlm-roberta-large-meetingbank",
+            local_files_only=False)
 
 
 # --------------------------------------------------------------------------- #
@@ -262,6 +304,148 @@ def test_assert_no_pickled_weights():
         _write(os.path.join(d, "pytorch_model.bin"), b"pickled")
         msg = _raises(ArtifactRejected, assert_no_pickled_weights, d)
         assert "pytorch_model.bin" in msg, msg
+
+
+def test_hf_snapshot_digest_verification_and_negative_controls():
+    model = "BAAI/bge-small-en-v1.5"
+    revision = pinned_revision(model)
+    with _tmpdir() as root:
+        snapshot = os.path.join(root, revision)
+        _write(os.path.join(snapshot, "config.json"), b'{"hidden_size":8}')
+        _write(os.path.join(snapshot, "model.safetensors"), b"safe-weights")
+        manifest = {
+            "revision": revision,
+            "files": {
+                "config.json": {
+                    "bytes": os.path.getsize(os.path.join(snapshot, "config.json")),
+                    "git_oid": _git_blob_for_test(os.path.join(snapshot, "config.json")),
+                },
+                "model.safetensors": {
+                    "bytes": len(b"safe-weights"),
+                    "sha256": __import__("hashlib").sha256(b"safe-weights").hexdigest(),
+                },
+            },
+        }
+        verify_hf_snapshot(snapshot, model, manifest)
+
+        _write(os.path.join(snapshot, "model.safetensors"), b"evil-weights")
+        assert "sha256" in _raises(
+            ArtifactRejected, verify_hf_snapshot, snapshot, model, manifest
+        )
+        _write(os.path.join(snapshot, "model.safetensors"), b"safe-weights")
+        _write(os.path.join(snapshot, "modeling_remote.py"), b"raise SystemExit")
+        assert "unreviewed loadable file" in _raises(
+            ArtifactRejected, verify_hf_snapshot, snapshot, model, manifest
+        )
+
+
+def test_guarded_loader_does_not_activate_a_rejected_snapshot():
+    import model_guard
+
+    calls = []
+
+    class Loader:
+        @classmethod
+        def from_pretrained(cls, path, **kwargs):
+            calls.append((path, kwargs))
+
+    original = model_guard.verified_snapshot_download
+    model_guard.verified_snapshot_download = lambda *_a, **_k: (_ for _ in ()).throw(
+        ArtifactRejected("tampered snapshot")
+    )
+    try:
+        assert "tampered snapshot" in _raises(
+            ArtifactRejected,
+            guarded_from_pretrained,
+            Loader,
+            "BAAI/bge-small-en-v1.5",
+        )
+    finally:
+        model_guard.verified_snapshot_download = original
+    assert calls == [], "loader activated after the snapshot guard rejected it"
+
+
+def test_verified_snapshot_survives_deepcopy_with_provenance():
+    import copy
+
+    snapshot = VerifiedSnapshot(
+        "/verified/revision", "owner/model", {"revision": "revision", "files": {}}
+    )
+    copied = copy.deepcopy(snapshot)
+    assert copied == snapshot
+    assert copied.model_id == snapshot.model_id
+    assert copied.manifest == snapshot.manifest
+
+
+def test_actual_loader_rejects_bad_tensors_and_keeps_previous_model_active():
+    """Exercise the production wrapper, not just validate_tensors in isolation."""
+    import model_guard
+
+    model_id = "BAAI/bge-small-en-v1.5"
+    revision = pinned_revision(model_id)
+    candidates = []
+
+    class Loaded:
+        def __init__(self, tensor):
+            self.tensor = tensor
+
+        def state_dict(self):
+            return collections.OrderedDict([("weight", self.tensor)])
+
+    class AutoModel:
+        @classmethod
+        def from_pretrained(cls, path, **kwargs):
+            assert path == os.path.join("/verified", revision)
+            assert kwargs["local_files_only"] is True
+            return candidates.pop(0)
+
+    snapshot = VerifiedSnapshot(
+        os.path.join("/verified", revision),
+        model_id,
+        {"revision": revision, "files": {}},
+    )
+    activation_key = (model_id, AutoModel.__module__, AutoModel.__qualname__)
+    original_download = model_guard.verified_snapshot_download
+    old_store = os.environ.get("WINNOW_KNOWN_GOOD_PATH")
+
+    with _tmpdir() as d:
+        store_path = os.path.join(d, "known-good.json")
+        os.environ["WINNOW_KNOWN_GOOD_PATH"] = store_path
+        model_guard.verified_snapshot_download = lambda *_a, **_k: snapshot
+        try:
+            good = Loaded(FakeTensor([2], values=[0.25, 0.75]))
+            candidates.append(good)
+            assert guarded_from_pretrained(AutoModel, model_id) is good
+            baseline = open(store_path, "rb").read()
+
+            nonfinite = Loaded(FakeTensor([2], values=[0.25, float("nan")]))
+            candidates.append(nonfinite)
+            with warnings.catch_warnings(record=True) as caught:
+                warnings.simplefilter("always")
+                assert guarded_from_pretrained(AutoModel, model_id) is good
+            assert any("contains NaN or Inf" in str(w.message) for w in caught), caught
+            assert open(store_path, "rb").read() == baseline
+
+            malformed = Loaded(FakeTensor([3], values=[0.1, 0.2, 0.3]))
+            candidates.append(malformed)
+            with warnings.catch_warnings(record=True) as caught:
+                warnings.simplefilter("always")
+                assert guarded_from_pretrained(AutoModel, model_id) is good
+            assert any("shape" in str(w.message) for w in caught), caught
+            assert open(store_path, "rb").read() == baseline
+        finally:
+            model_guard.verified_snapshot_download = original_download
+            model_guard._ACTIVE_MODELS.pop(activation_key, None)
+            if old_store is None:
+                os.environ.pop("WINNOW_KNOWN_GOOD_PATH", None)
+            else:
+                os.environ["WINNOW_KNOWN_GOOD_PATH"] = old_store
+
+
+def _git_blob_for_test(path):
+    import hashlib
+    data = open(path, "rb").read()
+    return hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest()
 
 
 # --------------------------------------------------------------------------- #
@@ -356,6 +540,23 @@ def _install_fake_transformers():
     on a CPU-only box. Returns the list every from_pretrained call is recorded
     into."""
     calls = []
+    downloads = []
+
+    import model_guard
+    original_download = model_guard.verified_snapshot_download
+    os.environ["WINNOW_KNOWN_GOOD_PATH"] = os.path.join(
+        tempfile.gettempdir(), f"winnow-guard-wiring-{os.getpid()}-{id(calls)}.json"
+    )
+
+    def fake_download(model_id, **kwargs):
+        downloads.append((model_id, kwargs))
+        return VerifiedSnapshot(
+            os.path.join("/verified", pinned_revision(model_id)),
+            model_id,
+            {"revision": pinned_revision(model_id), "files": {}},
+        )
+
+    model_guard.verified_snapshot_download = fake_download
 
     torch = types.ModuleType("torch")
     torch.float16 = "torch.float16"
@@ -368,6 +569,9 @@ def _install_fake_transformers():
 
     class _Loaded:
         config = types.SimpleNamespace(num_hidden_layers=2)
+
+        def state_dict(self):
+            return collections.OrderedDict([("weight", FakeTensor([1]))])
 
         def eval(self):
             return self
@@ -390,36 +594,45 @@ def _install_fake_transformers():
               "AutoModelForSequenceClassification"):
         setattr(tf, n, _auto(n))
     sys.modules["transformers"] = tf
-    return calls
+    return calls, downloads, original_download
 
 
-def _assert_guarded(calls, expect_n):
+def _assert_guarded(calls, downloads, expect_n):
     assert len(calls) == expect_n, f"expected {expect_n} loads, saw {len(calls)}"
-    for name, model_id, kw in calls:
-        assert kw.get("revision") == pinned_revision(model_id), \
-            f"{name}({model_id}) not pinned: revision={kw.get('revision')!r}"
+    assert len(downloads) == expect_n, downloads
+    for (name, snapshot_dir, kw), (_model_id, download_kw) in zip(calls, downloads):
+        assert os.path.dirname(snapshot_dir) == "/verified", snapshot_dir
+        assert download_kw.get("include_weights") is ("Tokenizer" not in name), download_kw
+        assert "revision" not in kw, kw
+        assert kw.get("local_files_only") is True, kw
         assert kw.get("trust_remote_code") is False, \
-            f"{name}({model_id}) did not disable remote code"
+            f"{name}({snapshot_dir}) did not disable remote code"
         if "Tokenizer" not in name:
             assert kw.get("use_safetensors") is True, \
-                f"{name}({model_id}) did not force safetensors"
+                f"{name}({snapshot_dir}) did not force safetensors"
 
 
 def test_two_stage_compressor_load_sites_are_guarded():
-    calls = _install_fake_transformers()
-    import two_stage_compressor as tsc
+    calls, downloads, original_download = _install_fake_transformers()
+    try:
+        import two_stage_compressor as tsc
 
-    tsc.SmallEmbedder(device="cpu", use_fp16=False)
-    tsc.CrossEncoderReranker("BAAI/bge-reranker-v2-m3", device="cpu", use_fp16=False)
-    _assert_guarded(calls, 4)
+        tsc.SmallEmbedder(device="cpu", use_fp16=False)
+        tsc.CrossEncoderReranker("BAAI/bge-reranker-v2-m3", device="cpu", use_fp16=False)
+        _assert_guarded(calls, downloads, 4)
+    finally:
+        __import__("model_guard").verified_snapshot_download = original_download
 
 
 def test_attentionrag_hf_backend_load_sites_are_guarded():
-    calls = _install_fake_transformers()
-    from attentionrag.hf_backend import HFBackend
+    calls, downloads, original_download = _install_fake_transformers()
+    try:
+        from attentionrag.hf_backend import HFBackend
 
-    HFBackend(device="cpu")
-    _assert_guarded(calls, 2)
+        HFBackend(device="cpu")
+        _assert_guarded(calls, downloads, 2)
+    finally:
+        __import__("model_guard").verified_snapshot_download = original_download
 
 
 # --------------------------------------------------------------------------- #
@@ -475,17 +688,11 @@ def test_no_unguarded_from_pretrained_or_snapshot_download_in_repo():
     assert not offenders, "unguarded artifact loads:\n  " + "\n  ".join(offenders)
 
 
-def test_every_pinned_snapshot_download_is_wrapped_in_assert_no_pickled_weights():
-    """`pinned_snapshot_download` pins the revision but does NOT inspect what it
-    downloaded, so on its own it still lands pickled weights on the cache volume.
-    Every call must be the argument of `assert_no_pickled_weights(...)`.
+def test_snapshot_load_sites_use_full_verification_wrapper():
+    """Call sites may not stop after pinning or the pickle filename check.
 
-    This is a real regression that has happened: in the TC960/winnow checkout,
-    `experiments/eval_modal.py` downloads three models in a loop with a bare
-    `pinned_snapshot_download(name)`, so the pickle check was skipped for all
-    three while the other two Modal apps in the same repo did wrap it. The
-    previous static sweep does not catch that shape, because the call itself is
-    the guarded wrapper. This test does.
+    `verified_snapshot_download` is the only public load path that checks the
+    checked-in byte digests before activation.
     """
     import ast
 
@@ -495,21 +702,14 @@ def test_every_pinned_snapshot_download_is_wrapped_in_assert_no_pickled_weights(
         with open(path) as fh:
             tree = ast.parse(fh.read(), filename=rel)
 
-        wrapped = set()
         for node in ast.walk(tree):
             if (isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
-                    and node.func.id == "assert_no_pickled_weights"):
-                for arg in node.args:
-                    wrapped.add(id(arg))
-
-        for node in ast.walk(tree):
-            if (isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
-                    and node.func.id == "pinned_snapshot_download"
-                    and id(node) not in wrapped):
+                    and node.func.id in (
+                        "pinned_snapshot_download", "assert_no_pickled_weights"
+                    )):
                 offenders.append(
-                    f"{rel}:{node.lineno} pinned_snapshot_download() not wrapped in "
-                    "assert_no_pickled_weights()")
-    assert not offenders, ("snapshot downloads whose contents are never checked:\n  "
+                    f"{rel}:{node.lineno} partial artifact check {node.func.id}()")
+    assert not offenders, ("snapshot loads that bypass digest verification:\n  "
                            + "\n  ".join(offenders))
 
 
