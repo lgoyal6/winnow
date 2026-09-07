@@ -4,6 +4,14 @@ This folder holds the investigation into **semantic sentence-dedup (MMR)** on to
 of the core `winnow` compressor. It is kept for reference and is **not** required
 to deploy or run the service (see the repo root).
 
+Two self-contained evidence bundles are also retained here:
+
+- [`asr/`](asr/) recomputes the 630-row ASR error-amplification analysis from
+  compact transcripts and compressor outputs, with no audio or model download.
+- [`c27/`](c27/) contains the native CUDA versus Triton harness, matched-shape
+  controls, full-decode results, compact static artifacts, and raw Nsight
+  Systems traces from the RTX A6000 run.
+
 ## What we tested
 `(LLMLingua-2 + BGE reranker)` with vs. without an MMR sentence-dedup pre-pass,
 across two regimes: a sparse spoken **ramble** and a medium-density **multi-doc**

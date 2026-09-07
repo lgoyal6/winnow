@@ -1,0 +1,37 @@
+name: core
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-upgrade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.12'
+      - name: install build tools
+        run: python -m pip install setuptools==84.0.0 wheel==0.46.3
+      - name: core tests
+        run: |
+          python test_model_guard.py
+          python test_token_merge.py
+          python -m attentionrag.test_core
+      - name: first-package to current upgrade
+        run: python tools/verify_upgrade.py
+      - name: retained CUDA and Nsight evidence
+        run: python experiments/c27/verify_results.py --negative-control
+      - name: ASR metric reproduction
+        run: |
+          python -m pip install -r experiments/asr/requirements-analysis.txt
+          python experiments/asr/test_metrics.py
+          python experiments/asr/reproduce_results.py

@@ -239,8 +239,38 @@ Tested on CPython 3.11, 3.12 and 3.14; `requires-python = ">=3.11"`. The
 model-touching half needs the extra: `pip install "winnow-core[hf]"` pulls
 torch, transformers, safetensors and huggingface-hub at pinned versions; the
 full set pip actually resolved for that extra is recorded in
-`requirements-hf.lock`. Not
-packaged: `turboquant_kv/`, the Modal apps, `server.py` and `web/` - those are
+`requirements-hf.lock`. Every Transformers load resolves through
+`model_guard.verified_snapshot_download`: the model id must use its reviewed
+commit, only files in `model_artifacts.py` are downloaded, every local byte is
+checked against its SHA-256 or Git blob id, executable Python and pickle weights
+are refused, and the loader receives the verified local path with network access
+disabled. Updating a model therefore requires a reviewed revision and digest
+change together.
+
+Before a newly loaded model is returned to the service, `model_guard` reads its
+state dict and checks tensor key order, shape, dtype, and finiteness. The first
+accepted, digest-pinned load establishes a structural baseline in
+`$HF_HOME/winnow-known-good.json`; later loads must match it. If a replacement
+fails in a running process, the loader emits a warning and keeps returning the
+previous model object. On a cold process there is no Python model object to
+restore automatically, so the loader fails closed and leaves the persisted
+known-good record unchanged for an operator-directed rollback.
+
+Production model paths use safetensors through Transformers or LLMLingua after
+snapshot verification. `safe_load_state_dict` is a guarded utility for callers
+that explicitly import a raw single-file checkpoint; no current service reads a
+raw checkpoint directly.
+
+The compatibility gate installs the first packaged core, runs an external
+consumer, upgrades the same site-packages directory to the working tree, and
+runs the consumer again:
+
+```bash
+.buildvenv/bin/python tools/verify_upgrade.py
+```
+
+The package excludes `turboquant_kv/`, the Modal apps, `server.py` and `web/`.
+Those are
 the GPU and service halves and would put a hard torch dependency on a
 distribution whose point is that it installs anywhere.
 
