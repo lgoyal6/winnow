@@ -11,6 +11,13 @@ turboquant_kv makes the ratio real, then asks the question the ratio was hiding:
 at what bit width does the model still work? The answer is **8-bit**, which is
 1.97x, not 3.8-4.9x.
 
+It also turns the kernel measurements into a bounded runtime decision. A
+profile-guided planner selects PyTorch, Triton TF32/fp32, or an already-built
+native CUDA extension only when the A6000 profile covers the hardware, shape,
+backend availability, and requested maximum error. It falls back to PyTorch for
+unknown GPUs and unsupported shapes rather than exporting an A6000 conclusion
+as a universal rule.
+
 > **Thesis.** A compression ratio is a claim about resident bytes and an
 > accuracy claim is a claim about a score. This project had a logical bit count
 > validated by a single planted passphrase, and both halves failed the moment
@@ -278,6 +285,9 @@ unusable, which is the reason phase B exists.
 ```
 packing.py         exact bit-packing, any width; 4-bit fast path
 cache.py           TQPackedLayer / TQPackedCache, Lloyd-Max quantizer
+dispatch.py        shape/hardware/error-aware planner over retained profiles
+dispatch_report.py CPU-only held-out evaluation, overhead, negative controls
+native_kernel.py   optional adapter; never compiles CUDA during import
 kernel.py          fused Triton dequantization, stride-aware
 longbench.py       LongBench-E task configs, official metrics, data loading
 test_packing.py    pack/unpack round-trip, fast path vs general path
@@ -342,6 +352,8 @@ Triton's fp32 dot, not the fusion idea.
 ```bash
 python test_packing.py
 python test_cache.py
+python test_dispatch.py
+python dispatch_report.py
 python bench_memory.py --ctxs 2048 8192 16384 --decode 128
 python bitwidth_sweep.py
 python diagnose.py
