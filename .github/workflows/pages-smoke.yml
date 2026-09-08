@@ -21,6 +21,6 @@ jobs:
       - name: Fetch the served transcript fixture
         run: curl -fsS --retry 3 https://lgoyal6.github.io/winnow/demo-transcript.json -o demo-transcript.json
       - name: Assert 13 recorded utterances are served
-        run: jq -e 'length == 14' demo-transcript.json
+        run: jq -e 'length == 13' demo-transcript.json
       - name: Assert the recorded span is exactly 104 seconds
         run: jq -e '(.[-1].endMs - .[0].startMs) == 104000' demo-transcript.json
