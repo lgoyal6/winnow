@@ -1,7 +1,7 @@
 """Explicit linear IR and the unpack+gather fusion pass."""
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from tsc.syntax import Assign, DtypeLit, ExprStmt, IntLit, Ref, TensorType
 from tsc.validate import ValidatedProgram
@@ -59,6 +59,30 @@ def lower(valid: ValidatedProgram) -> Module:
         tuple(Value(name, typ) for name, typ in valid.outputs.items()),
         tuple(instrs),
     )
+
+
+def fuse_unpack_gather(module: Module) -> Module:
+    """Fuse a single-use unpack feeding gather into one decode instruction."""
+    uses: dict[str, int] = {}
+    for ins in module.instrs:
+        for arg in ins.args:
+            uses[arg] = uses.get(arg, 0) + 1
+    unpack_by_result = {
+        ins.result.name: ins
+        for ins in module.instrs
+        if ins.op == "unpack" and ins.result is not None and uses.get(ins.result.name) == 1
+    }
+    removed: set[str] = set()
+    optimized = []
+    for ins in module.instrs:
+        if ins.op == "gather" and len(ins.args) == 2 and ins.args[1] in unpack_by_result:
+            unpack = unpack_by_result[ins.args[1]]
+            optimized.append(replace(ins, op="decode", args=(ins.args[0], unpack.args[0]), attrs=unpack.attrs))
+            removed.add(unpack.result.name)
+        else:
+            optimized.append(ins)
+    optimized = [ins for ins in optimized if not (ins.op == "unpack" and ins.result and ins.result.name in removed)]
+    return replace(module, instrs=tuple(optimized))
 
 
 def dump_ir(module: Module) -> str:
