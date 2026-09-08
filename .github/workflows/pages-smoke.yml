@@ -1,5 +1,7 @@
 name: Pages smoke check
 on:
+  pull_request:
+    paths: [".github/workflows/pages-smoke.yml"]
   workflow_dispatch:
   workflow_run:
     workflows: ["Deploy recorded replay"]
