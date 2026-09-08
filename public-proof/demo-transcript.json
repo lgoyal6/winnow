@@ -1,0 +1,106 @@
+[
+  {
+    "id": "u1",
+    "text": "Okay um, thanks everyone for joining the sync, I know it's a bit early so I appreciate you all being here on time.",
+    "startMs": 0,
+    "endMs": 5400,
+    "confidence": 0.97,
+    "speaker": 0
+  },
+  {
+    "id": "u2",
+    "text": "So uh the main thing I wanted to walk through today is basically the Q1 roadmap and where we are on the platform reliability work.",
+    "startMs": 6200,
+    "endMs": 12400,
+    "confidence": 0.96,
+    "speaker": 0
+  },
+  {
+    "id": "u3",
+    "text": "First thing, on the incident side, we filed twenty three incident reports last quarter, which is honestly a little higher than I would've liked but most of them were minor.",
+    "startMs": 13000,
+    "endMs": 21500,
+    "confidence": 0.98,
+    "speaker": 0
+  },
+  {
+    "id": "u4",
+    "text": "Out of those twenty three, only four were P1, and two of those were the same downstream dependency, that auth gateway thing we keep talking about.",
+    "startMs": 22000,
+    "endMs": 29800,
+    "confidence": 0.95,
+    "speaker": 0
+  },
+  {
+    "id": "u5",
+    "text": "Right, yeah, and I mean, you know, we've been kind of putting that off for like two sprints now, so I think we really need to actually like, prioritize it this cycle.",
+    "startMs": 30500,
+    "endMs": 38200,
+    "confidence": 0.94,
+    "speaker": 1
+  },
+  {
+    "id": "u6",
+    "text": "Agreed. So on that note, the deliverables for the gateway migration are due March fourteenth, that's the hard deadline, no slippage on that one because of the compliance review.",
+    "startMs": 39000,
+    "endMs": 48500,
+    "confidence": 0.97,
+    "speaker": 0
+  },
+  {
+    "id": "u7",
+    "text": "Sorry, did you say March fourteenth or fourteenth of April? I just want to be super clear on which one.",
+    "startMs": 49200,
+    "endMs": 54100,
+    "confidence": 0.96,
+    "speaker": 2
+  },
+  {
+    "id": "u8",
+    "text": "March, March fourteenth, yeah. Pi day, easy to remember.",
+    "startMs": 54600,
+    "endMs": 58200,
+    "confidence": 0.99,
+    "speaker": 0
+  },
+  {
+    "id": "u9",
+    "text": "On the budget side, um, we're tracking about eleven percent over on the infra line, mostly from the GPU spend on the new model evaluation pipeline.",
+    "startMs": 59000,
+    "endMs": 67400,
+    "confidence": 0.95,
+    "speaker": 1
+  },
+  {
+    "id": "u10",
+    "text": "To go above the cap we technically need an exception, and the only person who can sign off on a budget exception over ten percent is Marcus Chen, our CFO. Nobody else, not even the VP of Eng can approve that.",
+    "startMs": 68000,
+    "endMs": 80200,
+    "confidence": 0.97,
+    "speaker": 1
+  },
+  {
+    "id": "u11",
+    "text": "Got it, so I'll, um, I'll loop in Marcus on the thread today. I think if we frame it as a one time spend tied to the migration deadline he'll probably be amenable.",
+    "startMs": 81000,
+    "endMs": 89500,
+    "confidence": 0.94,
+    "speaker": 0
+  },
+  {
+    "id": "u12",
+    "text": "Last thing, we're hiring two more SREs to backfill the team. Job recs are open, please uh, please share them in your networks if you can.",
+    "startMs": 90200,
+    "endMs": 97800,
+    "confidence": 0.96,
+    "speaker": 0
+  },
+  {
+    "id": "u13",
+    "text": "Okay I think that's everything. Thanks again everyone, let's um, let's reconvene next Tuesday, same time.",
+    "startMs": 98500,
+    "endMs": 104000,
+    "confidence": 0.98,
+    "speaker": 0
+  }
+]
