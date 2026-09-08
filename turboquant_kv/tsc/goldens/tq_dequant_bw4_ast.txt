@@ -1,0 +1,19 @@
+Program tq_dequant
+  params: bit_width=4, head_dim=128
+  input packed: u8[N, 64]
+  input norms: f16[N]
+  input centroids: f32[16]
+  input pi: f32[head_dim, head_dim]
+  output out: bf16[N, head_dim]
+  stmts:
+    codes = load(packed)
+    cb = load(centroids)
+    rotm = load(pi)
+    nrm = load(norms)
+    idx = unpack(codes, bits=bit_width)
+    y = gather(cb, idx)
+    x = rot(y, rotm)
+    nf = cast(nrm, f32)
+    z = rescale(x, nf)
+    o = cast(z, bf16)
+    store(out, o)
