@@ -1,0 +1,24 @@
+name: Pages smoke check
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Deploy recorded replay"]
+    types: [completed]
+permissions: {}
+jobs:
+  smoke:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch the served page from the runner network
+        run: curl -fsS --retry 3 https://lgoyal6.github.io/winnow/ -o index.html
+      - name: Assert the page identity
+        run: grep -q "Winnow Recorded Replay" index.html
+      - name: Assert the page states what it proves and what stays live-service
+        run: grep -q "What this proves" index.html
+      - name: Fetch the served transcript fixture
+        run: curl -fsS --retry 3 https://lgoyal6.github.io/winnow/demo-transcript.json -o demo-transcript.json
+      - name: Assert 13 recorded utterances are served
+        run: jq -e 'length == 13' demo-transcript.json
+      - name: Assert the recorded span is exactly 104 seconds
+        run: jq -e '(.[-1].endMs - .[0].startMs) == 104000' demo-transcript.json
