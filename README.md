@@ -6,6 +6,10 @@
 Winnow is a hackathon project that compresses live speech transcripts in real time before they reach an LLM, demonstrably without losing meaning. Spoken language is verbose; LLM input tokens cost money. Winnow shows you the savings, the diff, and a side-by-side fidelity audit, then lets you talk to the compressed transcript through a Claude-Projects-style workspace.
 
 **[Watch the full product demo on Devpost](https://devpost.com/software/winnow-dzb281).**
+**[Replay the recorded input without credentials](https://lgoyal6.github.io/winnow/).**
+The public replay exercises the checked-in transcript fixture and its original
+timing. It stops at the input boundary and does not present compression or LLM
+output unless those live services are running.
 
 ## Verify the GPU planner without credentials
 
