@@ -1,0 +1,325 @@
+{
+  "backend": "gloo",
+  "device": "cpu",
+  "mode": "cpu-gloo-single-host-selftest",
+  "model": {
+    "config": {
+      "d_ff": 256,
+      "d_model": 128,
+      "max_seq_len": 64,
+      "n_heads": 4,
+      "n_layers": 2,
+      "name": "tiny-2l-128d",
+      "norm_eps": 1e-05,
+      "tie_embeddings": true,
+      "vocab_size": 1024
+    },
+    "config_sha256": "da122e86e9b3f782376bf0f3a2cf0a1d51112f6da22b00c7a2552ae5a5998677",
+    "flops_per_token_estimate": 2426880,
+    "head_dim": 32,
+    "name": "tiny-2l-128d",
+    "parameter_count": 404480,
+    "role": "synthetic-workload proxy for the decoder-only models Winnow serves; defined in-repo, nothing downloaded, not a quality-bearing model"
+  },
+  "negative_control": {
+    "exit_code": 1,
+    "fault_actually_applied": true,
+    "fault_applied_bucket_calls_total": 15,
+    "fault_caught": true,
+    "fault_injection_per_rank": [
+      {
+        "enabled": true,
+        "fault_bucket": 0,
+        "fault_rank": 1,
+        "faulted_bucket_calls": 0,
+        "mechanism": "on the injected rank only, one DDP bucket's reduced gradient is discarded and the rank's local gradient is applied instead; the collective is still joined so no rank can hang"
+      },
+      {
+        "enabled": true,
+        "fault_bucket": 0,
+        "fault_rank": 1,
+        "faulted_bucket_calls": 15,
+        "mechanism": "on the injected rank only, one DDP bucket's reduced gradient is discarded and the rank's local gradient is applied instead; the collective is still joined so no rank can hang"
+      }
+    ],
+    "final_checksums_match_across_ranks": false,
+    "final_checksums_per_rank": [
+      {
+        "bytes_sha256": "9add7e4caa8ebb608a1f893c507ee7aac3976e003bda1f00a0e67a6f2504c350",
+        "dtypes": [
+          "torch.float32"
+        ],
+        "float64_sum": 646.195304914871,
+        "parameter_count": 404480,
+        "tensor_count": 28
+      },
+      {
+        "bytes_sha256": "d3c71d4359264755e5000ec754ee506deb14b820d6e35d128bd87cd42d0b83c6",
+        "dtypes": [
+          "torch.float32"
+        ],
+        "float64_sum": 645.7694464808736,
+        "parameter_count": 404480,
+        "tensor_count": 28
+      }
+    ],
+    "max_cross_rank_parameter_divergence": 0.003098138375207782,
+    "mechanism": "on the injected rank only, one DDP bucket's reduced gradient is discarded and the rank's local gradient is applied instead; the collective is still joined so no rank can hang",
+    "mode": "cpu-gloo-single-host-selftest",
+    "requirement": "the fault must fire, the cross-rank checksum must differ, the sampled divergence must be non-zero, and the process must exit non-zero",
+    "run": {
+      "backend": "gloo",
+      "boundary": "CPU gloo self-test: two or more processes on ONE host with no GPU. This verifies harness correctness only. It is not a multi-GPU result and its timings are not a scaling or throughput claim.",
+      "bucket_calls_last_step": 3,
+      "comm_percent_note": "upper bound on exposed communication: per-bucket all-reduce intervals overlap each other and overlap backward compute by design",
+      "comm_percent_of_step_time": 38.16206147911269,
+      "comm_seconds_total": 0.014471372007392347,
+      "comm_timing_source": "time.perf_counter",
+      "data": {
+        "caveat": "synthetic noise tokens: throughput here measures the training loop and the gradient all-reduce, not model quality; recorded loss values are not a quality claim",
+        "generator": "torch.randint over a per-step seeded CPU Generator",
+        "global_batch_size": 8,
+        "global_tokens_per_step": 248,
+        "seed": 1234,
+        "seq_len": 32,
+        "sharding": "the global batch is generated identically on every rank and sliced by rank, holding global work fixed across world sizes",
+        "step_seed_rule": "(seed * 1000003 + step) mod (2**63 - 1)",
+        "vocab_size": 1024
+      },
+      "device": "cpu",
+      "device_name": "arm",
+      "fault_actually_applied": true,
+      "fault_applied_bucket_calls_total": 15,
+      "fault_injection": {
+        "enabled": true,
+        "fault_bucket": 0,
+        "fault_rank": 1,
+        "faulted_bucket_calls": 0,
+        "mechanism": "on the injected rank only, one DDP bucket's reduced gradient is discarded and the rank's local gradient is applied instead; the collective is still joined so no rank can hang"
+      },
+      "fault_injection_per_rank": [
+        {
+          "enabled": true,
+          "fault_bucket": 0,
+          "fault_rank": 1,
+          "faulted_bucket_calls": 0,
+          "mechanism": "on the injected rank only, one DDP bucket's reduced gradient is discarded and the rank's local gradient is applied instead; the collective is still joined so no rank can hang"
+        },
+        {
+          "enabled": true,
+          "fault_bucket": 0,
+          "fault_rank": 1,
+          "faulted_bucket_calls": 15,
+          "mechanism": "on the injected rank only, one DDP bucket's reduced gradient is discarded and the rank's local gradient is applied instead; the collective is still joined so no rank can hang"
+        }
+      ],
+      "final_checksum": {
+        "bytes_sha256": "9add7e4caa8ebb608a1f893c507ee7aac3976e003bda1f00a0e67a6f2504c350",
+        "dtypes": [
+          "torch.float32"
+        ],
+        "float64_sum": 646.195304914871,
+        "parameter_count": 404480,
+        "tensor_count": 28
+      },
+      "final_checksums_match_across_ranks": false,
+      "final_checksums_per_rank": [
+        {
+          "bytes_sha256": "9add7e4caa8ebb608a1f893c507ee7aac3976e003bda1f00a0e67a6f2504c350",
+          "dtypes": [
+            "torch.float32"
+          ],
+          "float64_sum": 646.195304914871,
+          "parameter_count": 404480,
+          "tensor_count": 28
+        },
+        {
+          "bytes_sha256": "d3c71d4359264755e5000ec754ee506deb14b820d6e35d128bd87cd42d0b83c6",
+          "dtypes": [
+            "torch.float32"
+          ],
+          "float64_sum": 645.7694464808736,
+          "parameter_count": 404480,
+          "tensor_count": 28
+        }
+      ],
+      "global_tokens_per_step": 248,
+      "host_platform": "macOS-26.5.2-arm64-arm-64bit",
+      "initial_checksum": {
+        "bytes_sha256": "4605620390b3cffa3c4320b0c854864d241637cc852ff6c9d78ffdc62e70d6a2",
+        "dtypes": [
+          "torch.float32"
+        ],
+        "float64_sum": 644.5091108399625,
+        "parameter_count": 404480,
+        "tensor_count": 28
+      },
+      "initial_checksums_match_across_ranks": true,
+      "label": "cpu-gloo-negative-control",
+      "loss_first_measured": 6.938374042510986,
+      "loss_last_measured": 6.951341152191162,
+      "loss_note": "synthetic noise tokens: loss is recorded only so that a run which stopped optimizing is visible, and is not a model-quality claim",
+      "max_cross_rank_parameter_divergence": 0.003098138375207782,
+      "measured_steps": 10,
+      "mode": "cpu-gloo-single-host-selftest",
+      "model": {
+        "config": {
+          "d_ff": 256,
+          "d_model": 128,
+          "max_seq_len": 64,
+          "n_heads": 4,
+          "n_layers": 2,
+          "name": "tiny-2l-128d",
+          "norm_eps": 1e-05,
+          "tie_embeddings": true,
+          "vocab_size": 1024
+        },
+        "config_sha256": "da122e86e9b3f782376bf0f3a2cf0a1d51112f6da22b00c7a2552ae5a5998677",
+        "flops_per_token_estimate": 2426880,
+        "head_dim": 32,
+        "name": "tiny-2l-128d",
+        "parameter_count": 404480,
+        "role": "synthetic-workload proxy for the decoder-only models Winnow serves; defined in-repo, nothing downloaded, not a quality-bearing model"
+      },
+      "passed": false,
+      "peak_memory_bytes": 306020352,
+      "peak_memory_source": "resource.getrusage ru_maxrss: HOST RSS since process start, not a GPU allocator figure and not resettable",
+      "per_rank_batch_size": 4,
+      "per_rank_metrics": [
+        {
+          "comm_percent_of_step_time": 38.16206147911269,
+          "comm_seconds_total": 0.014471372007392347,
+          "device": "cpu",
+          "device_name": "arm",
+          "peak_memory_bytes": 306020352,
+          "rank": 0,
+          "step_latency_median_seconds": 0.003800146499997936
+        },
+        {
+          "comm_percent_of_step_time": 39.06422126256984,
+          "comm_seconds_total": 0.014820329990470782,
+          "device": "cpu",
+          "device_name": "arm",
+          "peak_memory_bytes": 306135040,
+          "rank": 1,
+          "step_latency_median_seconds": 0.003795103504671715
+        }
+      ],
+      "pid": 59573,
+      "precision": "fp32",
+      "python_version": "3.12.14",
+      "rank": 0,
+      "spec": {
+        "beta1": 0.9,
+        "beta2": 0.95,
+        "bucket_cap_mb": 0.5,
+        "divergence_sample_per_tensor": 8,
+        "eps": 1e-08,
+        "fault_bucket": 0,
+        "fault_rank": 1,
+        "global_batch_size": 8,
+        "grad_clip": 1.0,
+        "inject_grad_sync_fault": true,
+        "label": "cpu-gloo-negative-control",
+        "lr": 0.0003,
+        "measured_steps": 10,
+        "preset": "tiny-2l-128d",
+        "seed": 1234,
+        "seq_len": 32,
+        "warmup_steps": 5,
+        "weight_decay": 0.1
+      },
+      "step_latency_mean_seconds": 0.003792083406005986,
+      "step_latency_median_seconds": 0.003800146499997936,
+      "step_latency_p95_seconds": 0.00394308302202262,
+      "step_latency_seconds": [
+        0.0038235420070122927,
+        0.003842417005216703,
+        0.0038189589977264404,
+        0.0037000829761382192,
+        0.003643166011897847,
+        0.003781334002269432,
+        0.003687708027428016,
+        0.0037799169949721545,
+        0.0039006250153761357,
+        0.00394308302202262
+      ],
+      "throughput_tokens_per_second": 65399.4054052746,
+      "tokens_per_second_mean": 65436.15509539736,
+      "tokens_per_second_median": 65262.24131473689,
+      "torch_version": "2.14.0",
+      "verdict": "FAILED: cross-rank parameter checksums diverged after the measured steps, so gradient synchronization did not hold",
+      "wall_seconds": 0.037931625003693625,
+      "warmup_steps": 5,
+      "world_size": 2
+    },
+    "verdict": "FAILED: cross-rank parameter checksums diverged after the measured steps, so gradient synchronization did not hold"
+  },
+  "not_a_multi_gpu_result": "This is NOT a multi-GPU result. It is two processes on one host using the gloo backend on CPU, with no GPU involved. It demonstrates that this harness synchronizes gradients correctly and that its cross-rank checksum gate detects a planted gradient-sync fault. No timing in this file is a scaling, speedup, or throughput claim.",
+  "passed": true,
+  "positive": {
+    "comm_percent_of_step_time": 56.166932977251065,
+    "comm_timing_source": "time.perf_counter",
+    "exit_code": 0,
+    "final_checksum_sha256": "ac59fedd849ce94e3bb662f5a1f389e1f70026b92279770023adebb888edd594",
+    "final_checksums_match_across_ranks": true,
+    "initial_checksums_match_across_ranks": true,
+    "max_cross_rank_parameter_divergence": 0.0,
+    "passed": true,
+    "per_rank_metrics": [
+      {
+        "comm_percent_of_step_time": 56.166932977251065,
+        "comm_seconds_total": 0.022464666952146217,
+        "device": "cpu",
+        "device_name": "arm",
+        "peak_memory_bytes": 306184192,
+        "rank": 0,
+        "step_latency_median_seconds": 0.003996333500253968
+      },
+      {
+        "comm_percent_of_step_time": 56.26345001047405,
+        "comm_seconds_total": 0.022503458079881966,
+        "device": "cpu",
+        "device_name": "arm",
+        "peak_memory_bytes": 305577984,
+        "rank": 1,
+        "step_latency_median_seconds": 0.004037500009872019
+      }
+    ],
+    "step_latency_median_seconds": 0.003996333500253968,
+    "step_latency_p95_seconds": 0.004494750028243288,
+    "throughput_tokens_per_second": 62005.812986368284,
+    "verdict": "PASSED: all ranks hold bit-identical parameters after the run"
+  },
+  "positive_rerun_after_control": {
+    "exit_code": 0,
+    "final_checksum_sha256": "ac59fedd849ce94e3bb662f5a1f389e1f70026b92279770023adebb888edd594",
+    "passed": true,
+    "reproduces_positive_checksum": true,
+    "verdict": "PASSED: all ranks hold bit-identical parameters after the run"
+  },
+  "precision": "fp32",
+  "single_host": true,
+  "spec": {
+    "beta1": 0.9,
+    "beta2": 0.95,
+    "bucket_cap_mb": 0.5,
+    "divergence_sample_per_tensor": 8,
+    "eps": 1e-08,
+    "fault_bucket": 0,
+    "fault_rank": 1,
+    "global_batch_size": 8,
+    "grad_clip": 1.0,
+    "inject_grad_sync_fault": false,
+    "label": "cpu-gloo-positive",
+    "lr": 0.0003,
+    "measured_steps": 10,
+    "preset": "tiny-2l-128d",
+    "seed": 1234,
+    "seq_len": 32,
+    "warmup_steps": 5,
+    "weight_decay": 0.1
+  },
+  "timing_caveat": "step latency and communication percentage here are gloo-on-CPU numbers from two processes sharing one machine's cores. They exercise the measurement path; they are not a performance result.",
+  "world_size": 2
+}
