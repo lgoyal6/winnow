@@ -300,7 +300,28 @@ run_longbench.py   phase B: scored eval across arms
 csrc/tq_dequant.cu  native CUDA transcription of kernel.py, fp32 rotation
 bench_cuda_kernel.py  torch vs triton vs CUDA harness; refuses to time without a GPU
 results/cuda/      raw 24-shape sweeps from the A6000 run, plus the host string
+tsc/               tensor-schedule compiler: DSL -> AST -> IR -> Triton (see tsc/README.md)
+test_tsc_*.py      compiler tests: parser goldens, validation, IR, passes, codegen, cache, fallback
+../tools/run_gpu_differential.py  generated-vs-reference/handwritten GPU harness
 ```
+
+### The tensor-schedule compiler (tsc)
+
+`tsc/` compiles a declarative description of this exact dequantization
+pipeline (unpack, codebook gather, inverse rotation, rescale, cast, load,
+store) into a fused Triton kernel: parser, typed AST, validation, explicit
+IR, four optimization passes, codegen, and a content-addressed compile cache.
+The optimized IR of the canonical schedule lands exactly on `kernel.py`'s
+structure, and the generated wrapper carries the same stride handling for
+non-contiguous cache slices.
+
+The handwritten kernel remains the production path; nothing in `cache.py` or
+`dispatch.py` imports `tsc`, and the generated kernel is reachable only from
+tests and `tools/run_gpu_differential.py`. On hosts without a supported GPU,
+execution falls back to a pure-PyTorch IR interpreter that is proven
+bit-identical to an independently written dequantization. Grammar, stage
+walkthrough, test commands, and the honest boundary are in
+[`tsc/README.md`](tsc/README.md).
 
 ### The native CUDA arm
 
