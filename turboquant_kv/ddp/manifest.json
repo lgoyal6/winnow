@@ -1,0 +1,150 @@
+{
+  "comm_percentage_caveat": "an upper bound on exposed communication: per-bucket all-reduce intervals overlap each other and overlap backward compute by design, so a run at 40% comm is not 40% idle",
+  "configurations": [
+    {
+      "cuda_visible_devices": "0",
+      "ddp_wrapped": false,
+      "name": "1-device",
+      "note": "a single-device run is not wrapped in DDP, because that is what a real single-GPU job is; charging the baseline for a self-all-reduce it would never issue would flatter the 2-device arm",
+      "world_size": 1
+    },
+    {
+      "cuda_visible_devices": "0,1",
+      "ddp_wrapped": true,
+      "name": "2-device",
+      "world_size": 2
+    }
+  ],
+  "data": {
+    "caveat": "synthetic noise tokens: throughput measures the training loop and the gradient all-reduce, not model quality",
+    "determinism": "a batch is a pure function of (seed, step, global_batch_size, seq_len); no disk, no shuffle buffer, no tokenizer, no staging queue whose depth could differ between arms",
+    "generator": "turboquant_kv/ddp/data.py SyntheticStream",
+    "seed": 1234,
+    "sharding": "the global batch is generated identically on every rank and sliced by rank, so ranks see different data (needed for the gradient-sync fault to be detectable) while global work stays fixed",
+    "step_seed_rule": "(seed * 1000003 + step) mod (2**63 - 1)"
+  },
+  "frozen": "This file is the benchmark design, committed BEFORE any measurement was taken and not to be edited after seeing results. If a design change is genuinely needed, bump manifest_version, say why in the commit message, and re-run everything; do not adjust a field to suit a number.",
+  "hardware_requirement": {
+    "gate_script": "scripts/run-multigpu-gate.sh",
+    "multi_node": "out of scope; every configuration here is single-host",
+    "on_failure": "exit 2, no benchmark numbers written",
+    "requirement": "nvidia-smi present, and at least two entries with DISTINCT GPU UUIDs and DISTINCT PCI bus ids",
+    "why_bus_ids": "two MIG instances of one card get their own MIG- UUIDs but inherit the parent card's PCI bus id, so a UUID check alone would let one physical GPU pass as two"
+  },
+  "initial_parameter_agreement": "the seed is set before model construction so every rank builds identical tensors, and a cross-rank checksum is compared BEFORE the first step; a run whose ranks disagree at step 0 is refused, not measured",
+  "local_cpu_selftest": {
+    "backend": "gloo",
+    "bucket_cap_mb": 0.5,
+    "device": "cpu",
+    "global_batch_size": 8,
+    "measured_steps": 10,
+    "mode": "cpu-gloo-single-host-selftest",
+    "preset": "tiny-2l-128d",
+    "script": "scripts/run-ddp-cpu-selftest.sh",
+    "sequence_length": 32,
+    "warmup_steps": 5,
+    "what_it_does_not_prove": "anything about multi-GPU performance. Two processes on one CPU are not two GPUs. Its step latency and communication percentage are not a scaling, speedup, or throughput claim.",
+    "what_it_proves": "the harness synchronizes gradients correctly, the cross-rank checksum gate detects the planted gradient-sync fault, and a positive rerun after the control passes again",
+    "world_size": 2
+  },
+  "manifest_version": 1,
+  "metrics": [
+    "step latency per measured step (CUDA events on GPU, time.perf_counter on CPU)",
+    "tokens per second (global tokens per step / step latency)",
+    "median and p95 step latency (nearest-rank p95, no interpolation)",
+    "peak memory per rank (torch.cuda.max_memory_allocated on GPU; host RSS via resource.getrusage ru_maxrss on CPU, labelled as host RSS)",
+    "communication time per bucket via a DDP comm hook, reported as comm percentage = comm time / step time",
+    "cross-rank parameter checksum (float64 sum plus sha256 of the raw parameter bytes in name-sorted order), all-gathered and required equal",
+    "max cross-rank divergence of a sampled parameter slice",
+    "scaling efficiency = throughput_2 / (2 * throughput_1)"
+  ],
+  "model_revision": {
+    "benchmark_preset": {
+      "config": {
+        "d_ff": 2048,
+        "d_model": 512,
+        "max_seq_len": 1024,
+        "n_heads": 8,
+        "n_layers": 6,
+        "name": "proxy-6l-512d",
+        "norm_eps": 1e-05,
+        "tie_embeddings": true,
+        "vocab_size": 32000
+      },
+      "config_sha256": "d368998ea8e9db4cfcda9e931a069b5ff9b48b570943decb4a54d8f769102102",
+      "flops_per_token_estimate": 214941696,
+      "head_dim": 64,
+      "name": "proxy-6l-512d",
+      "parameter_count": 35823616,
+      "role": "synthetic-workload proxy for the decoder-only models Winnow serves; defined in-repo, nothing downloaded, not a quality-bearing model"
+    },
+    "cpu_selftest_preset": {
+      "config": {
+        "d_ff": 256,
+        "d_model": 128,
+        "max_seq_len": 64,
+        "n_heads": 4,
+        "n_layers": 2,
+        "name": "tiny-2l-128d",
+        "norm_eps": 1e-05,
+        "tie_embeddings": true,
+        "vocab_size": 1024
+      },
+      "config_sha256": "da122e86e9b3f782376bf0f3a2cf0a1d51112f6da22b00c7a2552ae5a5998677",
+      "flops_per_token_estimate": 2426880,
+      "head_dim": 32,
+      "name": "tiny-2l-128d",
+      "parameter_count": 404480,
+      "role": "synthetic-workload proxy for the decoder-only models Winnow serves; defined in-repo, nothing downloaded, not a quality-bearing model"
+    },
+    "definition_location": "turboquant_kv/ddp/model.py",
+    "downloads_anything": false,
+    "role": "synthetic-workload proxy for the decoder-only models Winnow serves; not one of those models, not trained to convergence, and no loss value produced with it is a quality claim"
+  },
+  "negative_control": {
+    "default": false,
+    "flag": "--inject-grad-sync-fault",
+    "mechanism": "on the injected rank only (default rank 1), the DDP communication hook discards the reduced gradient for exactly one bucket (default bucket 0) and applies that rank's local, unreduced gradient instead",
+    "required_outcome": "the fault must actually fire, the cross-rank parameter checksum must mismatch, the sampled divergence must be non-zero, and the process must exit non-zero",
+    "test_only": true,
+    "why_the_collective_is_still_joined": "returning early from the hook without calling all_reduce would leave the other ranks blocked inside a matched collective, so the run would HANG rather than fail, and a hang is not a negative control; the injected rank therefore joins the collective and then discards its result"
+  },
+  "optimizer": {
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "eps": 1e-08,
+    "grad_clip_max_norm": 1.0,
+    "lr": 0.0003,
+    "name": "AdamW",
+    "weight_decay": 0.1
+  },
+  "parallelism": {
+    "processes": "one process per device, launched with torchrun",
+    "single_host": true,
+    "strategy": "PyTorch DistributedDataParallel (DDP)",
+    "why_not_fsdp": "The proxy model is about 35.8M parameters, roughly 143 MB of fp32 gradients, which fits many times over on any card that can run this harness. There is no memory pressure for FSDP's parameter sharding to relieve, and sharding would add forward-pass collectives unrelated to the question. FSDP is the right tool when the model does not fit; this model fits."
+  },
+  "precision": {
+    "cpu": "fp32, no autocast",
+    "cuda": "bf16 autocast (torch.autocast('cuda', dtype=torch.bfloat16)), fp32 parameters and optimizer state; falls back to fp32 with no autocast if the device does not support bf16",
+    "recorded_per_run": "the `precision` field of every run record"
+  },
+  "purpose": "Measure whether adding a second physical GPU makes a fixed amount of data-parallel training work finish faster, and by how much, once gradient synchronization is paid for.",
+  "reporting_rule": "no scaling improvement may be claimed unless two GPUs beat one GPU on fixed global work. A slowdown is a valid, reportable result.",
+  "schedule": {
+    "measured_steps": 30,
+    "repeats_per_configuration": 3,
+    "warmup_steps": 5,
+    "why_warmup": "the first steps pay for CUDA context creation, allocator growth, autotuning and the first DDP bucket rebuild; timing them would measure startup"
+  },
+  "seed": 1234,
+  "workload": {
+    "fixed_global_work": "global batch is held constant across world sizes, so throughput_2 / (2 * throughput_1) is a scaling efficiency rather than a weak-scaling number",
+    "global_batch_size": 32,
+    "global_tokens_per_step": 16352,
+    "per_rank_batch_size_rule": "global_batch_size / world_size",
+    "sequence_length": 512
+  }
+}
