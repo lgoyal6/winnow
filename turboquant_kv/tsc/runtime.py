@@ -9,6 +9,7 @@ and this module is only reachable from tests and the differential harness.
 """
 from __future__ import annotations
 
+import tempfile
 import types
 from dataclasses import dataclass
 
@@ -37,10 +38,20 @@ def _triton_available() -> bool:
 
 
 def load_generated(result: CompileResult) -> types.ModuleType:
-    """exec() the generated source into a fresh module object."""
+    """Load the generated source into a fresh module from a real temp file.
+
+    The source is written to a real file first: triton's @jit decorator
+    inspects the kernel's source, which fails for code exec'd under a
+    pseudo-filename (triton 3.7.1 raises "@jit functions should be defined
+    in a Python file"). A real module file also leaves the generated kernel
+    on disk for inspection while it is in use.
+    """
+    with tempfile.NamedTemporaryFile(
+            "w", suffix=f"_tsc_{result.key[:12]}.py", delete=False) as fh:
+        fh.write(result.generated)
     mod = types.ModuleType(f"tsc_generated_{result.key[:12]}")
-    exec(compile(result.generated, f"<tsc:{result.key[:12]}>", "exec"),
-         mod.__dict__)
+    mod.__file__ = fh.name
+    exec(compile(result.generated, fh.name, "exec"), mod.__dict__)
     return mod
 
 
