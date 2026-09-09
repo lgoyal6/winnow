@@ -86,9 +86,9 @@ def test_fault_injection_changes_generated_indexing():
     clean = generate_triton(_module())
     injected = generate_triton(_module(), indexing_delta=1)
     assert clean != injected
-    assert "byte0 + 1" in clean                    # the straddle byte
-    assert "byte0 + 1 + 1" in injected             # off-by-one on the high byte
-    assert "base + byte0 + 1," in injected         # and on the low byte
+    assert "base + byte0," in clean                # clean low-byte load
+    assert "(byte0 + 1) % 64" in injected          # off-by-one, wrapped in-row
+    assert "(byte0 + 1 + 1) % 64" in injected      # and on the straddle byte
     compile(injected, "generated_injected.py", "exec")
 
 

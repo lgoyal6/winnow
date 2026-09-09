@@ -122,21 +122,29 @@ class _Emitter:
             raise TSCError(f"load of unsupported shape {t}")
 
     def _emit_extract(self, ptr: str, nb: int, bits: int, out_var: str) -> None:
-        """Bit extraction, LSB-first, indices may straddle a byte boundary."""
+        """Bit extraction, LSB-first, indices may straddle a byte boundary.
+
+        A nonzero `indexing_delta` shifts every byte offset, wrapped within
+        the row so the injected fault stays memory-safe while producing
+        deterministically wrong values for the differential tests to catch.
+        """
         d = self.delta
-        plus = f" + {d}" if d else ""
+
+        def off(expr: str) -> str:
+            return f"({expr} + {d}) % {nb}" if d else expr
+
         if bits == 8:
             # A byte per index: the packed bytes are the indices.
             self.emit(f"{out_var} = tl.load({ptr} + src_row[:, None].to(tl.int64) * {nb}"
-                      f" + offs_d[None, :]{plus}, mask=rmask[:, None], other=0).to(tl.int32)")
+                      f" + {off('offs_d[None, :]')}, mask=rmask[:, None], other=0).to(tl.int32)")
             return
         self.emit(f"bit_off = offs_d[None, :] * {bits}")
         self.emit("byte0 = bit_off // 8")
         self.emit("sh = bit_off % 8")
         self.emit(f"base = {ptr} + src_row[:, None].to(tl.int64) * {nb}")
-        self.emit(f"b0 = tl.load(base + byte0{plus}, mask=rmask[:, None], other=0).to(tl.int32)")
+        self.emit(f"b0 = tl.load(base + {off('byte0')}, mask=rmask[:, None], other=0).to(tl.int32)")
         self.emit(f"hi_ok = rmask[:, None] & ((byte0 + 1) < {nb})")
-        self.emit(f"b1 = tl.load(base + byte0 + 1{plus}, mask=hi_ok, other=0).to(tl.int32)")
+        self.emit(f"b1 = tl.load(base + {off('byte0 + 1')}, mask=hi_ok, other=0).to(tl.int32)")
         self.emit(f"{out_var} = ((b0 >> sh) | (b1 << (8 - sh))) & {(1 << bits) - 1}")
 
     def op_unpack(self, ins) -> None:
