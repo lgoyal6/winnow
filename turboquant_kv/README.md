@@ -302,6 +302,9 @@ bench_cuda_kernel.py  torch vs triton vs CUDA harness; refuses to time without a
 results/cuda/      raw 24-shape sweeps from the A6000 run, plus the host string
 tsc/               tensor-schedule compiler: DSL -> AST -> IR -> Triton (see tsc/README.md)
 test_tsc_*.py      compiler tests: parser goldens, validation, IR, passes, codegen, cache, fallback
+ddp/               DDP scaling harness; NO GPU run yet, CPU gloo self-test only
+test_ddp_*.py      harness tests: config hash, stream determinism, checksum
+                   sensitivity, GPU inventory refusals, two-process gloo
 ../tools/run_gpu_differential.py  generated-vs-reference/handwritten GPU harness
 ```
 
@@ -385,6 +388,18 @@ python run_longbench.py --per-bucket 10 --no-kernel   # phase C gate
 python bench_cuda_kernel.py --check-bits             # CPU: CUDA kernel index math
 python bench_cuda_kernel.py --check --bench --bw 6   # needs a GPU; see results/cuda/
 ```
+
+From the repository root, for the data-parallel harness in `ddp/`:
+
+```bash
+./scripts/run-ddp-cpu-selftest.sh   # two gloo processes on CPU; NOT multi-GPU
+./scripts/run-multigpu-gate.sh      # exits 2 without two physical GPUs
+```
+
+No multi-GPU measurement exists in this repository. The `ddp/` harness has
+only ever run as a single-host CPU gloo self-test; see the root README's
+"Data-parallel training harness" section for the boundary and what a real run
+would require.
 
 Every GPU job on the shared box goes through a `flock` wrapper. Two benchmarks
 sharing the card corrupt each other: an overlapping profiler run inflated wall

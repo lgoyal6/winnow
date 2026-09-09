@@ -41,6 +41,108 @@ listed under Local setup.
 
 ---
 
+## Data-parallel training harness: implemented, multi-GPU evidence blocked
+
+`turboquant_kv/ddp/` is a DistributedDataParallel scaling harness. It asks one
+question and refuses to answer it dishonestly: **does adding a second physical
+GPU make a fixed amount of training work finish faster, and by how much, once
+gradient synchronization is paid for.**
+
+**No GPU run has happened.** Nothing in this repository contains a multi-GPU
+measurement. What exists is the harness, a frozen benchmark design, and a
+local correctness self-test on CPU. The scaling numbers are blocked pending
+access to a host with at least two physical GPUs.
+
+### What it measures
+
+Per measured step, per rank: step latency (CUDA events on GPU,
+`time.perf_counter` on CPU), tokens per second, peak memory
+(`torch.cuda.max_memory_allocated` on GPU; host RSS on CPU, labelled as host
+RSS), and communication time from a DDP comm hook that brackets each bucket's
+all-reduce. After the measured steps every rank computes a parameter checksum
+(a float64 sum plus a sha256 of the raw parameter bytes), all-gathers it, and
+the run fails unless every rank agrees bit-for-bit.
+
+The workload is fixed by [`turboquant_kv/ddp/manifest.json`](turboquant_kv/ddp/manifest.json),
+which was committed before any measurement: a 35.8M-parameter in-repo causal
+LM pinned by the sha256 of its config, a seeded synthetic token stream, global
+batch 32, sequence length 512, AdamW, bf16 autocast on CUDA, 5 warmup steps,
+30 measured steps, 3 repeats per configuration. Global batch is held fixed
+across world sizes, so `throughput_2 / (2 * throughput_1)` is a scaling
+efficiency rather than a weak-scaling number.
+
+Two things the harness is careful not to claim. The model is a
+**synthetic-workload proxy** for the decoder-only models Winnow serves, not
+one of them, and the tokens are noise: throughput describes the training loop
+and the all-reduce, never model quality. And the reported communication
+percentage is an **upper bound** on exposed communication, because per-bucket
+all-reduce intervals overlap each other and overlap backward compute by
+design.
+
+DDP rather than FSDP, deliberately: at 143 MB of fp32 gradients there is no
+memory pressure for parameter sharding to relieve, and sharding would add
+forward-pass collectives unrelated to the question.
+
+### The local self-test, which is all that has actually run
+
+```bash
+./scripts/run-ddp-cpu-selftest.sh
+```
+
+Two processes on one host, gloo backend, CPU, tiny model, 5 warmup and 10
+measured steps. It runs a positive case, then the planted negative control
+(`--inject-grad-sync-fault`, which makes one rank apply its local unreduced
+gradient for exactly one bucket), then a positive rerun. The control must
+fail: the checksum must mismatch and the process must exit non-zero. Output
+goes to `turboquant_kv/results/ddp-cpu-gloo-selftest.json`.
+
+**This is not a multi-GPU result.** Two processes on one CPU are not two GPUs.
+The self-test proves the harness synchronizes gradients correctly and that its
+checksum gate catches a real desynchronization. Its step latency and
+communication percentage are not a scaling, speedup, or throughput claim.
+
+### The gate, which needs a host this repository has not had
+
+```bash
+./scripts/run-multigpu-gate.sh
+```
+
+On a host without two physical GPUs this exits **2** and writes no benchmark
+numbers. It requires `nvidia-smi` to report at least two entries with distinct
+GPU UUIDs **and** distinct PCI bus ids: two MIG slices of one card get their
+own UUIDs but share the parent's bus id, so the UUID check alone would let one
+card pass as two.
+
+Given such a host it runs 3 repeats of the 1-GPU configuration and 3 of the
+2-GPU configuration at identical global batch and sequence length, then the
+negative control, then a positive 2-GPU rerun, and writes
+`multigpu-inventory.json`, `multigpu-benchmark.json`,
+`multigpu-negative-control.json` and `multigpu-report.md` under
+`turboquant_kv/results/`. A slowdown is a valid result and is reported as one;
+no scaling improvement is claimed unless two GPUs beat one on fixed global
+work.
+
+### What approval that run requires
+
+A named host with **at least two physical GPUs** confirmed by `nvidia-smi`
+(distinct UUIDs, distinct bus ids), exclusive use of those cards for the
+duration, and torch with a working NCCL build. Estimated runtime is a few
+minutes of GPU time for the eight runs. Nothing is downloaded and no paid
+service is involved.
+
+### Tests
+
+```bash
+python3 -m pytest -q turboquant_kv/test_ddp_harness.py turboquant_kv/test_ddp_gloo.py
+```
+
+The harness tests cover the config hash, the stream's determinism, the
+checksum's sensitivity to a single perturbed element, and the inventory
+parser's refusals (fixture text; `nvidia-smi` is never invoked). The gloo
+tests spawn two processes and assert both that a clean run ends with identical
+parameters and that the injected fault is caught.
+---
+
 ## What it does
 
 Two views, one pipeline.
