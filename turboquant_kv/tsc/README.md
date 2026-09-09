@@ -112,10 +112,16 @@ python tools/run_gpu_differential.py --out results/tsc_gpu_differential.json
 python tools/run_gpu_differential.py --inject-index-bug   # negative control
 ```
 
-The harness compares the generated kernel against the PyTorch reference
-(fp32 gate 1e-5, tf32 gate 3.125e-2) and against the handwritten kernel on
-the existing 24-shape matrix, times all arms, checks a strided cache slice,
-and exits 2 rather than inventing numbers on a host with no CUDA device.
+The harness compares the generated kernel element-wise against the PyTorch
+reference and admits exactly the proven bf16 rounding envelope: at most
+1 bf16 ULP at magnitude, plus a near-zero absolute floor (fp32: 2^-21 at
+|ref| <= 2^-14; tf32: 2^-8 at |ref| <= 0.5, tf32 mantissa truncation). It
+also requires bit-equality with the handwritten kernel on the existing
+24-shape matrix, times all arms, checks a strided cache slice, and exits 2
+rather than inventing numbers on a host with no CUDA device. The earlier
+fixed max-abs gates (fp32 1e-5, tf32 3.125e-2) are kept per row as
+diagnostics only; on the 2026-09-08 A6000 run they mis-flagged 16/48 rows
+whose worst mismatch was benign 1-ULP bf16 rounding.
 `--inject-index-bug` proves the differential actually catches a broken
 kernel: it passes only when the off-by-one it injects makes the tests fail.
 
