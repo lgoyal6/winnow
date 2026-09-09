@@ -1,0 +1,21 @@
+module tq_dequant
+  input %packed: u8[N, 128]
+  input %norms: f16[N]
+  input %centroids: f32[256]
+  input %pi: f32[128, 128]
+  output %out: bf16[N, 128]
+  %codes: u8[N, 128] = load %packed
+  %cb: f32[256] = load %centroids
+  %rotm: f32[128, 128] = load %pi
+  %nrm: f16[N] = load %norms
+  %idx: u8[N, 128] = unpack %codes {bits=8}
+  %y: f32[N, 128] = gather %cb, %idx
+  %y__f32: f32[N, 128] = cast %y, f32
+  %rotm__f32: f32[128, 128] = cast %rotm, f32
+  %x: f32[N, 128] = rot %y__f32, %rotm__f32
+  %nf: f32[N] = cast %nrm, f32
+  %x__f32: f32[N, 128] = cast %x, f32
+  %nf__f32: f32[N] = cast %nf, f32
+  %z: f32[N, 128] = rescale %x__f32, %nf__f32
+  %o: bf16[N, 128] = cast %z, bf16
+  store %out, %o
