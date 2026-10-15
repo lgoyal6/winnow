@@ -335,8 +335,12 @@ class TQPackedLayer(DynamicLayer):
     def get_mask_sizes(self, query_length: int, *a, **k):
         return self._len, 0
 
-    def get_max_cache_shape(self, *a, **k):
+    def get_max_length(self, *a, **k):
         return self._max
+
+    def get_max_cache_shape(self, *a, **k):
+        """Deprecated Transformers cache protocol alias for get_max_length."""
+        return self.get_max_length()
 
     def reset(self):
         self._len = 0
