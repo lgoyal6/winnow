@@ -1,0 +1,1166 @@
+{
+  "schema_version": 1,
+  "evidence_class": "recorded_gpu_benchmarks",
+  "source_commit": "74c8be82805a25e1ae806054e4defdd999693c2b",
+  "sources": [
+    {
+      "path": "turboquant_kv/results/phaseA_memory.json",
+      "sha256": "aad6908752573222355e0527f90e957ac4a1d326c01473be9727d08d6d1fc5c4"
+    },
+    {
+      "path": "turboquant_kv/results/phaseB_longbench.json",
+      "sha256": "abebe3e7f0b8fa7a397716e49051dfe57a64068e8f0d82239c62ba4a2b28c53a"
+    },
+    {
+      "path": "turboquant_kv/results/bitwidth_sweep.json",
+      "sha256": "4ff18c20fcb836dff6207d552577b8152eecef1804399af09ffa450a022290f4"
+    },
+    {
+      "path": "experiments/c27/out/decode_0.6b.json",
+      "sha256": "70ae9385279b08ea78bbf26e3374c732cde4538d2ca28dfc0a198ad555d041cb"
+    },
+    {
+      "path": "experiments/c27/out/matched_N1048576.json",
+      "sha256": "b5db0d7a9f1cb0c27a1be16e9f26cb105ce9524866175fc8c63b7cdf13a94c8a"
+    },
+    {
+      "path": "turboquant_kv/bench_memory.py",
+      "sha256": "31dfa0d253444dd7bf48a0985154c54a4ca74a5c12caf02606671eae3206e02a"
+    },
+    {
+      "path": "turboquant_kv/README.md",
+      "sha256": "022853b2d81aac07921952c7f82733b6b2df64edc9ae41e003c9b801268a7ff6"
+    },
+    {
+      "path": "experiments/c27/README.md",
+      "sha256": "65b617abf84c22f6fe1f737dc35684a032e8725fb9552336b9050dfebf6987dc"
+    }
+  ],
+  "memory_model": "Qwen/Qwen2.5-7B-Instruct",
+  "memory": [
+    {
+      "arm": "fp16",
+      "ctx": 2048,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 34.90421438556732,
+      "resident_kv_mb": 115.171875,
+      "persistent_kv_mb": 115.171875,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 392.0078125,
+      "logical_kv_mb": null
+    },
+    {
+      "arm": "tq4-current",
+      "ctx": 2048,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 21.20389692825705,
+      "resident_kv_mb": 116.92518615722656,
+      "persistent_kv_mb": 116.92518615722656,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 440.81640625,
+      "logical_kv_mb": 30.592529296875
+    },
+    {
+      "arm": "tq4-packed",
+      "ctx": 2048,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 10.926976874398378,
+      "resident_kv_mb": 30.855098724365234,
+      "persistent_kv_mb": 29.6927490234375,
+      "transient_kv_mb": 4.11328125,
+      "peak_mb": 302.4619140625,
+      "logical_kv_mb": null
+    },
+    {
+      "arm": "tq3-current",
+      "ctx": 2048,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 21.310717187535765,
+      "resident_kv_mb": 116.92347717285156,
+      "persistent_kv_mb": 116.92347717285156,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 440.81640625,
+      "logical_kv_mb": 23.394287109375
+    },
+    {
+      "arm": "tq3-packed",
+      "ctx": 2048,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 8.789535639606802,
+      "resident_kv_mb": 23.390193939208984,
+      "persistent_kv_mb": 22.4945068359375,
+      "transient_kv_mb": 4.11328125,
+      "peak_mb": 295.46875,
+      "logical_kv_mb": null
+    },
+    {
+      "arm": "tq3.5-current",
+      "ctx": 2048,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 11.968320387032024,
+      "resident_kv_mb": 116.27395629882812,
+      "persistent_kv_mb": 116.27395629882812,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 441.4306640625,
+      "logical_kv_mb": 26.993408203125
+    },
+    {
+      "arm": "tq3.5-packed",
+      "ctx": 2048,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 4.75075042368663,
+      "resident_kv_mb": 26.16960906982422,
+      "persistent_kv_mb": 25.19384765625,
+      "transient_kv_mb": 4.11328125,
+      "peak_mb": 297.83203125,
+      "logical_kv_mb": null
+    },
+    {
+      "arm": "fp16",
+      "ctx": 8192,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 35.04395151819485,
+      "resident_kv_mb": 437.171875,
+      "persistent_kv_mb": 437.171875,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 1504.2919921875,
+      "logical_kv_mb": null
+    },
+    {
+      "arm": "tq4-current",
+      "ctx": 8192,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 21.42857999279811,
+      "resident_kv_mb": 438.92518615722656,
+      "persistent_kv_mb": 438.92518615722656,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 1728.3525390625,
+      "logical_kv_mb": 116.123779296875
+    },
+    {
+      "arm": "tq4-packed",
+      "ctx": 8192,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 5.2861447805263655,
+      "resident_kv_mb": 117.48009872436523,
+      "persistent_kv_mb": 112.7083740234375,
+      "transient_kv_mb": 15.61328125,
+      "peak_mb": 1190.6201171875,
+      "logical_kv_mb": null
+    },
+    {
+      "arm": "tq3-current",
+      "ctx": 8192,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 21.35089479816973,
+      "resident_kv_mb": 438.92347717285156,
+      "persistent_kv_mb": 438.92347717285156,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 1728.3525390625,
+      "logical_kv_mb": 88.800537109375
+    },
+    {
+      "arm": "tq3-packed",
+      "ctx": 8192,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 4.027027871922742,
+      "resident_kv_mb": 89.01519393920898,
+      "persistent_kv_mb": 85.3851318359375,
+      "transient_kv_mb": 15.61328125,
+      "peak_mb": 1163.80712890625,
+      "logical_kv_mb": null
+    },
+    {
+      "arm": "tq3.5-current",
+      "ctx": 8192,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 12.041789891749794,
+      "resident_kv_mb": 438.2739562988281,
+      "persistent_kv_mb": 438.2739562988281,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 1746.08251953125,
+      "logical_kv_mb": 102.462158203125
+    },
+    {
+      "arm": "tq3.5-packed",
+      "ctx": 8192,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 2.005133572590569,
+      "resident_kv_mb": 99.66960906982422,
+      "persistent_kv_mb": 95.63134765625,
+      "transient_kv_mb": 15.61328125,
+      "peak_mb": 1176.771484375,
+      "logical_kv_mb": null
+    },
+    {
+      "arm": "fp16",
+      "ctx": 16384,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 34.95843810672708,
+      "resident_kv_mb": 866.0859375,
+      "persistent_kv_mb": 866.0859375,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 3003.62060546875,
+      "logical_kv_mb": null
+    },
+    {
+      "arm": "tq4-current",
+      "ctx": 16384,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 21.43077155519277,
+      "resident_kv_mb": 867.8392486572266,
+      "persistent_kv_mb": 867.8392486572266,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 3448.39404296875,
+      "logical_kv_mb": 230.0540771484375
+    },
+    {
+      "arm": "tq4-packed",
+      "ctx": 16384,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 3.030367908882142,
+      "resident_kv_mb": 232.98009872436523,
+      "persistent_kv_mb": 223.28778076171875,
+      "transient_kv_mb": 30.931640625,
+      "peak_mb": 2376.96044921875,
+      "logical_kv_mb": null
+    },
+    {
+      "arm": "tq3-current",
+      "ctx": 16384,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 21.418941237590627,
+      "resident_kv_mb": 867.8375396728516,
+      "persistent_kv_mb": 867.8375396728516,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 3448.39404296875,
+      "logical_kv_mb": 175.9237060546875
+    },
+    {
+      "arm": "tq3-packed",
+      "ctx": 16384,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 2.2593092166913045,
+      "resident_kv_mb": 176.51519393920898,
+      "persistent_kv_mb": 169.15740966796875,
+      "transient_kv_mb": 30.931640625,
+      "peak_mb": 2321.1103515625,
+      "logical_kv_mb": null
+    },
+    {
+      "arm": "tq3.5-current",
+      "ctx": 16384,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 12.05167438445255,
+      "resident_kv_mb": 867.1880187988281,
+      "persistent_kv_mb": 867.1880187988281,
+      "transient_kv_mb": 0.0,
+      "peak_mb": 3462.2822265625,
+      "logical_kv_mb": 202.9888916015625
+    },
+    {
+      "arm": "tq3.5-packed",
+      "ctx": 16384,
+      "decode": 128,
+      "batch": 1,
+      "decode_tok_s": 1.0961456304084234,
+      "resident_kv_mb": 197.66960906982422,
+      "persistent_kv_mb": 189.456298828125,
+      "transient_kv_mb": 30.931640625,
+      "peak_mb": 2344.30908203125,
+      "logical_kv_mb": null
+    }
+  ],
+  "quality_model": "Qwen/Qwen2.5-7B-Instruct",
+  "quality": [
+    {
+      "arm": "fp16",
+      "task": "2wikimqa",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 12.842170694802274
+    },
+    {
+      "arm": "fp16",
+      "task": "2wikimqa",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 9.084249084249084
+    },
+    {
+      "arm": "fp16",
+      "task": "2wikimqa",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 12.371021571021572
+    },
+    {
+      "arm": "fp16",
+      "task": "2wikimqa",
+      "bucket": "all",
+      "n": 30,
+      "score": 11.43248045002431
+    },
+    {
+      "arm": "fp16",
+      "task": "all",
+      "bucket": "0-4k",
+      "n": 40,
+      "score": 36.888458036257646
+    },
+    {
+      "arm": "fp16",
+      "task": "all",
+      "bucket": "4-8k",
+      "n": 40,
+      "score": 36.11283455729687
+    },
+    {
+      "arm": "fp16",
+      "task": "all",
+      "bucket": "8k+",
+      "n": 40,
+      "score": 38.959554348886996
+    },
+    {
+      "arm": "fp16",
+      "task": "all",
+      "bucket": "all",
+      "n": 120,
+      "score": 37.32028231414717
+    },
+    {
+      "arm": "fp16",
+      "task": "hotpotqa",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 12.699638347922098
+    },
+    {
+      "arm": "fp16",
+      "task": "hotpotqa",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 14.958141053793227
+    },
+    {
+      "arm": "fp16",
+      "task": "hotpotqa",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 13.070339682104388
+    },
+    {
+      "arm": "fp16",
+      "task": "hotpotqa",
+      "bucket": "all",
+      "n": 30,
+      "score": 13.576039694606573
+    },
+    {
+      "arm": "fp16",
+      "task": "multifieldqa_en",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 22.012023102306205
+    },
+    {
+      "arm": "fp16",
+      "task": "multifieldqa_en",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 20.40894809114518
+    },
+    {
+      "arm": "fp16",
+      "task": "multifieldqa_en",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 30.396856142422013
+    },
+    {
+      "arm": "fp16",
+      "task": "multifieldqa_en",
+      "bucket": "all",
+      "n": 30,
+      "score": 24.272609111957795
+    },
+    {
+      "arm": "fp16",
+      "task": "passage_retrieval_en",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 100.0
+    },
+    {
+      "arm": "fp16",
+      "task": "passage_retrieval_en",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 100.0
+    },
+    {
+      "arm": "fp16",
+      "task": "passage_retrieval_en",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 100.0
+    },
+    {
+      "arm": "fp16",
+      "task": "passage_retrieval_en",
+      "bucket": "all",
+      "n": 30,
+      "score": 100.0
+    },
+    {
+      "arm": "tq4",
+      "task": "2wikimqa",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq4",
+      "task": "2wikimqa",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq4",
+      "task": "2wikimqa",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq4",
+      "task": "2wikimqa",
+      "bucket": "all",
+      "n": 30,
+      "score": 0.0
+    },
+    {
+      "arm": "tq4",
+      "task": "all",
+      "bucket": "0-4k",
+      "n": 40,
+      "score": 2.680381633870006
+    },
+    {
+      "arm": "tq4",
+      "task": "all",
+      "bucket": "4-8k",
+      "n": 40,
+      "score": 2.584745762711864
+    },
+    {
+      "arm": "tq4",
+      "task": "all",
+      "bucket": "8k+",
+      "n": 40,
+      "score": 0.0
+    },
+    {
+      "arm": "tq4",
+      "task": "all",
+      "bucket": "all",
+      "n": 120,
+      "score": 1.75504246552729
+    },
+    {
+      "arm": "tq4",
+      "task": "hotpotqa",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq4",
+      "task": "hotpotqa",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq4",
+      "task": "hotpotqa",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq4",
+      "task": "hotpotqa",
+      "bucket": "all",
+      "n": 30,
+      "score": 0.0
+    },
+    {
+      "arm": "tq4",
+      "task": "multifieldqa_en",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 0.7215265354800239
+    },
+    {
+      "arm": "tq4",
+      "task": "multifieldqa_en",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 0.3389830508474576
+    },
+    {
+      "arm": "tq4",
+      "task": "multifieldqa_en",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq4",
+      "task": "multifieldqa_en",
+      "bucket": "all",
+      "n": 30,
+      "score": 0.35350319544249387
+    },
+    {
+      "arm": "tq4",
+      "task": "passage_retrieval_en",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 10.0
+    },
+    {
+      "arm": "tq4",
+      "task": "passage_retrieval_en",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 10.0
+    },
+    {
+      "arm": "tq4",
+      "task": "passage_retrieval_en",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq4",
+      "task": "passage_retrieval_en",
+      "bucket": "all",
+      "n": 30,
+      "score": 6.666666666666667
+    },
+    {
+      "arm": "tq5",
+      "task": "2wikimqa",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq5",
+      "task": "2wikimqa",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq5",
+      "task": "2wikimqa",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq5",
+      "task": "2wikimqa",
+      "bucket": "all",
+      "n": 30,
+      "score": 0.0
+    },
+    {
+      "arm": "tq5",
+      "task": "all",
+      "bucket": "0-4k",
+      "n": 40,
+      "score": 2.778637770897833
+    },
+    {
+      "arm": "tq5",
+      "task": "all",
+      "bucket": "4-8k",
+      "n": 40,
+      "score": 0.2941176470588236
+    },
+    {
+      "arm": "tq5",
+      "task": "all",
+      "bucket": "8k+",
+      "n": 40,
+      "score": 0.06756756756756757
+    },
+    {
+      "arm": "tq5",
+      "task": "all",
+      "bucket": "all",
+      "n": 120,
+      "score": 1.0467743285080746
+    },
+    {
+      "arm": "tq5",
+      "task": "hotpotqa",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq5",
+      "task": "hotpotqa",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq5",
+      "task": "hotpotqa",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq5",
+      "task": "hotpotqa",
+      "bucket": "all",
+      "n": 30,
+      "score": 0.0
+    },
+    {
+      "arm": "tq5",
+      "task": "multifieldqa_en",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 1.1145510835913313
+    },
+    {
+      "arm": "tq5",
+      "task": "multifieldqa_en",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 1.1764705882352944
+    },
+    {
+      "arm": "tq5",
+      "task": "multifieldqa_en",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 0.2702702702702703
+    },
+    {
+      "arm": "tq5",
+      "task": "multifieldqa_en",
+      "bucket": "all",
+      "n": 30,
+      "score": 0.8537639806989653
+    },
+    {
+      "arm": "tq5",
+      "task": "passage_retrieval_en",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 10.0
+    },
+    {
+      "arm": "tq5",
+      "task": "passage_retrieval_en",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq5",
+      "task": "passage_retrieval_en",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq5",
+      "task": "passage_retrieval_en",
+      "bucket": "all",
+      "n": 30,
+      "score": 3.3333333333333335
+    },
+    {
+      "arm": "tq6",
+      "task": "2wikimqa",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 25.38011695906433
+    },
+    {
+      "arm": "tq6",
+      "task": "2wikimqa",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 12.666666666666664
+    },
+    {
+      "arm": "tq6",
+      "task": "2wikimqa",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 10.532467532467534
+    },
+    {
+      "arm": "tq6",
+      "task": "2wikimqa",
+      "bucket": "all",
+      "n": 30,
+      "score": 16.19308371939951
+    },
+    {
+      "arm": "tq6",
+      "task": "all",
+      "bucket": "0-4k",
+      "n": 40,
+      "score": 22.60344370541739
+    },
+    {
+      "arm": "tq6",
+      "task": "all",
+      "bucket": "4-8k",
+      "n": 40,
+      "score": 7.526068135722749
+    },
+    {
+      "arm": "tq6",
+      "task": "all",
+      "bucket": "8k+",
+      "n": 40,
+      "score": 6.777579056907553
+    },
+    {
+      "arm": "tq6",
+      "task": "all",
+      "bucket": "all",
+      "n": 120,
+      "score": 12.302363632682562
+    },
+    {
+      "arm": "tq6",
+      "task": "hotpotqa",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 12.010025062656641
+    },
+    {
+      "arm": "tq6",
+      "task": "hotpotqa",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 3.7267080745341614
+    },
+    {
+      "arm": "tq6",
+      "task": "hotpotqa",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 1.25
+    },
+    {
+      "arm": "tq6",
+      "task": "hotpotqa",
+      "bucket": "all",
+      "n": 30,
+      "score": 5.662244379063601
+    },
+    {
+      "arm": "tq6",
+      "task": "multifieldqa_en",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 23.02363279994859
+    },
+    {
+      "arm": "tq6",
+      "task": "multifieldqa_en",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 13.71089780169017
+    },
+    {
+      "arm": "tq6",
+      "task": "multifieldqa_en",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 5.327848695162675
+    },
+    {
+      "arm": "tq6",
+      "task": "multifieldqa_en",
+      "bucket": "all",
+      "n": 30,
+      "score": 14.020793098933812
+    },
+    {
+      "arm": "tq6",
+      "task": "passage_retrieval_en",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 30.0
+    },
+    {
+      "arm": "tq6",
+      "task": "passage_retrieval_en",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 0.0
+    },
+    {
+      "arm": "tq6",
+      "task": "passage_retrieval_en",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 10.0
+    },
+    {
+      "arm": "tq6",
+      "task": "passage_retrieval_en",
+      "bucket": "all",
+      "n": 30,
+      "score": 13.333333333333334
+    },
+    {
+      "arm": "tq8",
+      "task": "2wikimqa",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 10.806779185726553
+    },
+    {
+      "arm": "tq8",
+      "task": "2wikimqa",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 9.084249084249084
+    },
+    {
+      "arm": "tq8",
+      "task": "2wikimqa",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 10.263998159650335
+    },
+    {
+      "arm": "tq8",
+      "task": "2wikimqa",
+      "bucket": "all",
+      "n": 30,
+      "score": 10.051675476541991
+    },
+    {
+      "arm": "tq8",
+      "task": "all",
+      "bucket": "0-4k",
+      "n": 40,
+      "score": 36.13254262775997
+    },
+    {
+      "arm": "tq8",
+      "task": "all",
+      "bucket": "4-8k",
+      "n": 40,
+      "score": 36.268550971248835
+    },
+    {
+      "arm": "tq8",
+      "task": "all",
+      "bucket": "8k+",
+      "n": 40,
+      "score": 37.76561448927014
+    },
+    {
+      "arm": "tq8",
+      "task": "all",
+      "bucket": "all",
+      "n": 120,
+      "score": 36.72223602942631
+    },
+    {
+      "arm": "tq8",
+      "task": "hotpotqa",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 12.562676758786598
+    },
+    {
+      "arm": "tq8",
+      "task": "hotpotqa",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 15.272979990600128
+    },
+    {
+      "arm": "tq8",
+      "task": "hotpotqa",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 13.668113211067373
+    },
+    {
+      "arm": "tq8",
+      "task": "hotpotqa",
+      "bucket": "all",
+      "n": 30,
+      "score": 13.83458998681803
+    },
+    {
+      "arm": "tq8",
+      "task": "multifieldqa_en",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 21.16071456652671
+    },
+    {
+      "arm": "tq8",
+      "task": "multifieldqa_en",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 20.716974810146144
+    },
+    {
+      "arm": "tq8",
+      "task": "multifieldqa_en",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 27.130346586362858
+    },
+    {
+      "arm": "tq8",
+      "task": "multifieldqa_en",
+      "bucket": "all",
+      "n": 30,
+      "score": 23.002678654345235
+    },
+    {
+      "arm": "tq8",
+      "task": "passage_retrieval_en",
+      "bucket": "0-4k",
+      "n": 10,
+      "score": 100.0
+    },
+    {
+      "arm": "tq8",
+      "task": "passage_retrieval_en",
+      "bucket": "4-8k",
+      "n": 10,
+      "score": 100.0
+    },
+    {
+      "arm": "tq8",
+      "task": "passage_retrieval_en",
+      "bucket": "8k+",
+      "n": 10,
+      "score": 100.0
+    },
+    {
+      "arm": "tq8",
+      "task": "passage_retrieval_en",
+      "bucket": "all",
+      "n": 30,
+      "score": 100.0
+    }
+  ],
+  "quality_tasks": [
+    "2wikimqa",
+    "hotpotqa",
+    "multifieldqa_en",
+    "passage_retrieval_en"
+  ],
+  "bitwidth": [
+    {
+      "bits": 3,
+      "bytes_per_vector": 50,
+      "compression_vs_fp16": 5.12,
+      "rel_l2_real": 0.18509522080421448,
+      "greedy_token_match_vs_fp16": 0.16666666666666666
+    },
+    {
+      "bits": 4,
+      "bytes_per_vector": 66,
+      "compression_vs_fp16": 3.878787878787879,
+      "rel_l2_real": 0.09643342345952988,
+      "greedy_token_match_vs_fp16": 0.16666666666666666
+    },
+    {
+      "bits": 5,
+      "bytes_per_vector": 82,
+      "compression_vs_fp16": 3.1219512195121952,
+      "rel_l2_real": 0.049710068851709366,
+      "greedy_token_match_vs_fp16": 0.1111111111111111
+    },
+    {
+      "bits": 6,
+      "bytes_per_vector": 98,
+      "compression_vs_fp16": 2.6122448979591835,
+      "rel_l2_real": 0.02616482973098755,
+      "greedy_token_match_vs_fp16": 1.0
+    },
+    {
+      "bits": 8,
+      "bytes_per_vector": 130,
+      "compression_vs_fp16": 1.9692307692307693,
+      "rel_l2_real": 0.006978438701480627,
+      "greedy_token_match_vs_fp16": 1.0
+    }
+  ],
+  "decode": {
+    "2048": {
+      "triton_tf32": {
+        "prefill_s": 1.5110167148523033,
+        "decode_s": 2.100834905868396,
+        "ms_per_token": 65.65109080838738,
+        "tok_per_s": 15.232039371876562,
+        "peak_gib": 1.4002466201782227
+      },
+      "triton_fp32": {
+        "prefill_s": 0.2163169460836798,
+        "decode_s": 3.781879724934697,
+        "ms_per_token": 118.18374140420929,
+        "tok_per_s": 8.461400765608047,
+        "peak_gib": 1.4002466201782227
+      },
+      "native_cuda_fp32": {
+        "prefill_s": 0.1094518608879298,
+        "decode_s": 2.051047174958512,
+        "ms_per_token": 64.0952242174535,
+        "tok_per_s": 15.601786438991724,
+        "peak_gib": 1.4002466201782227
+      },
+      "fp16_baseline": {
+        "prefill_s": 0.055602211970835924,
+        "decode_s": 1.1523171949665993,
+        "ms_per_token": 36.00991234270623,
+        "tok_per_s": 27.770131470551856,
+        "peak_gib": 1.3887786865234375
+      }
+    },
+    "8192": {
+      "triton_tf32": {
+        "prefill_s": 0.42501836200244725,
+        "decode_s": 2.119718272006139,
+        "ms_per_token": 66.24119600019185,
+        "tok_per_s": 15.0963457845342,
+        "peak_gib": 2.13881778717041
+      },
+      "triton_fp32": {
+        "prefill_s": 0.8229189589619637,
+        "decode_s": 13.63036493700929,
+        "ms_per_token": 425.9489042815403,
+        "tok_per_s": 2.347699430490912,
+        "peak_gib": 2.13881778717041
+      },
+      "native_cuda_fp32": {
+        "prefill_s": 0.46893839398398995,
+        "decode_s": 2.0634673761669546,
+        "ms_per_token": 64.48335550521733,
+        "tok_per_s": 15.507877841733752,
+        "peak_gib": 2.13881778717041
+      },
+      "fp16_baseline": {
+        "prefill_s": 0.2609508731402457,
+        "decode_s": 1.163697605021298,
+        "ms_per_token": 36.36555015691556,
+        "tok_per_s": 27.498552769999332,
+        "peak_gib": 2.2003936767578125
+      }
+    },
+    "16384": {
+      "triton_tf32": {
+        "prefill_s": 1.0012586920056492,
+        "decode_s": 2.1203868549782783,
+        "ms_per_token": 66.2620892180712,
+        "tok_per_s": 15.091585728740908,
+        "peak_gib": 3.15773868560791
+      },
+      "triton_fp32": {
+        "prefill_s": 1.7675743929576129,
+        "decode_s": 26.788369073998183,
+        "ms_per_token": 837.1365335624432,
+        "tok_per_s": 1.1945482724836887,
+        "peak_gib": 3.15773868560791
+      },
+      "native_cuda_fp32": {
+        "prefill_s": 1.0825905778910965,
+        "decode_s": 2.846384237986058,
+        "ms_per_token": 88.94950743706431,
+        "tok_per_s": 11.242333193441729,
+        "peak_gib": 3.15773868560791
+      },
+      "fp16_baseline": {
+        "prefill_s": 0.6728527199011296,
+        "decode_s": 1.1746514439582825,
+        "ms_per_token": 36.70785762369633,
+        "tok_per_s": 27.242123750487192,
+        "peak_gib": 3.2825469970703125
+      }
+    }
+  },
+  "kernel": {
+    "B": 16,
+    "H": 4,
+    "L": 16384,
+    "N": 1048576,
+    "D": 128,
+    "BW": 6,
+    "NB": 96,
+    "bytes_moved": 371261696,
+    "macs": 17179869184,
+    "arms": {
+      "triton_fp32": {
+        "us": 107047.24121093749,
+        "max_abs_err": 0.0,
+        "rel_l2_err": 0.0,
+        "achieved_GBs": 3.4682042414192225,
+        "eff_TFLOPs": 0.32097733654147936
+      },
+      "triton_tf32": {
+        "us": 1298.7520217895508,
+        "max_abs_err": 0.03125,
+        "rel_l2_err": 0.0020199883729219437,
+        "achieved_GBs": 285.8603411361304,
+        "eff_TFLOPs": 26.45596525859933
+      },
+      "native_cuda_fp32": {
+        "us": 10548.262023925781,
+        "max_abs_err": 0.0,
+        "rel_l2_err": 0.0,
+        "achieved_GBs": 35.19648025029116,
+        "eff_TFLOPs": 3.25738385053998
+      }
+    }
+  }
+}
