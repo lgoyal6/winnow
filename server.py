@@ -57,19 +57,12 @@ Try it (LCLM + TurboQuant route):
 import asyncio
 import time
 from contextlib import ExitStack, asynccontextmanager
-from typing import List, Optional
+from typing import Any, Callable, List, Optional
 
-import modal
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from pydantic import BaseModel, Field
 
-# Import the worker app modules so we can run them ephemerally, bound to this
-# process. (Module import is light: heavy deps like torch are imported lazily
-# inside the Modal methods, not at module top-level.)
-import attentionrag.modal_app as attentionrag_modal
-import lclm_worker_modal
-import llmlingua2_modal
-import turboquant_modal
+from lifecycle import ComponentSpec, ComponentUnavailable, Lifecycle
 
 # Token-by-token merge of LLMLingua + AttentionRAG keep-decisions (pure-python).
 from token_merge import merge_compress, normalize_labels
@@ -83,55 +76,176 @@ from downstream import (
     _key_for,
 )
 
-# Worker handles, populated in the lifespan once the Modal apps are running.
-compressor = None
-attn_service = None
-turboquant = None
-lclm = None
+# The four workers, and which of them this service cannot serve without.
+#
+# Critical: LLMLingua-2 is the whole of /compress, and the default TurboQuant
+# route is the whole of /generate. Without either there is no service to run.
+#
+# Optional: AttentionRAG makes /compress question-aware and LCLM adds a second
+# generation route. Losing one of those costs one feature; taking the process
+# down over it costs all of them.
+COMPRESSOR = "compressor"
+ATTENTIONRAG = "attentionrag"
+TURBOQUANT = "turboquant"
+LCLM = "lclm"
+
+LIFECYCLE: Lifecycle | None = None
+"""Set by the lifespan. Read through `require`, never directly: an endpoint that
+reached for a handle itself would be the thing that used to serve requests from
+a worker with no model in it."""
+
+
+def _modal_component(
+    *,
+    name: str,
+    capability: str,
+    critical: bool,
+    load: Callable[[], tuple[Any, Any]],
+    warm: Callable[[Any], Any],
+) -> ComponentSpec:
+    """One Modal worker, behind three plain callables.
+
+    Every Modal-shaped thing in this service is on this side of the line:
+    `app.run()`, the class handle, and the `.remote.aio` warmup. The lifecycle
+    itself has no idea Modal exists, which is what lets the tests drive startup,
+    rollback, degradation and shutdown with fakes and never open a connection.
+
+    `app.run()` is a synchronous context manager, so it is entered on a worker
+    thread rather than blocking the event loop while a container comes up.
+    """
+    stack = ExitStack()
+
+    async def start() -> Any:
+        app_handle, worker = await asyncio.to_thread(load_and_enter)
+        return worker
+
+    def load_and_enter() -> tuple[Any, Any]:
+        modal_app, worker_factory = load()
+        stack.enter_context(modal_app.run())
+        return modal_app, worker_factory()
+
+    async def warmup(worker: Any) -> Any:
+        return await warm(worker)
+
+    async def cleanup(_worker: Any) -> None:
+        await asyncio.to_thread(stack.close)
+
+    return ComponentSpec(
+        name=name,
+        capability=capability,
+        critical=critical,
+        start=start,
+        warmup=warmup,
+        cleanup=cleanup,
+    )
+
+
+def modal_components() -> list[ComponentSpec]:
+    """The real worker set.
+
+    The worker modules are imported here rather than at module scope so that
+    importing `server` costs nothing and reaches nothing. That is not tidiness:
+    it is what makes it possible to test every endpoint without `modal`
+    installed, and it removes any path by which a test run could contact it.
+    """
+    import attentionrag.modal_app as attentionrag_modal
+    import lclm_worker_modal
+    import llmlingua2_modal
+    import turboquant_modal
+
+    return [
+        _modal_component(
+            name=COMPRESSOR,
+            capability="LLMLingua-2 token compression",
+            critical=True,
+            load=lambda: (llmlingua2_modal.app, llmlingua2_modal.Compressor),
+            warm=lambda w: w.compress.remote.aio("warmup", rate=0.5),
+        ),
+        _modal_component(
+            name=ATTENTIONRAG,
+            capability="AttentionRAG question-aware selection",
+            critical=False,
+            load=lambda: (attentionrag_modal.app, attentionrag_modal.AttentionRAGService),
+            warm=lambda w: w.compress_spans.remote.aio("warmup", "warmup"),
+        ),
+        _modal_component(
+            name=TURBOQUANT,
+            capability="TurboQuant generation",
+            critical=True,
+            load=lambda: (turboquant_modal.app, turboquant_modal.TurboQuantModel),
+            warm=lambda w: w.generate.remote.aio("warmup", max_new_tokens=1),
+        ),
+        _modal_component(
+            name=LCLM,
+            capability="LCLM long-context generation",
+            critical=False,
+            load=lambda: (lclm_worker_modal.app, lclm_worker_modal.LCLMTurboQuantModel),
+            warm=lambda w: w.generate.remote.aio("warmup", max_new_tokens=1),
+        ),
+    ]
+
+
+component_factory: Callable[[], list[ComponentSpec]] = modal_components
+"""What builds the worker set. Swapped for fakes in tests, which is the only
+reason it is a name rather than a call. Not a switch over behaviour: whatever it
+returns goes through exactly the same startup, rollback and readiness path."""
 
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
-    """Start all Modal GPU apps when the server boots; stop them when it exits.
+    """Start the workers when the server boots; stop them when it exits.
 
     `app.run()` starts an EPHEMERAL Modal app bound to this process: its
-    containers live only while this server lives. We warm each worker with one
-    tiny request so the model loads now (the one-time cold start happens here at
-    server startup, not on a user's first request). Closing the ExitStack on
-    shutdown stops the apps and releases their GPU containers immediately.
+    containers live only while this server lives, and each worker is warmed once
+    so the cold start happens here rather than on somebody's first request.
+
+    What changed is what happens when one of them does not come up. A critical
+    worker failing still aborts the boot, and everything already started is
+    closed on the way out. An optional worker failing is recorded, cleaned up,
+    and the service serves everything that does not need it -- see /ready for
+    which of those is currently true.
     """
-    global compressor, attn_service, turboquant, lclm
-    with ExitStack() as stack:
-        # NB: no modal.enable_output() — its rich live-display can't be shared
-        # across concurrent app.run() contexts (LiveError). Apps run quietly.
-        # Start all GPU apps, tied to this process (identical mechanism).
-        stack.enter_context(llmlingua2_modal.app.run())
-        stack.enter_context(attentionrag_modal.app.run())
-        stack.enter_context(turboquant_modal.app.run())
-        stack.enter_context(lclm_worker_modal.app.run())
-
-        compressor = llmlingua2_modal.Compressor()
-        attn_service = attentionrag_modal.AttentionRAGService()
-        turboquant = turboquant_modal.TurboQuantModel()
-        lclm = lclm_worker_modal.LCLMTurboQuantModel()
-
-        # Cold-start + load all models now, concurrently.
-        print("[startup] warming Modal workers (loading models on GPU)...", flush=True)
-        await asyncio.gather(
-            compressor.compress.remote.aio("warmup", rate=0.5),
-            attn_service.compress_spans.remote.aio("warmup", "warmup"),
-            turboquant.generate.remote.aio("warmup", max_new_tokens=1),
-            lclm.generate.remote.aio("warmup", max_new_tokens=1),
+    global LIFECYCLE
+    LIFECYCLE = Lifecycle(component_factory())
+    try:
+        await LIFECYCLE.start()
+    except Exception:
+        LIFECYCLE = None
+        raise
+    missing = [c for c in LIFECYCLE.readiness()["components"] if not c["ready"]]
+    if missing:
+        print(
+            "[startup] serving degraded, unavailable: "
+            + ", ".join(f"{c['capability']} ({c['state']})" for c in missing),
+            flush=True,
         )
+    else:
         print("[startup] all workers warm; ready to serve.", flush=True)
 
+    try:
         yield  # ----------------- server handles requests -----------------
-
-    # ExitStack closed -> all Modal apps stopped -> GPU containers torn down.
-    print("[shutdown] Modal apps stopped; GPU containers released.", flush=True)
+    finally:
+        await LIFECYCLE.stop()
+        LIFECYCLE = None
+        print("[shutdown] workers stopped; GPU containers released.", flush=True)
 
 
 app = FastAPI(title="Compression + Generation API", lifespan=lifespan)
+
+
+def require(name: str) -> Any:
+    """The worker behind a component, or a 503 that names what is missing.
+
+    A 503 rather than a quiet substitution. Answering a request for LCLM with
+    the default generation route would return a plausible answer from a model
+    the caller did not ask for, and nothing in the response would say so.
+    """
+    if LIFECYCLE is None:
+        raise HTTPException(status_code=503, detail="the service is still starting")
+    try:
+        return LIFECYCLE.handle(name)
+    except ComponentUnavailable as unavailable:
+        raise HTTPException(status_code=503, detail=str(unavailable)) from unavailable
 
 
 # --------------------------------------------------------------------------- #
@@ -245,11 +359,46 @@ class GenerateResponse(BaseModel):
 
 @app.get("/health")
 async def health():
-    return {"status": "ok",
-            "compressor_ready": compressor is not None,
-            "attentionrag_ready": attn_service is not None,
-            "turboquant_ready": turboquant is not None,
-            "lclm_ready": lclm is not None}
+    """Liveness, plus per-worker readiness in the shape callers already parse.
+
+    The `*_ready` flags used to mean "a handle object exists", which is true the
+    instant the app starts and stays true while the model is still loading --
+    so the one question the field was asked was the one it could not answer.
+    They now mean the worker's warmup returned.
+    """
+    states = LIFECYCLE.readiness() if LIFECYCLE is not None else {"components": []}
+    ready = {c["name"]: c["ready"] for c in states["components"]}
+    return {
+        "status": "ok",  # the process is serving; see /ready for what it can serve
+        "compressor_ready": ready.get(COMPRESSOR, False),
+        "attentionrag_ready": ready.get(ATTENTIONRAG, False),
+        "turboquant_ready": ready.get(TURBOQUANT, False),
+        "lclm_ready": ready.get(LCLM, False),
+    }
+
+
+@app.get("/ready")
+async def ready(response: Response):
+    """Every component, its state, and whether anything is wrong.
+
+    Two separate facts, deliberately. `ready` is whether the service can do its
+    job at all, and only the critical workers decide it. `degraded` is whether
+    anything is missing, optional workers included. Collapsing them would either
+    page somebody for a service that is working or hide a dead worker behind a
+    green light.
+
+    503 when a critical worker is missing, so a load balancer takes this replica
+    out; 200 while merely degraded, because the routes that still work should
+    still get traffic.
+    """
+    if LIFECYCLE is None:
+        response.status_code = 503
+        return {"ready": False, "degraded": True, "components": [],
+                "detail": "the service is still starting"}
+    states = LIFECYCLE.readiness()
+    if not states["ready"]:
+        response.status_code = 503
+    return states
 
 
 @app.post("/compress", response_model=CompressResponse)
@@ -265,6 +414,13 @@ async def compress(req: CompressRequest):
     merging = bool(req.question and req.question.strip())
     # LLMLingua is the canonical spine for the merge, so we need its word labels.
     need_labels = req.return_labels or merging
+
+    compressor = require(COMPRESSOR)
+    # Asked for before anything runs, not discovered halfway through. A caller
+    # who asked for question-aware compression is told the service cannot do
+    # that right now, rather than being handed LLMLingua-only output for a
+    # request that named a second method.
+    attn_service = require(ATTENTIONRAG) if merging else None
 
     llm_coro = compressor.compress.remote.aio(
         req.text, rate=req.rate, return_labels=need_labels
@@ -348,6 +504,7 @@ async def compress(req: CompressRequest):
 @app.post("/compress_rag")
 async def compress_rag(req: RagRequest):
     """Two-stage, question-aware compression: reranker coarse + LLMLingua-2 tokens."""
+    compressor = require(COMPRESSOR)
     try:
         out = await compressor.compress_rag.remote.aio(
             req.instruction,
@@ -373,9 +530,10 @@ async def generate(req: GenerateRequest):
     Routing: `lclm=true` -> LCLM (context compressed to latent soft tokens) +
     TurboQuant on the decoder KV cache; otherwise the default Qwen TurboQuant
     route (unchanged). Both return the same response shape."""
+    worker = require(LCLM if req.lclm else TURBOQUANT)
     try:
         if req.lclm:
-            out = await lclm.generate.remote.aio(
+            out = await worker.generate.remote.aio(
                 req.prompt,
                 bit_width=req.bit_width,
                 max_new_tokens=req.max_new_tokens,
@@ -384,7 +542,7 @@ async def generate(req: GenerateRequest):
                 context=req.context,
             )
         else:
-            out = await turboquant.generate.remote.aio(
+            out = await worker.generate.remote.aio(
                 req.prompt,
                 bit_width=req.bit_width,
                 max_new_tokens=req.max_new_tokens,
@@ -480,6 +638,8 @@ async def _layer1_raw(req: PlaygroundRequest) -> dict:
         attn_note = None
 
     if use_llm and use_attn:
+        compressor = require(COMPRESSOR)
+        attn_service = require(ATTENTIONRAG)
         llm_coro = compressor.compress.remote.aio(req.text, rate=req.rate, return_labels=True)
         attn_coro = attn_service.compress_spans.remote.aio(req.text, q)
         llm_out, attn_out = await asyncio.gather(llm_coro, attn_coro, return_exceptions=True)
@@ -497,13 +657,14 @@ async def _layer1_raw(req: PlaygroundRequest) -> dict:
         }
 
     if use_llm:
-        out = await compressor.compress.remote.aio(req.text, rate=req.rate, return_labels=True)
+        out = await require(COMPRESSOR).compress.remote.aio(
+            req.text, rate=req.rate, return_labels=True)
         return {"compressed_text": out["compressed_prompt"], "methods": ["llmlingua"],
                 "origin_tokens": out["origin_tokens"], "compressed_tokens": out["compressed_tokens"],
                 "note": attn_note}
 
     # AttentionRAG only
-    attn_out = await attn_service.compress_spans.remote.aio(req.text, q)
+    attn_out = await require(ATTENTIONRAG).compress_spans.remote.aio(req.text, q)
     return {"compressed_text": _splice_spans(req.text, attn_out.get("kept_spans", [])),
             "methods": ["attentionrag"],
             "kept_chunks": f"{attn_out.get('n_kept_chunks', 0)}/{attn_out.get('n_chunks', 0)}"}
@@ -534,11 +695,11 @@ async def _layer2(req: PlaygroundRequest, context: str) -> dict:
     bit_width = 4 if req.quantized else 8
     if backend == "qwen":
         prompt = f"{context}\n\nQuestion: {q}" if q else context
-        out = await turboquant.generate.remote.aio(
+        out = await require(TURBOQUANT).generate.remote.aio(
             prompt, bit_width=bit_width, max_new_tokens=req.max_new_tokens)
         return {"backend": "qwen", "quantized": req.quantized, **out}
     if backend == "lclm":
-        out = await lclm.generate.remote.aio(
+        out = await require(LCLM).generate.remote.aio(
             q or "Summarize the key facts in the context.",
             context=context, bit_width=bit_width, max_new_tokens=req.max_new_tokens)
         return {"backend": "lclm", "quantized": req.quantized, **out}
