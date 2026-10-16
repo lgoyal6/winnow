@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+export.py
+test_export.py
+recorded-simulation.json
+README.md
