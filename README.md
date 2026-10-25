@@ -259,6 +259,78 @@ multiply.
 - FastAPI calls the **Modal** worker over Modal's RPC. The worker hosts **LLMLingua-2** on a T4, with memory + GPU snapshots so cold starts are ~1 second.
 - Q&A and Project chat go through Next.js API routes directly to **Anthropic** (Claude Sonnet 4.6 by default; pickable in the UI).
 
+### Worker lifecycle: which workers are worth an outage
+
+The FastAPI lifespan starts four Modal workers and warms each one. Two of them
+are what the service *is*; two of them are each one feature. The difference is
+the only thing the lifecycle cares about.
+
+| Worker | Role | Without it |
+|---|---|---|
+| LLMLingua-2 compressor | **critical** | there is no `/compress` |
+| default TurboQuant generation | **critical** | there is no `/generate` |
+| AttentionRAG | optional | `/compress` cannot be question-aware |
+| LCLM | optional | `/generate?lclm=true` has no worker |
+
+**States.** `starting` → `ready`, or `failed`; `stopped` on the way out. A
+component is `ready` because its warmup returned, and `failed` because something
+observably raised. There is no setting anywhere that can put one in a state it
+did not reach — a readiness endpoint that can be told what to say is not a
+readiness endpoint.
+
+**Rollback and shutdown order.** Contexts are acquired in declaration order and
+warmed concurrently once all of them are up. If a **critical** worker fails to
+start or warm, startup aborts and every component that already started is closed
+in reverse order, exactly once, before the exception leaves — a half-started
+process that answers requests is worse than one that never came up, and a GPU
+container nobody closed outlives the process that leaked it. A normal shutdown
+does the same thing and waits for each cleanup. A cleanup that raises is
+recorded and does not strand the components below it.
+
+If an **optional** worker fails, the failure is recorded, that one component is
+cleaned up, and everything else serves.
+
+**During degradation.** An endpoint whose worker is unavailable answers **503**
+naming the capability, never a quiet substitution: answering an LCLM request
+from the default model returns a plausible answer from a model the caller did not
+ask for, and nothing in the response would say so. That now includes
+`/compress` with a `question` set, which refuses when AttentionRAG is
+unavailable rather than returning LLMLingua-only output for a request that asked
+for two methods. The in-request fallback for a worker that breaks *during* a
+call is unchanged — trying and failing is a different thing from knowing in
+advance.
+
+**Liveness and readiness.**
+
+- `GET /health` — the process is serving. The `*_ready` flags are still there and
+  still the same keys, but they used to mean "a handle object exists", which is
+  true the instant the app starts and stays true while the model is still
+  loading. They now mean the worker's warmup returned.
+- `GET /ready` — every component, its state, and two separate top-level facts:
+  `ready` (can the service do its job at all — critical workers only) and
+  `degraded` (is anything missing at all). 503 when a critical worker is down so
+  a load balancer takes the replica out; 200 while merely degraded, because the
+  routes that still work should still get traffic. Failure detail is one line
+  with no traceback, and anything that looks like a token is redacted before it
+  is served.
+
+**The test boundary.** `lifecycle.py` knows nothing about Modal: a component is
+a name and three callables. `server.py` imports the worker modules inside
+`modal_components()` rather than at module scope, so importing the app costs
+nothing and reaches nothing. Every test in `tests/test_component_lifecycle.py`
+uses fakes, and `modal` is not installed in the environment they run in — there
+is no path by which a test run could contact Modal, start a container, download
+a model or use a credential.
+
+**No live worker availability was measured.** These tests prove what the process
+does when a worker fails, using a fake that was told to fail. They say nothing
+about how often a real Modal worker fails, how long a real cold start takes, or
+what this service's availability is.
+
+```bash
+python3 -m pytest -q tests/test_component_lifecycle.py    # 27 tests, no GPU, no account
+```
+
 ---
 
 ## Tech stack
