@@ -1,3 +1,15 @@
+## Choose the study that matches the question
+
+| Track | What it establishes | Source and demonstration |
+| --- | --- | --- |
+| Winnow KV cache | Packed cache memory, fused dequantization and bounded quality comparisons | [Kernel source](turboquant_kv/README.md), [interactive lab](https://winnow-kv-cache-lab.vercel.app/) |
+| Decode Anatomy | Serving bottlenecks, batching, launch overhead and output consistency | [Source](https://github.com/lgoyal6/decode-anatomy), [recorded explorer](https://decode-anatomy.vercel.app/recorded.html) |
+| DDP Crossover | Two-GPU throughput and communication under the measured link | [Source](https://github.com/lgoyal6/ddp-crossover) |
+| Winnow voice workspace | Spoken-context compression, review and answer comparison | [Product walkthrough](https://devpost.com/software/winnow-dzb281), application code in this repository |
+
+These are separate experiments and product paths. Cache memory savings are not
+serving speedups. Model, device, workload and source revision belong with each result.
+
 # Winnow
 
 > Voice-first, real-time token compression for LLM pipelines.
