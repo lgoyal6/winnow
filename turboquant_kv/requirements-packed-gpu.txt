@@ -1,0 +1,15 @@
+# Track 01 GPU host (Linux, Python 3.12). Triton comes with the Linux torch wheel.
+torch==2.14.0
+triton==3.8.0
+transformers==5.16.1
+accelerate==1.14.0
+numpy==2.5.4
+scipy==1.18.1
+huggingface-hub==1.33.0
+safetensors==0.8.0
+pytest==9.2.0
+grpcio==1.85.1
+grpcio-tools==1.85.1
+protobuf==7.36.2
+httpx
+# vLLM is installed into its own venv by jarvis_campaign.sh (it pins its own torch).
