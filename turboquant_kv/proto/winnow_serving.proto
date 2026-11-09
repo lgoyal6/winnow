@@ -1,0 +1,83 @@
+// Bounded generation service over the paged packed KV engine.
+syntax = "proto3";
+
+package winnow.serving.v1;
+
+service Generation {
+  // Streams one TokenEvent per generated token, then exactly one Final.
+  rpc Generate(GenerateRequest) returns (stream TokenEvent);
+  rpc Cancel(CancelRequest) returns (CancelReply);
+  rpc Health(HealthRequest) returns (HealthReply);
+}
+
+message Message {
+  string role = 1;
+  string content = 2;
+}
+
+message GenerateRequest {
+  // Must equal the revision the server pinned at startup; no other model loads.
+  string model_revision = 1;
+  // Exactly one of token_ids, prompt (raw text) or messages (chat template).
+  repeated int32 token_ids = 2;
+  string prompt = 3;
+  repeated Message messages = 4;
+  uint32 max_new_tokens = 5;
+  string request_id = 6;
+  // Seconds from receipt; 0 means only the gRPC deadline applies.
+  double deadline_s = 7;
+  // Load studies only: generate exactly max_new_tokens so every arm does the
+  // same work per request. Quality studies leave this false.
+  bool ignore_eos = 8;
+}
+
+message Token {
+  uint32 sequence = 1;
+  int32 token_id = 2;
+  string text = 3;
+  double server_time_s = 4;   // seconds since the request was received
+}
+
+message Final {
+  // ok statuses: eos, length. Otherwise: cancelled, deadline, error.
+  string status = 1;
+  string detail = 2;
+  uint32 prompt_tokens = 3;
+  uint32 output_tokens = 4;
+  double ttft_s = 5;
+  double total_s = 6;
+  double queue_s = 7;
+}
+
+message TokenEvent {
+  oneof event {
+    Token token = 1;
+    Final final = 2;
+  }
+}
+
+message CancelRequest {
+  string request_id = 1;
+}
+
+message CancelReply {
+  bool found = 1;
+}
+
+message HealthRequest {}
+
+message HealthReply {
+  string model_revision = 1;
+  string kv_mode = 2;          // packed8 or dense
+  string decode_backend = 3;
+  uint32 free_pages = 4;
+  uint32 pending_pages = 5;
+  uint32 owned_pages = 6;
+  uint32 total_pages = 7;
+  uint32 queued = 8;
+  uint32 active = 9;
+  uint64 pool_bytes = 10;
+  uint32 kv_bytes_per_token = 11;
+  uint64 device_allocated_bytes = 12;
+  uint64 device_reserved_bytes = 13;
+}
