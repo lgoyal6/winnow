@@ -11,6 +11,8 @@ The public replay exercises the checked-in transcript fixture and its original
 timing. It stops at the input boundary and does not present compression or LLM
 output unless those live services are running.
 
+![Winnow's compression playground with document upload and voice input](screenshots/product.png)
+
 ## Verify the GPU planner without credentials
 
 Its GPU systems track now includes a profile-guided TurboQuant runtime planner:
